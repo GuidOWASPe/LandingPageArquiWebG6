@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins",sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(orange,black);
+    background-size: cover;
+    background-position: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 550px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-box h2{
+    color:#fff;
+    text-align: center;
+    font-size: 32px;
+}
+.form-box .input-box{
+    position: relative;
+    margin:30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+
+.form-box .input-box input{
+width: 100%;
+height: 45px;
+background:transparent;
+border: none;
+padding: 0 20px 0 5px; 
+color: #fff;
+font-size: 16px;
+}
+input::placeholder{
+    color: #fffa;
+}
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border:none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    border: 2px solid transparent;
+    color: #333;
+    font-weight: 600;
+    border-radius: 40px;
+    transition: 0.5 ease-out;
+}
+.btn:hover{
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+    transition: 0.3 ease;
+}
+.group{
+    display: flex;
+    justify-content: space-between;
+}
+.group span a#olvidaste{
+    color: #fff;
+    position: relative;
+    top: 20px;
+    right: 10px;
+    text-decoration: none;
+    font-weight: 500;
+}
+.group span a{
+    color: #fff;
+    position: relative;
+    top: 20px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.group span a:hover{
+    color: #f90;
+    position: relative;
+    top: 20px;
+    font-weight: 500;
+    text-decoration: underline;
+
+}

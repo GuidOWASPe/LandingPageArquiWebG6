@@ -1,0 +1,111 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #f90;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+header .logo a img{
+    width: 180px;
+    padding-top: 20px;
+  }
+.header-content h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.header-content p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.cta-button {
+    background-color: black;
+    color: white;
+    padding: 8px 20px;
+    margin: 40px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+.styles-section {
+    padding: 50px 20px;
+    text-align: center;
+    flex: 1;
+}
+
+.styles-section h2 {
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: #4CAF50;
+}
+
+.style-card {
+    display: inline-block;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.style-card:hover {
+    transform: translateY(-10px);
+}
+
+.style-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.style-card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: #4CAF50;
+}
+
+.footer {
+    background-color: #9a9a9a;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+
+.footer-content h2, .footer-content p {
+    margin: 10px 0;
+}
+
+.footer-content a {
+    color: #FF5733;
+    text-decoration: none;
+}
+
+.social-icons {
+    margin: 10px 0;
+}
+
+.social-icons img {
+    width: 32px; /* Ajustado a 32x32 píxeles */
+    height: 32px;
+    margin: 0 10px;
+}

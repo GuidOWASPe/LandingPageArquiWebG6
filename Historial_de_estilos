@@ -1,0 +1,32 @@
+<section id="historial-estilos"></section>
+    <h2>Historial de Estilos de Peinados</h2>
+    <div class="historial-container">
+        <!-- Primer estilo -->
+        <div class="estilo">
+            <img src="images/icono06.jpeg" alt="Peinado 1">
+            <div class="estilo-info">
+                <h3>Peinado Clásico</h3>
+                <p>Un peinado elegante y atemporal que te ofrece una apariencia sofisticada.</p>
+                <p>Fecha: 12 de Septiembre, 2024</p>
+            </div>
+        </div>
+        <!-- Segundo estilo -->
+        <div class="estilo">
+            <img src="images/faceee.png" alt="Peinado 2">
+            <div class="estilo-info">
+                <h3>Peinado Moderno</h3>
+                <p>Un corte audaz con toques modernos que resalta la estructura facial.</p>
+                <p>Fecha: 25 de Septiembre, 2024</p>
+            </div>
+        </div>
+        <!-- Tercer estilo -->
+        <div class="estilo">
+            <img src="images/faceee.png" alt="Peinado 3">
+            <div class="estilo-info">
+                <h3>Ondas Suaves</h3>
+                <p>Ondas naturales que aportan un look relajado y fresco.</p>
+                <p>Fecha: 10 de Octubre, 2024</p>
+            </div>
+        </div>
+    </div>
+</section>

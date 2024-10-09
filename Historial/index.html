@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Página Web</title>
+    <style>
+        .container {
+            background-color: yellow;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .hair-style {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hair-style" id="style1">
+            
+        </div>
+        <div class="hair-style" id="style2">
+          
+        </div>
+        
+    </div>
+
+    <script>
+        
+        document.getElementById('style1').addEventListener('click', function() {
+            alert('Has seleccionado el estilo de peinado 1');
+        });
+        document.getElementById('style2').addEventListener('click', function() {
+            alert('Has seleccionado el estilo de peinado 2');
+        });
+    </script>
+</body>
+</html>
