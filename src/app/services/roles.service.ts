@@ -16,8 +16,6 @@ export class RolesService {
   private url = `${base_url}/roles`;
   private listaCambio = new Subject<Rol[]>();
 
-  constructor(private http:HttpClient) { }
-
   constructor(private http: HttpClient) {   }
   list(){
     return this.http.get<Rol[]>(this.url);

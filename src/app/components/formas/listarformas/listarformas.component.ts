@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Forma } from '../../../models/Forma';
@@ -13,14 +12,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-listarformas',
   standalone: true,
-  imports: [MatTableModule, MatIconModule],
   imports: [MatTableModule, MatIconModule, MatPaginatorModule, RouterModule, MatButtonModule, MatToolbarModule],
   templateUrl: './listarformas.component.html',
   styleUrl: './listarformas.component.css'
 })
 export class ListarformasComponent implements OnInit{
   dataSource: MatTableDataSource<Forma> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3'];
   displayedColumns: string[]=['c1', 'c2', 'c3', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;

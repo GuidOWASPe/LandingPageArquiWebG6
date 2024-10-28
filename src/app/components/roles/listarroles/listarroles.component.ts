@@ -9,14 +9,12 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-listarroles',
   standalone: true,
-  imports: [MatTableModule, MatIconModule],
   imports: [MatTableModule, MatIconModule, MatPaginatorModule,RouterModule],
   templateUrl: './listarroles.component.html',
   styleUrl: './listarroles.component.css'
 })
 export class ListarrolesComponent implements OnInit{
   dataSource: MatTableDataSource<Rol> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2'];
   displayedColumns: string[]=['c1', 'c2','actions'];
   constructor(private rS: RolesService){}
 
