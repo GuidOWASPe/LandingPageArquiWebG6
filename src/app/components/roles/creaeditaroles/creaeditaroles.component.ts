@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,20 +9,9 @@ import { Rol } from '../../../models/Rol';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RolesService } from '../../../services/roles.service';
 
->>>>>>> 85cc9481059a073c33eccf22ca6c9261c8fc8cc1
-
 @Component({
   selector: 'app-creaeditaroles',
   standalone: true,
-<<<<<<< HEAD
-  imports: [],
-  templateUrl: './creaeditaroles.component.html',
-  styleUrl: './creaeditaroles.component.css'
-})
-export class CreaeditarolesComponent {
-
-}
-=======
   imports: [MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
@@ -96,5 +82,3 @@ export class CreaeditarolesComponent implements OnInit {
     }
   }
 }
-
->>>>>>> 85cc9481059a073c33eccf22ca6c9261c8fc8cc1
