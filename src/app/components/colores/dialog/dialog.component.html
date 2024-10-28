@@ -1,0 +1,25 @@
+<h1 mat-dialog-title class="dialog-title">Registrar Color</h1>
+<div mat-dialog-content class="dialog-content">
+  <form [formGroup]="form" (submit)="insertar()">
+    <mat-form-field class="example-full-width" *ngIf="edicion">
+      <mat-label>Código</mat-label>
+      <input matInput formControlName="hcodigo" />
+    </mat-form-field>
+    
+    <mat-form-field class="full-width">
+      <mat-label>Seleccione Color</mat-label>
+      <mat-select formControlName="hnombre" class="color-select">
+        @for (food of listaColores; track food) {
+        <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions class="dialog-actions">
+      <button mat-button class="cancel-button" (click)="cerrar()">Cancelar</button>
+      <button mat-raised-button class="register-button">
+        Registrar
+      </button>
+    </div>
+  </form>
+</div>
