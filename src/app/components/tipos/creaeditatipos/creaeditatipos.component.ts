@@ -1,12 +1,88 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { Tipo } from '../../../models/Tipo';
+import { ActivatedRoute, Params, Router} from '@angular/router';
+import { TiposService } from '../../../services/tipos.service';
 
 @Component({
   selector: 'app-creaeditatipos',
   standalone: true,
-  imports: [],
+  imports: [MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    CommonModule,],
   templateUrl: './creaeditatipos.component.html',
   styleUrl: './creaeditatipos.component.css'
 })
-export class CreaeditatiposComponent {
+export class CreaeditatiposComponent implements OnInit{
+  form: FormGroup = new FormGroup({});
+  tipo: Tipo = new Tipo();
+  id: number = 0;
+  edicion: boolean = false;
 
+  constructor(
+    private FormBuilder: FormBuilder,
+    private tS: TiposService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
+    this.form = this.FormBuilder.group({
+      hCodigo: [''],
+      hNombre: ['', Validators.required],
+    });
+  }
+
+  insertar(): void {
+
+    if (this.form.valid) {
+      this.tipo.idTipo = this.form.controls['hCodigo'].value;
+      this.tipo.nombreTipo = this.form.controls['hNombre'].value;
+      if(this.edicion){
+        this.tS.update(this.tipo).subscribe(data => {
+          alert('Tipo actualizado');
+          this.tS.list().subscribe(data => {
+            this.tS.setList(data);
+          });
+        });
+      } else{
+        this.tS.insert(this.tipo).subscribe((data) => {
+          alert('Tipo insertado');
+          this.tS.list().subscribe((data) => {
+            this.tS.setList(data);
+          });
+        });
+      }
+    }
+    this.router.navigate(['tipos']);
+  }
+
+  cancel(): void {
+    this.router.navigate(['tipos']);
+  }
+
+  init() {
+    if (this.edicion) {
+      this.tS.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          hCodigo: new FormControl(data.idTipo),
+          hNombre: new FormControl(data.nombreTipo),
+        });
+      });
+    }
+  }
 }
