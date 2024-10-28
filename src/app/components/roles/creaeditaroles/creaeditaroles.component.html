@@ -1,0 +1,31 @@
+<div>
+    <div>
+      <h1>Rol</h1>
+    </div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input
+            matInput
+            formControlName="hCodigo"
+          /> </mat-form-field
+        ><br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            placeholder="Administrador"
+            formControlName="hNombre"
+          /> </mat-form-field
+        ><br />
+  
+        <div>
+          <button mat-flat-button class="botoncito">Registrar/Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
