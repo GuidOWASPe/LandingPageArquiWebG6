@@ -1,2 +1,18 @@
+<mat-toolbar class="custom-toolbar">
+  <mat-icon>menu</mat-icon>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuStyleCheck" style="color: rgb(0, 0, 0)">
+      Formas
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menuStyleCheck="matMenu">
+  <button mat-menu-item routerLink="/formas" class="custom-menu-item">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/formas/nuevo" class="custom-menu-item">
+    Registrar
+  </button>
+</mat-menu>
 <router-outlet></router-outlet>
-<app-colores></app-colores>

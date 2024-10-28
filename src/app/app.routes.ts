@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
-import { ColoresComponent } from './components/colores/colores.component';
-import { DialogComponent } from './components/colores/dialog/dialog.component';
+import { CreaeditaformasComponent } from './components/formas/creaeditaformas/creaeditaformas.component';
+import { FormasComponent } from './components/formas/formas.component';
 
 export const routes: Routes = [
   {
-    path: 'colores',
-    component: ColoresComponent,
+    path: 'formas',
+    component: FormasComponent,
     children: [
       {
         path: 'nuevo',
-        component: DialogComponent,
+        component: CreaeditaformasComponent,
       },
       {
         path: 'ediciones/:id',
-        component: DialogComponent,
+        component: CreaeditaformasComponent,
       },
     ],
-  },
+  }
 ];
