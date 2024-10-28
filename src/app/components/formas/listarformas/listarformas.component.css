@@ -143,6 +143,7 @@ table {
 th {
   background-color: #007bff;
   color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   padding: 10px;
   text-align: left;
@@ -229,6 +230,7 @@ tr:hover {
 .save-button {
   background-color: #007bff;
   color: white;
+  color: rgb(199, 25, 25);
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
