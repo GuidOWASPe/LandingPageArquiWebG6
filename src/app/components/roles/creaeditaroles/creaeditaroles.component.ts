@@ -9,7 +9,6 @@ import { Rol } from '../../../models/Rol';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RolesService } from '../../../services/roles.service';
 
-
 @Component({
   selector: 'app-creaeditaroles',
   standalone: true,
@@ -83,4 +82,3 @@ export class CreaeditarolesComponent implements OnInit {
     }
   }
 }
-

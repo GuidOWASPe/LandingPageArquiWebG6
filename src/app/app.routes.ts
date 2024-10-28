@@ -3,6 +3,9 @@ import { CreaeditaformasComponent } from './components/formas/creaeditaformas/cr
 import { FormasComponent } from './components/formas/formas.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
+import { TiposComponent } from './components/tipos/tipos.component';
+import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
+
 
 export const routes: Routes = [
   {
@@ -20,14 +23,31 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'roles',component:RolesComponent,
+      path: 'roles',
+      component:RolesComponent,
+      children: [
+          {
+              path: 'nuevo',
+              component: CreaeditarolesComponent
+          },
+          {
+              path: 'ediciones/:id',
+              component: CreaeditarolesComponent,
+          }
+      ]
+  },
+  {
+    path: 'tipos',
+    component:TiposComponent,
     children: [
         {
-            path: 'nuevo', component: CreaeditarolesComponent
+            path: 'nuevo',
+            component: CreaeditatiposComponent,
         },
         {
-            path: 'ediciones/:id', component: CreaeditarolesComponent,
+            path: 'ediciones/:id',
+            component: CreaeditatiposComponent,
         }
     ]
-}
+  }
 ];
