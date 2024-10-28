@@ -1,13 +1,20 @@
 .custom-toolbar {
-    background-color: #1a5d2d;
-    color: white;
+  background-color:  rgb(8, 138, 95);
+  color: white;
+ }
+
+
+
+ .custom-menu-item {
+  color: black;
+  &:hover {
+   color: rgb(8, 138, 95);
+
   }
-  
-  .custom-menu-item {
-    color: rgb(0, 0, 0);
-  
-    &:hover {
-      color: #1a5d2d;
-    }
-  }
-  
+
+ }
+
+
+ .spacer{
+  flex: 1 1 auto;
+ }
