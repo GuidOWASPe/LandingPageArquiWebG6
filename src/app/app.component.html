@@ -1,2 +1,13 @@
-<router-outlet></router-outlet>
-<app-colores></app-colores>
+<mat-toolbar class="custom-toolbar" >
+    <mat-icon >menu</mat-icon>
+    <div>
+    <button mat-button [matMenuTriggerFor]="menu" style="color: rgb(245, 15, 15);" >
+        Tipos</button>
+    </div>
+   </mat-toolbar>
+  
+   <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/tipos"  class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/tipos/registrar" class="custom-menu-item">Registrar</button>
+   </mat-menu>
+   <router-outlet></router-outlet>
