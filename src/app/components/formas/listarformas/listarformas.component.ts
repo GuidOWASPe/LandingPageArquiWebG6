@@ -43,6 +43,7 @@ export class ListarformasComponent implements OnInit{
     this.fS.delete(id).subscribe((data) => {
       this.fS.list().subscribe((data) => {
         this.fS.setList(data);
+        
       })
     })
   }

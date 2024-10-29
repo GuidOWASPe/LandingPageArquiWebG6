@@ -1,32 +1,32 @@
-<mat-toolbar class="custom-toolbar">
-  <mat-icon>menu</mat-icon>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuStyleCheck" style="color: rgb(0, 0, 0)">
-      Formas
+<mat-toolbar color="primary" class="custom-toolbar">
+  <span class="app-title">My Application</span>
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>category</mat-icon>Formas
     </button>
+    <div class="submenu">
+      <a routerLink="/formas" class="submenu-item">Listar Formas</a>
+      <a routerLink="/formas/nuevo" class="submenu-item">Registrar Formas</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>shield</mat-icon>Roles
+    </button>
+    <div class="submenu">
+      <a routerLink="/roles" class="submenu-item">Listar Roles</a>
+      <a routerLink="/roles/nuevo" class="submenu-item">Registrar Roles</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>title</mat-icon>Tipos
+    </button>
+    <div class="submenu">
+      <a routerLink="/tipos" class="submenu-item">Listar Tipos</a>
+      <a routerLink="/tipos/nuevo" class="submenu-item">Registrar Tipos</a>
+    </div>
   </div>
 </mat-toolbar>
 
-<mat-menu #menuStyleCheck="matMenu">
-  <button mat-menu-item routerLink="/formas" class="custom-menu-item">
-    Listar formas
-  </button>
-  <button mat-menu-item routerLink="/formas/nuevo" class="custom-menu-item">
-    Registrar formas
-  </button>
-  <button mat-menu-item routerLink="/roles" class="custom-menu-item">
-    Listar rol
-  </button>
-  <button mat-menu-item routerLink="/roles/nuevo" class="custom-menu-item">
-    Registrar rol
-  </button>
-
-  <button mat-menu-item routerLink="/tipos" class="custom-menu-item">
-    Listar tipos
-  </button>
-  <button mat-menu-item routerLink="/tipos/nuevo" class="custom-menu-item">
-    Registrar tipos
-  </button>
-  
-</mat-menu>
 <router-outlet></router-outlet>

@@ -13,8 +13,6 @@ import { TiposService } from '../../../services/tipos.service';
   selector: 'app-creaeditatipos',
   standalone: true,
   imports: [MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
     MatButtonModule,
     ReactiveFormsModule,
     CommonModule,],
@@ -42,26 +40,24 @@ export class CreaeditatiposComponent implements OnInit{
     });
 
     this.form = this.FormBuilder.group({
-      hCodigo: [''],
-      hNombre: ['', Validators.required],
+      hcodigo: [''],
+      hnombre: ['', Validators.required],
     });
   }
 
   insertar(): void {
 
     if (this.form.valid) {
-      this.tipo.idTipo = this.form.controls['hCodigo'].value;
-      this.tipo.nombreTipo = this.form.controls['hNombre'].value;
+      this.tipo.idTipo = this.form.value.hcodigo;
+      this.tipo.nombreTipo = this.form.value.hnombre;
       if(this.edicion){
         this.tS.update(this.tipo).subscribe(data => {
-          alert('Tipo actualizado');
           this.tS.list().subscribe(data => {
             this.tS.setList(data);
           });
         });
       } else{
         this.tS.insert(this.tipo).subscribe((data) => {
-          alert('Tipo insertado');
           this.tS.list().subscribe((data) => {
             this.tS.setList(data);
           });
@@ -79,8 +75,8 @@ export class CreaeditatiposComponent implements OnInit{
     if (this.edicion) {
       this.tS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hCodigo: new FormControl(data.idTipo),
-          hNombre: new FormControl(data.nombreTipo),
+          hcodigo: new FormControl(data.idTipo),
+          hnombre: new FormControl(data.nombreTipo),
         });
       });
     }
