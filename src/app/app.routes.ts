@@ -6,7 +6,6 @@ import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creae
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
 
-
 export const routes: Routes = [
   {
     path: 'formas',
@@ -23,31 +22,31 @@ export const routes: Routes = [
     ],
   },
   {
-      path: 'roles',
-      component:RolesComponent,
-      children: [
-          {
-              path: 'nuevo',
-              component: CreaeditarolesComponent
-          },
-          {
-              path: 'ediciones/:id',
-              component: CreaeditarolesComponent,
-          }
-      ]
+    path: 'roles',
+    component: RolesComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditarolesComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditarolesComponent,
+      },
+    ],
   },
   {
     path: 'tipos',
-    component:TiposComponent,
+    component: TiposComponent,
     children: [
-        {
-            path: 'nuevo',
-            component: CreaeditatiposComponent,
-        },
-        {
-            path: 'ediciones/:id',
-            component: CreaeditatiposComponent,
-        }
-    ]
-  }
+      {
+        path: 'nuevo',
+        component: CreaeditatiposComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditatiposComponent,
+      },
+    ],
+  },
 ];
