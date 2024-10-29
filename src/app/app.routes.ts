@@ -5,8 +5,20 @@ import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { WebcamComponent } from './components/landing/webcam/webcam.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: LandingComponent,
+    children: [
+      {
+        path: 'webcam',
+        component: WebcamComponent,
+      },
+    ],
+  },
   {
     path: 'formas',
     component: FormasComponent,

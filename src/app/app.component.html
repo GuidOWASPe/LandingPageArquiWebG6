@@ -1,5 +1,5 @@
-<mat-toolbar color="primary" class="custom-toolbar">
-  <span class="app-title">My Application</span>
+<!--<mat-toolbar color="primary" class="custom-toolbar">
+  <span class="app-title">StyleCheck</span>
   <div class="nav-item">
     <button mat-button class="nav-button">
       <mat-icon>category</mat-icon>Formas
@@ -27,6 +27,83 @@
       <a routerLink="/tipos/nuevo" class="submenu-item">Registrar Tipos</a>
     </div>
   </div>
-</mat-toolbar>
-
+</mat-toolbar>-->
+<header>
+  <div class="navbar">
+      <!-- Logo -->
+      <div class="logo">
+          <a routerLink=""><img src="./img/headerlogo.png" alt="StyleCheck"></a>
+      </div>
+      <!-- Links -->
+      <ul class="links">
+          <li><a routerLink="/webcam">Escanea tu rostro</a></li>
+          <li><a href="/StyleSheck-main/Explora_Estilos/index.html">Explora estilos</a></li>
+          <li><a href="Explora_Estilos/Asesoramiento/index.html">Asesoramiento</a></li>
+          <li><a href="Historial/index.html">Historial de estilos</a></li>
+      </ul>
+      <!-- Action Button -->
+      <a href="./Login/login.html" class="action_btn">Empezar</a>
+      <!-- Toggle Button for Mobile -->
+      <div class="toggle_btn">
+          <i class="fa-solid fa-bars"></i>
+      </div>
+  </div>
+  <!-- Dropdown Menu for Mobile -->
+  <div class="dropdown_menu">
+  <li><a routerLink="/webcam">Escanea tu rostro</a></li>
+  <li><a href="Explora_Estilos/index.html">Explora estilos</a></li>
+  <li><a href="Explora_Estilos/Asesoramiento/index.html">Asesoramiento</a></li>
+  <li><a href="Historial/index.html">Historial de estilos</a></li>
+  <li><a href="Historial/index.html" class="action_btn">Empezar</a></li>
+  </div>
+</header>
+<!-------------------------------------------------------------------->
 <router-outlet></router-outlet>
+<!-------------------------------------------------------------------->
+<footer>
+  <div class="footer-section">
+      <h4>Lenguaje</h4>
+      <select name="language" class="combobox border_hover">
+          <option value="spanish" selected>Español</option>
+          <option value="english">Inglés</option>
+      </select>
+      <br />
+      <h4>Redes Sociales</h4>
+      <div class="footer-social">
+          <ul>
+              <li><a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a></li>
+              <li><a href="https://twitter.com"><i class="fa-brands fa-x-twitter"></i></a></li>
+              <li><a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a></li>
+          </ul>
+      </div>
+  </div>
+  <div class="footer-section">
+      <a href="#" class="footer-title"><h4>Inicio</h4></a>
+      <ul>
+          <li><a href="index.html#home" class="footer-item">CTA</a></li>
+          <li><a href="index.html#characteristics" class="footer-item">Nuestros Servicios</a></li>
+          <li><a href="index.html#targets" class="footer-item">Segmentos</a></li>
+          <li><a href="index.html#testimonials" class="footer-item">Testimonios</a></li>
+          <li><a href="index.html#plans" class="footer-item">Planes</a></li>
+      </ul>
+  </div>
+  <div class="footer-section">
+      <a href="#" class="footer-title"><h4>Nosotros</h4></a>
+      <ul>
+          <li><a href="about_us.html#resume" class="footer-item">Resumen</a></li>
+          <li><a href="about_us.html#vac" class="footer-item">Valores</a></li>
+          <li><a href="about_us.html#dev" class="footer-item">Desarrolladores</a></li>
+      </ul>
+  </div>
+  <div class="footer-section">
+      <a href="#" class="footer-title"><h4>Contacto</h4></a>
+      <ul>
+          <li><a href="contact.html#formcontact" class="footer-item">Formulario</a></li>
+          <li><a href="contact.html#socialmedia" class="footer-item">Redes Sociales</a></li>
+      </ul>
+    </div>
+  <div class="footer-copy">
+    <p>&copy; 2024 Los Estilistas. Todos los derechos reservados al startup StyleCheck</p>
+  </div>
+</footer>
+<script src="./js/scriptmenu.js"></script>
