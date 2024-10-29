@@ -11,13 +11,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-listartipos',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatPaginatorModule,RouterModule, MatButtonModule, MatToolbarModule],
+  imports: [MatTableModule, MatIconModule, MatPaginatorModule, RouterModule, MatButtonModule, MatToolbarModule],
   templateUrl: './listartipos.component.html',
   styleUrl: './listartipos.component.css'
 })
 export class ListartiposComponent implements OnInit{
   dataSource: MatTableDataSource<Tipo> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2','accion01', 'accion02'];
+  displayedColumns: string[] = ['c1', 'c2', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
@@ -30,9 +30,11 @@ export class ListartiposComponent implements OnInit{
   ngOnInit(): void {
     this.tS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     })
     this.tS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator; 
     })
   };
   eliminar(id: number) {
