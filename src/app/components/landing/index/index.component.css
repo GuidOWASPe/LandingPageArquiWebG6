@@ -583,15 +583,21 @@ header .princ .Page a img {
     flex-direction: column;
     text-align: center;
   }
-
+  
   .segmento:nth-child(even) {
     flex-direction: column;
   }
-
+  
   .segmento-icono {
     max-width: 100%;
     height: auto;
   }
+}
+
+
+.segmento {
+  animation: aparecer 1.2s ease-out forwards;
+  opacity: 0;
 }
 
 /* Testimonios */
