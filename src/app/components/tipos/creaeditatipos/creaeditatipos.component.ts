@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Tipo } from '../../../models/Tipo';
 import { ActivatedRoute, Params, Router} from '@angular/router';
 import { TiposService } from '../../../services/tipos.service';
+import { MatSnackBar,MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaeditatipos',
@@ -15,7 +16,9 @@ import { TiposService } from '../../../services/tipos.service';
   imports: [MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule,],
+    CommonModule,
+  MatSnackBarModule,
+],
   templateUrl: './creaeditatipos.component.html',
   styleUrl: './creaeditatipos.component.css'
 })
@@ -29,7 +32,8 @@ export class CreaeditatiposComponent implements OnInit{
     private FormBuilder: FormBuilder,
     private tS: TiposService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -47,7 +51,7 @@ export class CreaeditatiposComponent implements OnInit{
 
   insertar(): void {
 
-    if (this.form.valid) {
+    if (this.form.valid && this.form.value.hnombre) {
       this.tipo.idTipo = this.form.value.hcodigo;
       this.tipo.nombreTipo = this.form.value.hnombre;
       if(this.edicion){
@@ -63,8 +67,16 @@ export class CreaeditatiposComponent implements OnInit{
           });
         });
       }
+      this.router.navigate(['tipos']);
+    } else{
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios.');
     }
-    this.router.navigate(['tipos']);
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000, 
+    });
   }
 
   cancel(): void {

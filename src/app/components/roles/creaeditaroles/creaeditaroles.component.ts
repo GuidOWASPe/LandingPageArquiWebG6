@@ -1,11 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { 
+  FormBuilder, 
+  FormControl, 
+  FormGroup, 
+  ReactiveFormsModule, 
+  Validators 
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { Rol } from '../../../models/Rol';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RolesService } from '../../../services/roles.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaeditaroles',
@@ -13,7 +20,9 @@ import { RolesService } from '../../../services/roles.service';
   imports: [MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule,],
+    CommonModule,
+    MatSnackBarModule
+    ],
   templateUrl: './creaeditaroles.component.html',
   styleUrl: './creaeditaroles.component.css'
 })
@@ -27,7 +36,8 @@ export class CreaeditarolesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private rS: RolesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -45,7 +55,7 @@ export class CreaeditarolesComponent implements OnInit {
 
   insertar(): void {
 
-    if (this.form.valid) {
+    if (this.form.valid && this.form.value.hnombre) {
       this.rol.idRol = this.form.value.hcodigo;
       this.rol.nombre = this.form.value.hnombre;
       if(this.edicion){
@@ -61,8 +71,16 @@ export class CreaeditarolesComponent implements OnInit {
           });
         });
       }
+      this.router.navigate(['roles']);
+    }else {
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios.');
     }
-    this.router.navigate(['roles']);
+    
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000, 
+    });
   }
 
   cancel(): void {
