@@ -12,11 +12,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-creaeditaformas',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatSnackBarModule],
   templateUrl: './creaeditaformas.component.html',
   styleUrl: './creaeditaformas.component.css',
 })
@@ -30,7 +31,8 @@ export class CreaeditaformasComponent implements OnInit {
     private formBuilder: FormBuilder,
     private fS: FormasService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class CreaeditaformasComponent implements OnInit {
   }
 
   insertar(): void {
-    if (this.form.valid) {
+    if (this.form.valid && this.form.value.hdescripcion && this.form.value.hnombre) {
       this.forma.idForma = this.form.value.hcodigo;
       this.forma.descripcionForma = this.form.value.hdescripcion;
       this.forma.nombreForma = this.form.value.hnombre;
@@ -65,8 +67,16 @@ export class CreaeditaformasComponent implements OnInit {
           });
         });
       }
+      this.router.navigate(['formas']);
+    }else{
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios.');
     }
-    this.router.navigate(['formas']);
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000, 
+    });
   }
 
   cancel(): void {
