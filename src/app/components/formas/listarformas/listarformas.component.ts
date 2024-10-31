@@ -27,7 +27,7 @@ export class ListarformasComponent implements OnInit{
 
   constructor(private fS:FormasService, private dialog: MatDialog, private snackBar: MatSnackBar){}
 
-  AfterViewInit(): void{
+  ngAfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 
