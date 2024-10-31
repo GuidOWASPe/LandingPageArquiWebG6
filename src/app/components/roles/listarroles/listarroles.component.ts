@@ -23,7 +23,7 @@ export class ListarrolesComponent implements OnInit{
 
   constructor(private rS: RolesService){}
 
-  AfterViewInit(): void{
+  ngAfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 
