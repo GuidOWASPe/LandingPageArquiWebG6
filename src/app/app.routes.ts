@@ -1,36 +1,52 @@
 import { Routes } from '@angular/router';
-import { ColoresComponent } from './components/colores/colores.component';
-import { DialogComponent } from './components/colores/dialog/dialog.component';
+import { CreaeditaformasComponent } from './components/formas/creaeditaformas/creaeditaformas.component';
+import { FormasComponent } from './components/formas/formas.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
 
 export const routes: Routes = [
   {
-    path: 'colores',
-    component: ColoresComponent,
+    path: 'formas',
+    component: FormasComponent,
     children: [
       {
         path: 'nuevo',
-        component: DialogComponent,
+        component: CreaeditaformasComponent,
       },
       {
         path: 'ediciones/:id',
-        component: DialogComponent,
+        component: CreaeditaformasComponent,
+      },
+    ],
+  },
+  {
+    path: 'roles',
+    component: RolesComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditarolesComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditarolesComponent,
       },
     ],
   },
   {
     path: 'tipos',
-    component:TiposComponent,
-    children:[
-        {
-            path:'registrar',
-            component:CreaeditatiposComponent
-        },
-        {
-            path: 'ediciones/:id', 
-            component: CreaeditatiposComponent
-        }
-    ]
-  }
+    component: TiposComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditatiposComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditatiposComponent,
+      },
+    ],
+  },
 ];

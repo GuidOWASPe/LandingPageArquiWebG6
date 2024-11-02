@@ -16,24 +16,28 @@ export class TiposService {
   list(){
     return this.http.get<Tipo[]>(this.url);
   }
-  insert(ti:Tipo){
-    return this.http.post(this.url,ti);
+  
+  insert(tp: Tipo) {
+    return this.http.post(this.url, tp);
   }
-  getList(){
+
+  getList() {
     return this.listaCambio.asObservable();
   }
 
-  setList(listaNueva: Tipo[]){
+  setList(listaNueva: Tipo[]) {
     this.listaCambio.next(listaNueva);
   }
+
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
-  listId(id: number) {
-    return this.http.get<Tipo>(`${this.url}/${id}`);
+
+  listId(id: number){
+    return this.http.get<Tipo>(`${this.url}/${id}`)
   }
 
-  update(t: Tipo) {
-    return this.http.put(this.url,t);
+  update(tp: Tipo){
+    return this.http.put(this.url, tp)
   }
 }
