@@ -7,11 +7,13 @@ import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
+import { EstiloComponent } from './components/estilo/estilo.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: EstiloComponent,
+    //component: LandingComponent,
     children: [
       {
         path: 'webcam',
@@ -60,5 +62,9 @@ export const routes: Routes = [
         component: CreaeditatiposComponent,
       },
     ],
+  },
+  {
+    path: 'estilo',
+    component: EstiloComponent,
   },
 ];
