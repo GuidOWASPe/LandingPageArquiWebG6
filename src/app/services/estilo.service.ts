@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Tipo } from '../models/Tipo';
 import { HttpClient } from '@angular/common/http';
 import { Estilo } from '../models/Estilo';
-
+import { environment } from '../environments/environment';
+const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
 })
 export class EstiloService {
   private url = `${base_url}/estilo`;
-  private listarCambio = new Subject<Tipo[]>();
+  private listarCambio = new Subject<Estilo[]>();
   constructor(private http: HttpClient) { }
 
   list() {

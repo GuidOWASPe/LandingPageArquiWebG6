@@ -1,26 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Estilo } from '../../../models/Estilo';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Estilo } from '../../../models/Estilo';
+import { EstiloService } from '../../../services/estilo.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-listarestilo',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatPaginatorModule, RouterModule, MatButtonModule, MatToolbarModule],
+  imports: [MatTableModule,MatIconModule,MatButtonModule,RouterModule, MatPaginatorModule],
   templateUrl: './listarestilo.component.html',
   styleUrl: './listarestilo.component.css'
 })
 export class ListarestiloComponent implements OnInit{
   dataSource: MatTableDataSource<Estilo> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'accion01', 'accion02'];
+  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
-  constructor(private eT: Estilo){}
+  constructor(private eT: EstiloService){}
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

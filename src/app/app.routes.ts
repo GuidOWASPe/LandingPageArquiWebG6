@@ -10,12 +10,12 @@ import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/cr
 import { LandingComponent } from './components/landing/landing.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
 import { EstiloComponent } from './components/estilo/estilo.component';
+import { CreaeditaestiloComponent } from './components/estilo/creaeditaestilo/creaeditaestilo.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: EstiloComponent,
-    //component: LandingComponent,
+    component: LandingComponent,
     children: [
       {
         path: 'webcam',
@@ -75,11 +75,22 @@ export const routes: Routes = [
       },
       {
         path: 'ediciones/:id',
-        component:CreaeditarostroComponent
+        component: CreaeditarostroComponent
       }
     ]
-  }
+  },
+  {
     path: 'estilo',
     component: EstiloComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditaestiloComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaestiloComponent,
+      }
+    ]
   },
 ];

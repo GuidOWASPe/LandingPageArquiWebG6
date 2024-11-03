@@ -1,9 +1,10 @@
-import { Color } from "./Color"
+import { Rostro } from "./Rostro"
+
 
 export class Estilo{
     idEstilo: number = 0
     nombre: string = ""
-    codigo: string = ""
-    it: Item = new Item()
-    it: Rostro = new Rostro()
+    color: string = ""
+    rt: Rostro = new Rostro()
+    //it: Item = new Item()
 }
