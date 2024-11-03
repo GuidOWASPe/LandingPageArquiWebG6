@@ -14,6 +14,9 @@
           placeholder="Ingresar nombre"
           formControlName="hnombre"
         />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required') && form.get('hnombre')?.touched">
+          El campo descripción es obligatorio.
+        </mat-error>
       </mat-form-field>
 
       <div class="buttons">
