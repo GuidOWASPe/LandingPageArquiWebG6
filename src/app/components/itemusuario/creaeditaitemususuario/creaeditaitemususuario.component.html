@@ -1,0 +1,62 @@
+<p>creaeditaitemususuario works!</p>
+<div class="container" style="text-align: center; margin: 5%">
+    <div><h1>Registro de Item Usuario</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="hcodigo" />
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Fecha </mat-label>
+            <input matInput [matDatepicker]="picker"  formControlName="hfechaitemfav" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br>
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Calificacion</mat-label>
+          <input
+            matInput
+            placeholder="Ingresar contenido"
+            formControlName="hcalificacion"
+          />
+        </mat-form-field>
+        <br>
+
+          <mat-form-field>
+            <mat-label>Usuarios</mat-label>
+            <mat-select  formControlName="husuario">
+              @for (food of listausuarios; track food) {
+              <mat-option [value]="food.idUsuario">{{ food.username }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <br>
+         <mat-form-field>
+                <mat-label>Items </mat-label>
+                <mat-select  formControlName="hitem">
+                  @for (food of listaitems; track food) {
+                  <mat-option [value]="food.idItem">{{ food.nombreItem }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+              <br>
+        <div class="buttons">
+          <button mat-flat-button class="custom-button" (click)="cancel()">
+            Cancelar
+          </button>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+    </form>
+    </div>
+  </div>
+  

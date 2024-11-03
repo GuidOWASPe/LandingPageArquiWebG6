@@ -11,7 +11,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-listarroles',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatPaginatorModule, RouterModule, MatButtonModule, MatToolbarModule],
+  imports: [MatTableModule,
+     MatIconModule, 
+     MatPaginatorModule, 
+     RouterModule,
+      MatButtonModule,
+       MatToolbarModule],
   templateUrl: './listarroles.component.html',
   styleUrl: './listarroles.component.css'
 })

@@ -10,7 +10,8 @@ import { RolesService } from '../../../services/roles.service';
 @Component({
   selector: 'app-creaeditaroles',
   standalone: true,
-  imports: [MatInputModule,
+  imports: [
+    MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
     CommonModule,],
