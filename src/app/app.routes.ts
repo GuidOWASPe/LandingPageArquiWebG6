@@ -5,6 +5,8 @@ import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
+import { RostroComponent } from './components/rostro/rostro.component';
+import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
 import { EstiloComponent } from './components/estilo/estilo.component';
@@ -64,6 +66,19 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'rostros',
+    component: RostroComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditarostroComponent
+      },
+      {
+        path: 'ediciones/:id',
+        component:CreaeditarostroComponent
+      }
+    ]
+  }
     path: 'estilo',
     component: EstiloComponent,
   },
