@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Usuarios } from '../../../models/Usuarios';
@@ -12,6 +12,7 @@ import { FormasService } from '../../../services/formas.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Forma } from '../../../models/Forma';
 import { RostroService } from '../../../services/rostro.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-creaeditarostro',
@@ -22,7 +23,9 @@ import { RostroService } from '../../../services/rostro.service';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatError,
+    CommonModule
   ],
   templateUrl: './creaeditarostro.component.html',
   styleUrl: './creaeditarostro.component.css'
@@ -63,7 +66,7 @@ export class CreaeditarostroComponent implements OnInit{
       this.listaFormas = data;
     });
   }
-  insertar(): void {
+  insertar() {
     if(this.form.valid && this.form.value.hnombre && this.form.value.himagen){
       this.rostro.idRostro = this.form.value.hcodigo;
       this.rostro.fo.idForma=this.form.value.hforma;
