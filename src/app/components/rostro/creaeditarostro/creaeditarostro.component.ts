@@ -53,8 +53,8 @@ export class CreaeditarostroComponent implements OnInit{
       hcodigo: [''],
       hforma: ['', Validators.required],
       husuario: ['', Validators.required],
-      hnombre: ['', Validators.required],
-      himagen: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.maxLength(100)]],
+      himagen: ['', [Validators.required, Validators.maxLength(500)]],
     });
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
@@ -64,7 +64,7 @@ export class CreaeditarostroComponent implements OnInit{
     });
   }
   insertar(): void {
-    if(this.form.valid){
+    if(this.form.valid && this.form.value.hnombre && this.form.value.himagen){
       this.rostro.idRostro = this.form.value.hcodigo;
       this.rostro.fo.idForma=this.form.value.hforma;
       this.rostro.usu.idUsuario=this.form.value.husuario;
@@ -83,8 +83,11 @@ export class CreaeditarostroComponent implements OnInit{
           })
         })
       }
+      this.router.navigate(['rostros'])
+    }else{
+      console.log(this.form.value)
+      console.log("Campos invalidos")
     }
-    this.router.navigate(['rostros'])
   }
   init() {
     if (this.edicion) {
