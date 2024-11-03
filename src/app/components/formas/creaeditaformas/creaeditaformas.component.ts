@@ -56,20 +56,23 @@ export class CreaeditaformasComponent implements OnInit {
       this.forma.nombreForma = this.form.value.hnombre;
       if (this.edicion) {
         this.fS.update(this.forma).subscribe((data) => {
+          this.openSnackBar('Actualizado correctamente.');
           this.fS.list().subscribe((data) => {
             this.fS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
         });
       } else {
         this.fS.insert(this.forma).subscribe((data) => {
           this.fS.list().subscribe((data) => {
             this.fS.setList(data);
+            this.openSnackBar('Registro creado exitosamente');
           });
         });
       }
       this.router.navigate(['formas']);
     }else{
-      this.openSnackBar('Por favor, rellena todos los campos obligatorios.');
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
     }
   }
 
@@ -80,6 +83,7 @@ export class CreaeditaformasComponent implements OnInit {
   }
 
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['formas']);
   }
 

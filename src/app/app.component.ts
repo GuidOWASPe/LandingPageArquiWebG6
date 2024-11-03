@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
