@@ -5,6 +5,8 @@ import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
+import { RostroComponent } from './components/rostro/rostro.component';
+import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 
 export const routes: Routes = [
   {
@@ -49,4 +51,18 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'rostros',
+    component: RostroComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditarostroComponent
+      },
+      {
+        path: 'ediciones/:id',
+        component:CreaeditarostroComponent
+      }
+    ]
+  }
 ];
