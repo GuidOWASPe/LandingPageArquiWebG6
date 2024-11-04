@@ -12,13 +12,14 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-creaeditaformas',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule],
   templateUrl: './creaeditaformas.component.html',
-  styleUrl: './creaeditaformas.component.css',
+  styleUrls: ['./creaeditaformas.component.css'],
 })
 export class CreaeditaformasComponent implements OnInit {
   form: FormGroup = new FormGroup({});
@@ -30,7 +31,8 @@ export class CreaeditaformasComponent implements OnInit {
     private formBuilder: FormBuilder,
     private fS: FormasService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -66,7 +68,7 @@ export class CreaeditaformasComponent implements OnInit {
         });
       }
     }
-    this.router.navigate(['formas']);
+    //this.router.navigate(['formas']);
   }
 
   cancel(): void {
@@ -83,5 +85,22 @@ export class CreaeditaformasComponent implements OnInit {
         });
       });
     }
+  }
+
+  ejecutarDeteccion() {
+    const imagenPath = 'C:/Users/Tamalito/Pictures/Camera Roll/WIN_20241030_01_54_11_Pro.jpg';
+
+    this.http.post<any>(`http://127.0.0.1:5000/api/detectar-forma`, { imagen_path: imagenPath })
+      .subscribe(response => {
+        console.log('Forma de rostro:', response.nombreForma);
+        console.log('Descripción:', response.descripcionForma);
+
+        // Llenar los campos del formulario con los datos de la respuesta
+        this.form.controls['hnombre'].setValue(response.nombreForma);
+        this.form.controls['hdescripcion'].setValue(response.descripcionForma);
+
+      }, error => {
+        console.error('Error en la detección de rostro:', error);
+      });
   }
 }
