@@ -16,8 +16,8 @@
         <mat-form-field>
             <mat-label>Item</mat-label>
             <mat-select  formControlName="hitem">
-                @for (food of listaRostro; track food) {
-                <mat-option [value]="food.idRostro">{{ food.nombre }}</mat-option>
+                @for (food of listaItem; track food) {
+                <mat-option [value]="food.idItem">{{ food.nombreItem }}</mat-option>
                 }
             </mat-select>
         </mat-form-field>

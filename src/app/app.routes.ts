@@ -80,8 +80,22 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'estilo',
+    path: 'estilos',
     component: EstiloComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditaestiloComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaestiloComponent,
+      }
+    ]
+  },
+  {
+    path: 'item',
+    component: CreaeditaestiloComponent,
     children:[
       {
         path:'nuevo',

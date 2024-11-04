@@ -10,9 +10,10 @@ import { Rostro } from '../../../models/Rostro';
 import { Estilo } from '../../../models/Estilo';
 import { RostroService } from '../../../services/rostro.service';
 import { EstiloService } from '../../../services/estilo.service';
-import { Router } from 'express';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { Item } from '../../../models/item';
+import { ItemService } from '../../../services/item.service';
 
 @Component({
   selector: 'app-creaeditaestilo',
@@ -25,14 +26,14 @@ import { RouterModule } from '@angular/router';
 export class CreaeditaestiloComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaRostro: Rostro[] = [];
-  //listaItem: Item[] = [];
+  listaItem: Item[] = [];
   estilo: Estilo = new Estilo();
   id: number = 0;
   edicion: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private rS: RostroService,
-    //private iS: ItemService,
+    private iS: ItemService,
     private eS: EstiloService,
     private router: Router,
     private route: ActivatedRoute,
@@ -46,27 +47,27 @@ export class CreaeditaestiloComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hrostro: ['', Validators.required],
-      hitem: ['', Validators.required],
       hnombre: ['', [Validators.required, Validators.maxLength(100)]],
+      hrostro: ['', Validators.required],
       hcolor: ['', [Validators.required, Validators.maxLength(100)]],
+      hitem: ['', Validators.required],
     });
 
     this.rS.list().subscribe((data) => {
       this.listaRostro = data;
     });
 
-    //this.iS.list().subscribe((data) => {
-    //  this.listaItem = data;
-    //});
+    this.iS.list().subscribe((data) => {
+      this.listaItem = data;
+    });
   }
   insertar() {
-    if(this.form.valid && this.form.value.hnombre){
+    if(this.form.valid){
       this.estilo.idEstilo = this.form.value.hcodigo;
-      //his.estilo.iS.idItem=this.form.value.hitem;
-      this.estilo.rt.idRostro=this.form.value.hrostro;
-      this.estilo.nombre=this.form.value.hnombre;
-      this.estilo.color=this.form.value.hcolor;
+      this.estilo.Nombre=this.form.value.hnombre;
+      this.estilo.ro.idRostro=this.form.value.hrostro;
+      this.estilo.CodigoColor=this.form.value.hcolor;
+      this.estilo.it.idItem=this.form.value.hitem;
       if (this.edicion) {
         this.eS.update(this.estilo).subscribe((data) => {
           this.eS.list().subscribe((data) => {
@@ -80,7 +81,7 @@ export class CreaeditaestiloComponent implements OnInit{
           })
         })
       }
-      this.router.navigate(['estilo']);
+      this.router.navigate(['estilos']);
     }else{
       console.log(this.form.value)
       console.log("Campos invalidos")
@@ -91,10 +92,10 @@ export class CreaeditaestiloComponent implements OnInit{
       this.eS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idEstilo),
-          hrostro: new FormControl(data.rt.idRostro),
-          //hitem: new FormControl(data.iS.idItem),
-          hnombre: new FormControl(data.nombre),
-          hcolor: new FormControl(data.color),
+          hrostro: new FormControl(data.ro.idRostro),
+          hitem: new FormControl(data.it.idItem),
+          hnombre: new FormControl(data.Nombre),
+          hcolor: new FormControl(data.CodigoColor),
         });
       });
     }

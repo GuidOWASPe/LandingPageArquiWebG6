@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Estilo } from '../../../models/Estilo';
-import { EstiloService } from '../../../services/estilo.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { Estilo } from '../../../models/Estilo';
+import { EstiloService } from '../../../services/estilo.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-listarestilo',
   standalone: true,
-  imports: [MatTableModule,MatIconModule,MatButtonModule,RouterModule, MatPaginatorModule],
+  imports: [MatTableModule,MatIconModule,MatButtonModule,RouterModule, MatPaginatorModule, MatToolbarModule],
   templateUrl: './listarestilo.component.html',
   styleUrl: './listarestilo.component.css'
 })

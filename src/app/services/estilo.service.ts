@@ -8,7 +8,7 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class EstiloService {
-  private url = `${base_url}/estilo`;
+  private url = `${base_url}/estilos`;
   private listarCambio = new Subject<Estilo[]>();
   constructor(private http: HttpClient) { }
 
