@@ -7,6 +7,7 @@ import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
 import { RostroComponent } from './components/rostro/rostro.component';
 import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
+import { CameraKitComponent } from './components/camera-kit/camera-kit.component';
 
 export const routes: Routes = [
   {
@@ -64,5 +65,9 @@ export const routes: Routes = [
         component:CreaeditarostroComponent
       }
     ]
+  },
+  {
+    path:'camerakit',
+    component:CameraKitComponent
   }
 ];
