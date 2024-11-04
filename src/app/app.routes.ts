@@ -3,9 +3,6 @@ import { CreaeditaformasComponent } from './components/formas/creaeditaformas/cr
 import { FormasComponent } from './components/formas/formas.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
-import { EstiloUsuariosComponent } from './components/estilo-usuarios/estilo-usuarios.component';
-import { CreaeditaestiloUsuariosComponent } from './components/estilo-usuarios/creaeditaestilo-usuarios/creaeditaestilo-usuarios.component';
-
 export const routes: Routes = [
   {
     path: 'formas',
@@ -32,15 +29,5 @@ export const routes: Routes = [
         }
     ]
   },
-  {
-    path: 'EstiloUsuarios',component:EstiloUsuariosComponent,
-    children: [
-        {
-            path: 'nuevo', component: CreaeditaestiloUsuariosComponent
-        },
-        {
-            path: 'ediciones/:id', component: CreaeditaestiloUsuariosComponent,
-        }
-    ]
-},
+  
 ];
