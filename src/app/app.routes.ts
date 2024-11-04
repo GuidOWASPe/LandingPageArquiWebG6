@@ -93,8 +93,22 @@ export const routes: Routes = [
       },
       {
         path: 'ediciones/:id',
-        component:CreaeditarostroComponent
+        component: CreaeditarostroComponent
       }
     ]
-  }
+  },	
+  {
+    path: 'estilos',
+    component: EstiloComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditaestiloComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaestiloComponent,
+      }
+    ]
+  },
 ];
