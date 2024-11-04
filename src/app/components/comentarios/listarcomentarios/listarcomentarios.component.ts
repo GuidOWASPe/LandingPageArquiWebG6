@@ -51,6 +51,7 @@ export class ListarcomentariosComponent {
       this.dataSource.paginator = this.paginator;
     })
   };
+  
   eliminar(id: number): void {
     this.comenS.delete(id).subscribe(data=> {
       this.comenS.list().subscribe((data) => {

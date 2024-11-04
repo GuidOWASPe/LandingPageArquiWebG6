@@ -25,7 +25,7 @@
           <mat-label>Calificacion</mat-label>
           <input
             matInput
-            placeholder="Ingresar contenido"
+            placeholder="Ingresar su calificacion"
             formControlName="hcalificacion"
           />
         </mat-form-field>
@@ -45,7 +45,7 @@
                 <mat-label>Items </mat-label>
                 <mat-select  formControlName="hitem">
                   @for (food of listaitems; track food) {
-                  <mat-option [value]="food.idItem">{{ food.nombreItem }}</mat-option>
+                  <mat-option [value]="food.idItem">{{ food.nombreItem}}</mat-option>
                   }
                 </mat-select>
               </mat-form-field>

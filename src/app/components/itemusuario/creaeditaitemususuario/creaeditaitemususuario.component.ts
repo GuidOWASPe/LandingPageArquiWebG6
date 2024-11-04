@@ -50,7 +50,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private itemuS:ItemusuarioService,
-    private uS:UsuarioService,//hola
+    private uS:UsuarioService,
     private iS:ItemService,
     private router: Router,
     private route: ActivatedRoute
@@ -61,7 +61,6 @@ export class CreaeditaitemususuarioComponent implements OnInit{
  // Calificacion:number=0
  // us:Usuarios=new Usuarios()
  // it:Item=new Item()
-
 
   ngOnInit():void {
     this.route.params.subscribe((data: Params) => {
@@ -91,7 +90,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
 
       this.itemusuario.idItemFavorito = this.form.value.hcodigo;
       this.itemusuario.fechaItemFavorito=this.form.value.hfechaitemfav;
-      this.itemusuario.Calificacion=this.form.value.hcalificacion;
+      this.itemusuario.calificacion=this.form.value.hcalificacion;
       this.itemusuario.us=this.form.value.husuario;
       this.itemusuario.it=this.form.value.hitem;
       
@@ -112,12 +111,12 @@ export class CreaeditaitemususuarioComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['itemUsuario']);
+    this.router.navigate(['itemusuario']);
   }
 
     
   cancel(): void {
-    this.router.navigate(['itemUsuario']);
+    this.router.navigate(['itemusuario']);
   }
 
   init() {
@@ -126,7 +125,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
         this.form = new FormGroup({
           hcodigo:new FormControl(data.idItemFavorito),
           hfechaitemfav:new FormControl(data.fechaItemFavorito),
-          hcalificacion: new FormControl(data.Calificacion),
+          hcalificacion: new FormControl(data.calificacion),
           husuario:new FormControl(data.us.idUsuario),
           hitem:new FormControl(data.it.idItem),
         

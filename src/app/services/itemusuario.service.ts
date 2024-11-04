@@ -19,8 +19,8 @@ export class ItemusuarioService {
     return this.http.get<ItemUsuario[]>(this.url);
   }
 
-  insert(itemus: ItemUsuario) {
-    return this.http.post(this.url, itemus);
+  insert(itemU: ItemUsuario) {
+    return this.http.post(this.url, itemU);
   }
 
   getList() {
@@ -39,7 +39,7 @@ export class ItemusuarioService {
     return this.http.get<ItemUsuario>(`${this.url}/${id}`)
   }
 
-  update(itemU: ItemUsuario){
-    return this.http.put(this.url, itemU)
+  update(itemUs: ItemUsuario){
+    return this.http.put(this.url,itemUs)
   }
 }

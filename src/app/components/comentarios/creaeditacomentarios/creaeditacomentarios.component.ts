@@ -50,7 +50,7 @@ export class CreaeditacomentariosComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private comenS: ComentariosService,
-    private uS:UsuarioService,//hola
+    private uS:UsuarioService,
     private eS:EstiloService,
     private router: Router,
     private route: ActivatedRoute
@@ -107,13 +107,6 @@ export class CreaeditacomentariosComponent implements OnInit{
     }
     this.router.navigate(['comentarios']);
   }
-
-    ///private  int idcomentario;
-    //private String contenido;
-    //private int likes;
-    //private LocalDate fecha_publicada;
-    //private Usuario us;
-    //private Estilo et;
   cancel(): void {
     this.router.navigate(['comentarios']);
   }
