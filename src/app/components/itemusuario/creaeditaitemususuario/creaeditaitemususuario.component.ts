@@ -91,8 +91,8 @@ export class CreaeditaitemususuarioComponent implements OnInit{
       this.itemusuario.idItemFavorito = this.form.value.hcodigo;
       this.itemusuario.fechaItemFavorito=this.form.value.hfechaitemfav;
       this.itemusuario.calificacion=this.form.value.hcalificacion;
-      this.itemusuario.us=this.form.value.husuario;
-      this.itemusuario.it=this.form.value.hitem;
+      this.itemusuario.us.idUsuario=this.form.value.husuario;
+      this.itemusuario.it.idItem=this.form.value.hitem;
       
       
       if(this.edicion){

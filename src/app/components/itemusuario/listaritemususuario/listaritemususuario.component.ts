@@ -11,7 +11,9 @@ import { ItemusuarioService } from '../../../services/itemusuario.service';
 @Component({
   selector: 'app-listaritemususuario',
   standalone: true,
-  imports: [MatTableModule,
+  imports: [
+    
+    MatTableModule,
     MatIconModule, 
     MatPaginatorModule, 
     RouterModule,
