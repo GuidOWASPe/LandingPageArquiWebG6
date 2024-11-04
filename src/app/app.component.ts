@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RostroComponent } from './components/rostro/rostro.component';
+import { EstilosComponent } from './components/estilos/estilos.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { RostroComponent } from './components/rostro/rostro.component';
     MatDialogComponent,
     UsuariosComponent,
     RostroComponent, 
+    EstilosComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -11,6 +11,8 @@ import { ItemComponent } from './components/items/item.component';
 import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
 import { RostroComponent } from './components/rostro/rostro.component';
 import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
+import { EstilosComponent } from './components/estilos/estilos.component';
+import { CreaeditaestiloComponent } from './components/estilos/creaeditaestilos/creaeditaestilos.component';
 
 export const routes: Routes = [
   {
@@ -99,7 +101,7 @@ export const routes: Routes = [
   },	
   {
     path: 'estilos',
-    component: EstiloComponent,
+    component: EstilosComponent,
     children:[
       {
         path:'nuevo',

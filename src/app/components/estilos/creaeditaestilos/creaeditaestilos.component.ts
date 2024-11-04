@@ -12,16 +12,16 @@ import { RostroService } from '../../../services/rostro.service';
 import { EstiloService } from '../../../services/estilo.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { Item } from '../../../models/item';
 import { ItemService } from '../../../services/item.service';
+import { Item } from '../../../models/Item';
 
 @Component({
   selector: 'app-creaeditaestilo',
   standalone: true,
   providers:[provideNativeDateAdapter()],
   imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, MatError, CommonModule, RouterModule],
-  templateUrl: './creaeditaestilo.component.html',
-  styleUrl: './creaeditaestilo.component.css'
+  templateUrl: './creaeditaestilos.component.html',
+  styleUrl: './creaeditaestilos.component.css'
 })
 export class CreaeditaestiloComponent implements OnInit{
   form: FormGroup = new FormGroup({});

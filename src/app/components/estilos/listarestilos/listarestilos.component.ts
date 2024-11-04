@@ -12,8 +12,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   selector: 'app-listarestilo',
   standalone: true,
   imports: [MatTableModule,MatIconModule,MatButtonModule,RouterModule, MatPaginatorModule, MatToolbarModule],
-  templateUrl: './listarestilo.component.html',
-  styleUrl: './listarestilo.component.css'
+  templateUrl: './listarestilos.component.html',
+  styleUrl: './listarestilos.component.css'
 })
 export class ListarestiloComponent implements OnInit{
   dataSource: MatTableDataSource<Estilo> = new MatTableDataSource();
