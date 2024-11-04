@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { RostroComponent } from './components/rostro/rostro.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     MatToolbarModule,
     MatButtonModule,
     MatDialogComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    RostroComponent, 
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

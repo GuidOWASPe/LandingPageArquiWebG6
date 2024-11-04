@@ -9,6 +9,8 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
 import { ItemComponent } from './components/items/item.component';
 import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
+import { RostroComponent } from './components/rostro/rostro.component';
+import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +42,34 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'usuarios',
+    component: UsuariosComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditausuariosComponent
+      },
+      {
+        path: 'ediciones/:id',
+        component:CreaeditausuariosComponent
+      }
+    ]
+  },
+  {
+    path: 'items',
+    component: ItemComponent,
+    children:[
+      {
+        path:'nuevo',
+        component: CreaeditaitemsComponent
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaitemsComponent
+      }
+    ]
+  },
+  {
     path: 'tipos',
     component: TiposComponent,
     children: [
@@ -54,31 +84,17 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'usuarios',
-    component: UsuariosComponent,
-    children: [
+    path: 'rostros',
+    component: RostroComponent,
+    children:[
       {
-        path: 'nuevo',
-        component: CreaeditausuariosComponent,
+        path:'nuevo',
+        component: CreaeditarostroComponent
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditausuariosComponent,
-      },
-    ],
-  },
-  {
-    path: 'items',
-    component: ItemComponent,
-    children: [
-      {
-        path: 'nuevo',
-        component: CreaeditaitemsComponent,
-      },
-      {
-        path: 'ediciones/:id',
-        component: CreaeditaitemsComponent,
-      },
-    ],
-  },
+        component:CreaeditarostroComponent
+      }
+    ]
+  }
 ];
