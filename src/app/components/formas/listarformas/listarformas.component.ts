@@ -7,15 +7,12 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDialog } from '@angular/material/dialog';
-import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
   selector: 'app-listarformas',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatPaginatorModule, RouterModule, MatButtonModule, MatToolbarModule, MatSnackBarModule],
+  imports: [MatTableModule, MatIconModule, MatPaginatorModule, RouterModule, MatButtonModule, MatToolbarModule],
   templateUrl: './listarformas.component.html',
   styleUrl: './listarformas.component.css'
 })
@@ -25,9 +22,9 @@ export class ListarformasComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
-  constructor(private fS:FormasService, private dialog: MatDialog, private snackBar: MatSnackBar){}
+  constructor(private fS:FormasService){}
 
-  ngAfterViewInit(): void{
+  AfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 
@@ -42,24 +39,12 @@ export class ListarformasComponent implements OnInit{
     })
   }
 
-  openSnackBar(message: string) {
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 3000,
-    });
-  }
-
-  eliminar(id: number): void {
-    const dialogRef = this.dialog.open(MatDialogComponent);
-  
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.fS.delete(id).subscribe(() => {
-          this.fS.list().subscribe((data) => {
-            this.fS.setList(data);
-            this.openSnackBar('Elemento eliminado correctamente.');
-          });
-        });
-      }
-    });
+  eliminar(id: number): void{
+    this.fS.delete(id).subscribe((data) => {
+      this.fS.list().subscribe((data) => {
+        this.fS.setList(data);
+        
+      })
+    })
   }
 }
