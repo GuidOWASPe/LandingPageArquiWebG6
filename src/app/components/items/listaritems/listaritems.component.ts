@@ -1,37 +1,45 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Forma } from '../../../models/Forma';
-import { FormasService } from '../../../services/formas.service';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { Item } from '../../../models/Item';
+import { ItemService } from '../../../services/item.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 
 @Component({
-  selector: 'app-listarformas',
+  selector: 'app-listaritems',
   standalone: true,
   imports: [
     MatTableModule,
+    MatButtonModule,
     MatIconModule,
     MatPaginatorModule,
     RouterModule,
-    MatButtonModule,
-    MatSnackBarModule,
+    MatSnackBarModule
   ],
-  templateUrl: './listarformas.component.html',
-  styleUrl: './listarformas.component.css',
+  templateUrl: './listaritems.component.html',
+  styleUrl: './listaritems.component.css',
 })
-export class ListarformasComponent implements OnInit {
-  dataSource: MatTableDataSource<Forma> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'accion01', 'accion02'];
+export class ListaritemsComponent implements OnInit {
+  dataSource: MatTableDataSource<Item> = new MatTableDataSource();
+  displayedColumns: string[] = [
+    'c1',
+    'c2',
+    'c3',
+    'c4',
+    'c5',
+    'accion01',
+    'accion02',
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private fS: FormasService,
+    private iS: ItemService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -41,11 +49,11 @@ export class ListarformasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fS.list().subscribe((data) => {
+    this.iS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
-    this.fS.getList().subscribe((data) => {
+    this.iS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
@@ -57,14 +65,14 @@ export class ListarformasComponent implements OnInit {
     });
   }
 
-  eliminar(id: number): void {
+  eliminar(id: number) {
     const dialogRef = this.dialog.open(MatDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.fS.delete(id).subscribe(() => {
-          this.fS.list().subscribe((data) => {
-            this.fS.setList(data);
+        this.iS.delete(id).subscribe((data) => {
+          this.iS.list().subscribe((data) => {
+            this.iS.setList(data);
             this.openSnackBar('Elemento eliminado correctamente.');
           });
         });

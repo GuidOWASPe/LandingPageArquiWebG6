@@ -5,6 +5,10 @@ import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
+import { ItemComponent } from './components/items/item.component';
+import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +50,34 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditatiposComponent,
+      },
+    ],
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditausuariosComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditausuariosComponent,
+      },
+    ],
+  },
+  {
+    path: 'items',
+    component: ItemComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaitemsComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaitemsComponent,
       },
     ],
   },

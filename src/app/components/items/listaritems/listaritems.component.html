@@ -1,24 +1,35 @@
 <div>
-  <div style="text-align: center; margin: 5%"><h1>Lista de Formas</h1></div>
+  <div style="text-align: center; margin: 5%"><h1>Lista de Items</h1></div>
   <div class="container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="c1">
         <th mat-header-cell *matHeaderCellDef>Código</th>
-        <td mat-cell *matCellDef="let element">{{ element.idForma }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.idItem }}</td>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- Weight Column -->
       <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef>Descripción</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.descripcionForma }}
-        </td>
+        <th mat-header-cell *matHeaderCellDef>Item</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombreItem }}</td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let element">{{ element.nombreForma }}</td>
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let element">{{ element.ti.nombreTipo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef>Calificación</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.calificacionItem }}
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>Nro° de usos</th>
+        <td mat-cell *matCellDef="let element">{{ element.nrUsos }}</td>
       </ng-container>
 
       <ng-container matColumnDef="accion01">
@@ -26,18 +37,18 @@
         <td
           mat-cell
           *matCellDef="let element"
-          (click)="eliminar(element.idForma)"
+          (click)="eliminar(element.idItem)"
         >
           <mat-icon style="color: rgb(8, 138, 95)">delete</mat-icon>
         </td>
       </ng-container>
-      
+
       <ng-container matColumnDef="accion02">
         <th mat-header-cell *matHeaderCellDef>Actualizar</th>
         <td mat-cell *matCellDef="let element">
           <button
             mat-raised-button
-            [routerLink]="['ediciones', element.idForma]"
+            [routerLink]="['ediciones', element.idItem]"
           >
             <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon>
           </button>

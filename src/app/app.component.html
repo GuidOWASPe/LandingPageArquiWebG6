@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="custom-toolbar">
-  <span class="app-title">My Application</span>
+  <span class="app-title" routerLink="/" style="cursor: pointer;">StyleCheck</span>
   <div class="nav-item">
     <button mat-button class="nav-button">
       <mat-icon>category</mat-icon>Formas
@@ -27,6 +27,23 @@
       <a routerLink="/tipos/nuevo" class="submenu-item">Registrar Tipos</a>
     </div>
   </div>
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>person</mat-icon>Usuarios
+    </button>
+    <div class="submenu">
+      <a routerLink="/usuarios" class="submenu-item">Listar Usuarios</a>
+      <a routerLink="/usuarios/nuevo" class="submenu-item">Registrar Usuarios</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>psychology_alt</mat-icon>Items
+    </button>
+    <div class="submenu">
+      <a routerLink="/items" class="submenu-item">Listar Items</a>
+      <a routerLink="/items/nuevo" class="submenu-item">Registrar Items</a>
+    </div>
+  </div>
 </mat-toolbar>
-
 <router-outlet></router-outlet>
