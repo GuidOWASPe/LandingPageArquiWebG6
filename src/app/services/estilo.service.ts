@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Estilo } from '../models/Estilo';
 import { environment } from '../environments/environment';
 const base_url = environment.base;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,7 @@ export class EstiloService {
   list() {
     return this.http.get<Estilo[]>(this.url);
   }
-
+  
   insert(eT: Estilo) {
     return this.http.post(this.url, eT);
   }
@@ -31,6 +32,7 @@ export class EstiloService {
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
+
   listId(id: number) {
     return this.http.get<Estilo>(`${this.url}/${id}`);
   }
