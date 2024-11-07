@@ -3,8 +3,8 @@ import { Rostro } from "./Rostro"
 
 export class Estilo{
     idEstilo: number = 0
-    ro: Rostro = new Rostro()
-    it: Item = new Item()
     Nombre: string = ""
+    ro: Rostro = new Rostro()
     CodigoColor: string = ""
+    it: Item = new Item()
 }

@@ -1,24 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { 
+  FormBuilder, 
+  FormControl, 
+  FormGroup, 
+  ReactiveFormsModule, 
+  Validators 
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { Rol } from '../../../models/Rol';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RolesService } from '../../../services/roles.service';
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaeditaroles',
   standalone: true,
   imports: [MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule,],
+    CommonModule,
+    MatSnackBarModule
+    ],
   templateUrl: './creaeditaroles.component.html',
   styleUrl: './creaeditaroles.component.css'
 })
@@ -32,7 +36,8 @@ export class CreaeditarolesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private rS: RolesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -43,32 +48,42 @@ export class CreaeditarolesComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      hCodigo: [''],
-      hNombre: ['', Validators.required],
+      hcodigo: [''],
+      hnombre: ['', Validators.required],
     });
   }
 
   insertar(): void {
 
-    if (this.form.valid) {
-      this.rol.idRol = this.form.controls['hCodigo'].value;
-      this.rol.nombre = this.form.controls['hNombre'].value;
+    if (this.form.valid && this.form.value.hnombre) {
+      this.rol.idRol = this.form.value.hcodigo;
+      this.rol.nombre = this.form.value.hnombre;
       if(this.edicion){
-        this.rS.update(this.rol).subscribe(data => {
-          alert('Rol actualizado');
+        this.rS.update(this.rol).subscribe((data) => {
           this.rS.list().subscribe(data => {
             this.rS.setList(data);
           });
         });
       } else{
         this.rS.insert(this.rol).subscribe((data) => {
-          alert('Rol insertado');
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
           });
         });
       }
+      this.router.navigate(['roles']);
+    }else {
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios.');
     }
+    
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000, 
+    });
+  }
+
+  cancel(): void {
     this.router.navigate(['roles']);
   }
 
@@ -76,11 +91,10 @@ export class CreaeditarolesComponent implements OnInit {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hCodigo: new FormControl(data.idRol),
-          hNombre: new FormControl(data.nombre),
+          hcodigo: new FormControl(data.idRol),
+          hnombre: new FormControl(data.nombre),
         });
       });
     }
   }
 }
-
