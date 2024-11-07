@@ -23,7 +23,7 @@ export class ListartiposComponent implements OnInit{
 
   constructor(private tS: TiposService){}
 
-  ngAfterViewInit(): void{
+  AfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 

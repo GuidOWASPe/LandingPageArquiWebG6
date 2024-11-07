@@ -1,14 +1,11 @@
 import { Forma } from "./Forma"
-import { Usuarios } from "./Usuario"
+import { Usuarios } from "./Usuarios"
 
-export class Rostro{
-
-
-    idRostro: number = 0
-    Nombre: string = ""
-    imagenRostro: string = ""
-    us:Usuarios=new Usuarios()
-    fo:Forma =new Forma()
-
-
+export class Rostro
+{
+    idRostro:number=0
+    nombre:string=""
+    imagenRostro:string=""
+    usu:Usuarios=new Usuarios()
+    fo:Forma=new Forma()
 }

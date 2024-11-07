@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Rol } from '../../../models/Rol';
-import { RolesService } from '../../../services/roles.service';
-import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
+import { RolesService } from '../../../services/roles.service';
+import { Rol } from '../../../models/Rol';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
@@ -28,7 +28,7 @@ export class ListarrolesComponent implements OnInit{
 
   constructor(private rS: RolesService){}
 
-  ngAfterViewInit(): void{
+  AfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 

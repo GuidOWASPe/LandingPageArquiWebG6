@@ -1,12 +1,10 @@
-import { fadeInItems } from "@angular/material/menu"
 import { Item } from "./Item"
 import { Rostro } from "./Rostro"
 
 export class Estilo{
     idEstilo: number = 0
-    nombre: string = ""
-    ro:Rostro=new Rostro()
-    CodigoColor:string=""
-    it:Item=new Item
-    
+    Nombre: string = ""
+    ro: Rostro = new Rostro()
+    CodigoColor: string = ""
+    it: Item = new Item()
 }

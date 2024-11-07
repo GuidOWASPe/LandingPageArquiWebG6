@@ -1,44 +1,43 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
-import { Estilo } from '../models/Estilo';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Estilo } from '../models/Estilo';
+import { environment } from '../environments/environment';
+const base_url = environment.base;
 
-const base_url=environment.base;
 @Injectable({
   providedIn: 'root'
 })
 export class EstiloService {
   private url = `${base_url}/estilos`;
-  private listaCambio = new Subject<Estilo[]>();
-
-  constructor(private http: HttpClient) {}
+  private listarCambio = new Subject<Estilo[]>();
+  constructor(private http: HttpClient) { }
 
   list() {
     return this.http.get<Estilo[]>(this.url);
   }
-
-  insert(e: Estilo) {
-    return this.http.post(this.url, e);
+  
+  insert(eT: Estilo) {
+    return this.http.post(this.url, eT);
   }
 
   getList() {
-    return this.listaCambio.asObservable();
+    return this.listarCambio.asObservable();
   }
 
   setList(listaNueva: Estilo[]) {
-    this.listaCambio.next(listaNueva);
+    this.listarCambio.next(listaNueva);
   }
 
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  listId(id: number){
-    return this.http.get<Estilo>(`${this.url}/${id}`)
+  listId(id: number) {
+    return this.http.get<Estilo>(`${this.url}/${id}`);
   }
 
-  update(es: Estilo){
-    return this.http.put(this.url, es)
+  update(eT: Estilo) {
+    return this.http.put(this.url,eT);
   }
 }
