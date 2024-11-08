@@ -15,7 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   templateUrl: './listarestilos.component.html',
   styleUrl: './listarestilos.component.css'
 })
-export class ListarestiloComponent implements OnInit{
+export class ListarestilosComponent implements OnInit{
   dataSource: MatTableDataSource<Estilo> = new MatTableDataSource();
   displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5', 'accion01', 'accion02'];
 

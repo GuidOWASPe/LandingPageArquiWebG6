@@ -52,30 +52,30 @@ export const routes: Routes = [
   {
     path: 'usuarios',
     component: UsuariosComponent,
-    children:[
+    children: [
       {
-        path:'nuevo',
-        component: CreaeditausuariosComponent
+        path: 'nuevo',
+        component: CreaeditausuariosComponent,
       },
       {
         path: 'ediciones/:id',
-        component:CreaeditausuariosComponent
-      }
-    ]
+        component: CreaeditausuariosComponent,
+      },
+    ],
   },
   {
     path: 'items',
     component: ItemComponent,
-    children:[
+    children: [
       {
-        path:'nuevo',
-        component: CreaeditaitemsComponent
+        path: 'nuevo',
+        component: CreaeditaitemsComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditaitemsComponent
-      }
-    ]
+        component: CreaeditaitemsComponent,
+      },
+    ],
   },
   {
     path: 'tipos',
@@ -90,8 +90,6 @@ export const routes: Routes = [
         component: CreaeditatiposComponent,
       },
     ],
-    
-
   },
   {
     path: 'comentarios',
@@ -106,8 +104,6 @@ export const routes: Routes = [
         component: CreaeditacomentariosComponent,
       },
     ],
-    
-    
   },
   {
     path: 'itemusuario',
@@ -122,52 +118,47 @@ export const routes: Routes = [
         component: CreaeditaitemususuarioComponent,
       },
     ],
-    
-    
   },
   {
     path: 'rostros',
     component: RostroComponent,
-    children:[
+    children: [
       {
-        path:'nuevo',
-        component: CreaeditarostroComponent
+        path: 'nuevo',
+        component: CreaeditarostroComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditarostroComponent
-      }
-    ]
-
+        component: CreaeditarostroComponent,
+      },
+    ],
   },
   {
     path: 'EstiloUsuarios',
-    component:EstiloUsuariosComponent,
+    component: EstiloUsuariosComponent,
     children: [
-        {
-          path: 'nuevo', 
-          component: CreaeditaestiloUsuariosComponent
-        },
-        {
-          path: 'ediciones/:id', 
-          component: CreaeditaestiloUsuariosComponent,
-        }
-    ]
-},
-  },	
+      {
+        path: 'nuevo',
+        component: CreaeditaestiloUsuariosComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaestiloUsuariosComponent,
+      },
+    ],
+  },
   {
     path: 'estilos',
     component: EstilosComponent,
-    children:[
+    children: [
       {
-        path:'nuevo',
+        path: 'nuevo',
         component: CreaeditaestiloComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditaestiloComponent, 
-      }
-    ]
+        component: CreaeditaestiloComponent,
+      },
+    ],
   },
-
 ];
