@@ -14,14 +14,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { Usuarios } from '../../../models/Usuarios';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaeditacomentarios',
   standalone: true,
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-    provideNativeDateAdapter()
-  ],
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },provideNativeDateAdapter()],
   imports: [
     MatInputModule,
     MatButtonModule,
@@ -31,6 +30,7 @@ import { Usuarios } from '../../../models/Usuarios';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule
     
   ],
   templateUrl: './creaeditacomentarios.component.html',
@@ -51,7 +51,8 @@ export class CreaeditacomentariosComponent implements OnInit{
     private uS:UsuariosService,
     private eS:EstiloService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit():void {
@@ -79,8 +80,13 @@ export class CreaeditacomentariosComponent implements OnInit{
 
   insertar(): void {
 
-    if (this.form.valid) {
-
+    if (this.form.valid && this.form.value.hcontenido && this.form.value.hmegustas && this.form.value.hfechapublicada && this.form.value.husuario && this.form.value.hestilo) {
+      const fechaIngresada = new Date(this.form.value.hfecha);
+      const fechaActual = new Date();
+      if (fechaIngresada > fechaActual) {
+        this.openSnackBar('La fecha debe ser menor a la fecha actual');
+        return;
+      }
       this.comentario.idcomentario = this.form.value.hcodigo;
       this.comentario.contenido = this.form.value.hcontenido;
       this.comentario.likes = this.form.value.hmegustas;
@@ -91,6 +97,7 @@ export class CreaeditacomentariosComponent implements OnInit{
         this.comenS.update(this.comentario).subscribe((data) => {
           this.comenS.list().subscribe(data => {
             this.comenS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
 
         });
@@ -98,13 +105,23 @@ export class CreaeditacomentariosComponent implements OnInit{
         this.comenS.insert(this.comentario).subscribe((data) => {
           this.comenS.list().subscribe((data) => {
             this.comenS.setList(data);
+            this.openSnackBar('Registro creado exitosamente');
           });
         });
       }
+      this.router.navigate(['comentarios']);
+    }else{
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
     }
-    this.router.navigate(['comentarios']);
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
   }
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['comentarios']);
   }
 

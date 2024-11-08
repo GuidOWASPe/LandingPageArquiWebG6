@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 
 @Component({
   selector: 'app-listarcomentarios',
@@ -17,7 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatPaginatorModule, 
     RouterModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule,
   ],
   templateUrl: './listarcomentarios.component.html',
   styleUrl: './listarcomentarios.component.css'
@@ -37,9 +41,13 @@ export class ListarcomentariosComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator !: MatPaginator; 
 
-  constructor(private comenS: ComentariosService){}
+  constructor(
+    private comenS: ComentariosService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ){}
 
-  AfterViewInit(): void{
+  ngAfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 
@@ -55,12 +63,16 @@ export class ListarcomentariosComponent implements OnInit{
   };
   
   eliminar(id: number): void {
+    const dialogRef = this.dialog.open(MatDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
     this.comenS.delete(id).subscribe(data=> {
       this.comenS.list().subscribe((data) => {
         this.comenS.setList(data);
       });
     });
   }
-
+});
+  }
 
 }
