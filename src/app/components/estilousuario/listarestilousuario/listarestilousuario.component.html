@@ -1,43 +1,42 @@
 <div>
-    <div style="text-align: center; margin: 5%;"><h1>Lista de Estilos</h1></div>
+    <div style="text-align: center; margin: 5%;"><h1>Lista de Estilos por Usuario</h1></div>
     <div class="container">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
         <ng-container matColumnDef="c1">
           <th mat-header-cell *matHeaderCellDef>Código</th>
-          <td mat-cell *matCellDef="let element"> {{element.idEstilo}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.idEstiloFav}} </td>
         </ng-container>
         
         <ng-container matColumnDef="c2">
-          <th mat-header-cell *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{ element.nombre }} </td>
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaEstiloFav}} </td>
         </ng-container>
-  
-        <ng-container matColumnDef="c3">
-          <th mat-header-cell *matHeaderCellDef> Rostro </th>
-          <td mat-cell *matCellDef="let element"> {{element.ro.nombre}} </td>
-        </ng-container>
-        
+
         <ng-container matColumnDef="c4">
-          <th mat-header-cell *matHeaderCellDef>Color</th>
-          <td mat-cell *matCellDef="let element"> {{element.codigoColor}} </td>
+            <th mat-header-cell *matHeaderCellDef>Calificacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.calificacion}} </td>   </ng-container>
+    
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef> Estilo </th>
+          <td mat-cell *matCellDef="let element"> {{element.usuario.username}}</td>
         </ng-container>
   
         <ng-container matColumnDef="c5">
-          <th mat-header-cell *matHeaderCellDef> Item </th>
-          <td mat-cell *matCellDef="let element"> {{element.it.nombreItem}} </td>
+          <th mat-header-cell *matHeaderCellDef> Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.estilo.nombre}} </td>
         </ng-container>
   
         <ng-container matColumnDef="accion01">
           <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-          <td mat-cell *matCellDef="let element" (click)="eliminar(element.idEstilo)"> 
+          <td mat-cell *matCellDef="let element" (click)="eliminar(element.idEstiloFav)"> 
             <mat-icon style="color:rgb(8, 138, 95)">delete</mat-icon>            
           </td>
         </ng-container>
         <ng-container matColumnDef="accion02">
           <th mat-header-cell *matHeaderCellDef> Actualizar </th>
           <td mat-cell *matCellDef="let element" > 
-              <button mat-raised-button [routerLink]="['ediciones',element.idEstilo]">
+              <button mat-raised-button [routerLink]="['ediciones',element.idEstiloFav]">
                 <mat-icon style="color:rgb(8, 138, 95)">edit</mat-icon> 
               </button>          
           </td>
@@ -54,3 +53,4 @@
       </mat-paginator>
     </div>
   </div>
+

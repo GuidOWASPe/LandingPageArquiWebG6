@@ -11,7 +11,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-listarestilo',
   standalone: true,
-  imports: [MatTableModule,MatIconModule,MatButtonModule,RouterModule, MatPaginatorModule, MatToolbarModule],
+  imports: 
+  [MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule, 
+    MatPaginatorModule,
+     MatToolbarModule],
   templateUrl: './listarestilos.component.html',
   styleUrl: './listarestilos.component.css'
 })

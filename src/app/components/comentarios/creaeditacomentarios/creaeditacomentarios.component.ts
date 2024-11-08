@@ -30,8 +30,6 @@ import { Usuarios } from '../../../models/Usuarios';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatInputModule,
-    MatButtonModule,
     MatNativeDateModule,
     
   ],
@@ -101,7 +99,6 @@ export class CreaeditacomentariosComponent implements OnInit{
           this.comenS.list().subscribe((data) => {
             this.comenS.setList(data);
           });
-
         });
       }
     }

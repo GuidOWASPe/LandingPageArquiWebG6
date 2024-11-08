@@ -68,7 +68,7 @@ export class CreaeditaestiloComponent implements OnInit{
   insertar(): void {
     if(this.form.valid){
       this.estilo.idEstilo = this.form.value.hcodigo;
-      this.estilo.nombreEstilo = this.form.value.hnombre;
+      this.estilo.nombre = this.form.value.hnombre;
       this.estilo.codigoColor = this.form.value.hcolor;
       this.estilo.ro.idRostro = this.form.value.hrostro;
       this.estilo.it.idItem = this.form.value.hitem;
@@ -110,7 +110,7 @@ export class CreaeditaestiloComponent implements OnInit{
       this.eS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idEstilo),
-          hnombre: new FormControl(data.nombreEstilo),
+          hnombre: new FormControl(data.nombre),
           hrostro: new FormControl(data.ro.idRostro),
           hitem: new FormControl(data.it.idItem),
           hcolor: new FormControl(data.codigoColor),
