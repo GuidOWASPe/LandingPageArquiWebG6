@@ -3,9 +3,7 @@ import { Comentarios } from '../../../models/Comentario';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ComentariosService } from '../../../services/comentarios.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { UsuarioService } from '../../../services/usuario.service';
 import { EstiloService } from '../../../services/estilo.service';
-import { Usuarios } from '../../../models/Usuario';
 import { Estilo } from '../../../models/Estilo';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { UsuariosService } from '../../../services/usuarios.service';
+import { Usuarios } from '../../../models/Usuarios';
 
 @Component({
   selector: 'app-creaeditacomentarios',
@@ -50,7 +50,7 @@ export class CreaeditacomentariosComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private comenS: ComentariosService,
-    private uS:UsuarioService,
+    private uS:UsuariosService,
     private eS:EstiloService,
     private router: Router,
     private route: ActivatedRoute

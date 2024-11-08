@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatError, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Rostro } from '../../../models/Rostro';
@@ -14,12 +14,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { ItemService } from '../../../services/item.service';
 import { Item } from '../../../models/Item';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaeditaestilo',
   standalone: true,
   providers:[provideNativeDateAdapter()],
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, MatError, CommonModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, RouterModule],
   templateUrl: './creaeditaestilos.component.html',
   styleUrl: './creaeditaestilos.component.css'
 })
@@ -38,6 +39,7 @@ export class CreaeditaestiloComponent implements OnInit{
     private eS: EstiloService,
     private router: Router,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ){}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -48,9 +50,9 @@ export class CreaeditaestiloComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hnombre: ['', [Validators.required, Validators.maxLength(100)]],
+      hnombre: ['', Validators.required],
       hrostro: ['', Validators.required],
-      hcolor: ['', [Validators.required, Validators.maxLength(100)]],
+      hcolor: ['', Validators.required],
       hitem: ['', Validators.required],
     });
 
@@ -65,39 +67,53 @@ export class CreaeditaestiloComponent implements OnInit{
 
   insertar(): void {
     if(this.form.valid){
-      console.log("Nombre ingresado:", this.form.value.hnombre);  // Verificar valor
       this.estilo.idEstilo = this.form.value.hcodigo;
-      this.estilo.Nombre=this.form.value.hnombre;
-      this.estilo.ro.idRostro=this.form.value.hrostro;
-      this.estilo.CodigoColor=this.form.value.hcolor;
-      this.estilo.it.idItem=this.form.value.hitem;
+      this.estilo.nombreEstilo = this.form.value.hnombre;
+      this.estilo.codigoColor = this.form.value.hcolor;
+      this.estilo.ro.idRostro = this.form.value.hrostro;
+      this.estilo.it.idItem = this.form.value.hitem;
       if (this.edicion) {
         this.eS.update(this.estilo).subscribe((data) => {
+          this.openSnackBar('Actualizado correctamente.');
           this.eS.list().subscribe((data) => {
             this.eS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
         });
       } else {
         this.eS.insert(this.estilo).subscribe(data=>{
           this.eS.list().subscribe(data=>{
             this.eS.setList(data)
+            this.openSnackBar('Registro creado exitosamente');
           })
         })
       }
       this.router.navigate(['estilos']);
     }else{
-      console.log("Campos invalidos")
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
     }
   }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
+
+  cancel(): void {
+    this.openSnackBar('Operación cancelada');
+    this.router.navigate(['estilos']);
+  }
+
   init() {
     if (this.edicion) {
       this.eS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idEstilo),
-          hnombre: new FormControl(data.Nombre),
+          hnombre: new FormControl(data.nombreEstilo),
           hrostro: new FormControl(data.ro.idRostro),
           hitem: new FormControl(data.it.idItem),
-          hcolor: new FormControl(data.CodigoColor),
+          hcolor: new FormControl(data.codigoColor),
         });
       });
     }

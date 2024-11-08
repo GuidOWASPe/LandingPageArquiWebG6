@@ -1,10 +1,11 @@
-import { Item } from './Item';
-import { Rostro } from './Rostro';
+import { Item } from "./Item";
+import { Rostro } from "./Rostro";
+
 
 export class Estilo {
   idEstilo: number = 0;
-  Nombre: string = '';
+  nombreEstilo: string = '';
+  codigoColor: string = '';
   ro: Rostro = new Rostro();
-  CodigoColor: string = '';
-  it: Item = new Item();
+  it: Item = new Item(); 
 }

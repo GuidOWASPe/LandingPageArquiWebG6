@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ItemUsuario } from '../../../models/ItemUsuario';
-import { Usuarios } from '../../../models/Usuario';
 import { Item } from '../../../models/Item';
-import { UsuarioService } from '../../../services/usuario.service';
+import { UsuariosService } from '../../../services/usuarios.service';
 import { ItemusuarioService } from '../../../services/itemusuario.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ItemService } from '../../../services/item.service';
@@ -14,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { Usuarios } from '../../../models/Usuarios';
 
 
 @Component({
@@ -50,7 +50,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private itemuS:ItemusuarioService,
-    private uS:UsuarioService,
+    private uS:UsuariosService,
     private iS:ItemService,
     private router: Router,
     private route: ActivatedRoute

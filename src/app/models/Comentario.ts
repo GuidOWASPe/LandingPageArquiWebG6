@@ -1,5 +1,5 @@
 import { Estilo } from "./Estilo"
-import { Usuarios } from "./Usuario"
+import { Usuarios } from "./Usuarios"
 
 export class Comentarios{
     idcomentario: number = 0
