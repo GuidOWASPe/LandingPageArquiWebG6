@@ -14,14 +14,20 @@
             placeholder="Ingresar contenido"
             formControlName="hcontenido"
           />
+          <mat-error *ngIf="form.get('hcontenido')?.hasError('required')"
+          >Ingrese el Contenido</mat-error
+        >
         </mat-form-field>
         <br>
         <mat-form-field class="example-full-width">
             <mat-label>Me Gustas </mat-label>
             <input matInput placeholder="10 Me Gustas" formControlName="hmegustas" />
+            <mat-error *ngIf="form.get('hmegustas')?.hasError('required')"
+            >El campo es obligatorio</mat-error
+          >
           </mat-form-field>
 
-
+          <br>
           <mat-form-field>
             <mat-label>Fecha Publicada</mat-label>
             <input matInput [matDatepicker]="picker"  formControlName="hfechapublicada" />
@@ -31,6 +37,9 @@
               [for]="picker"
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('hfechapublicada')?.hasError('required')"
+            >La fecha es obligatoria</mat-error
+          >
           </mat-form-field>
           <br>
 
@@ -41,6 +50,9 @@
               <mat-option [value]="food.idUsuario">{{ food.username }}</mat-option>
               }
             </mat-select>
+            <mat-error *ngIf="form.get('husuario')?.hasError('required')"
+          >Seleccione un Usuario</mat-error
+        >
           </mat-form-field>
 
           <br>
@@ -48,15 +60,16 @@
                 <mat-label>Estilos</mat-label>
                 <mat-select  formControlName="hestilo">
                   @for (food of listaestilos; track food) {
-                  <mat-option [value]="food.idEstilo">{{ food.nombreEstilo }}</mat-option>
+                  <mat-option [value]="food.idEstilo">{{ food.nombre }}</mat-option>
                   }
                 </mat-select>
+                <mat-error *ngIf="form.get('hestilo')?.hasError('required')"
+          >Seleccione un Estilo </mat-error
+        >
               </mat-form-field>
               <br>
         <div class="buttons">
-          <button mat-flat-button class="custom-button" (click)="cancel()">
-            Cancelar
-          </button>
+          <button mat-flat-button class="custom-button" (click)="cancel()"> Cancelar</button>
           <button mat-flat-button class="custom-button">Registrar</button>
         </div>
     </form>

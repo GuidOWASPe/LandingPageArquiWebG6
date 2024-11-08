@@ -3,8 +3,6 @@ import { CreaeditaformasComponent } from './components/formas/creaeditaformas/cr
 import { FormasComponent } from './components/formas/formas.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
-import { EstiloUsuariosComponent } from './components/estilo-usuarios/estilo-usuarios.component';
-import { CreaeditaestiloUsuariosComponent } from './components/estilo-usuarios/creaeditaestilo-usuarios/creaeditaestilo-usuarios.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
@@ -19,6 +17,8 @@ import { RostroComponent } from './components/rostro/rostro.component';
 import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 import { EstilosComponent } from './components/estilos/estilos.component';
 import { CreaeditaestiloComponent } from './components/estilos/creaeditaestilos/creaeditaestilos.component';
+import { EstilousuarioComponent } from './components/estilousuario/estilousuario.component';
+import { CreaeditaestilousuarioComponent } from './components/estilousuario/creaeditaestilousuario/creaeditaestilousuario.component';
 
 export const routes: Routes = [
   {
@@ -134,16 +134,16 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'EstiloUsuarios',
-    component: EstiloUsuariosComponent,
+    path: 'estilousuarios',
+    component: EstilousuarioComponent,
     children: [
       {
         path: 'nuevo',
-        component: CreaeditaestiloUsuariosComponent,
+        component: CreaeditaestilousuarioComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditaestiloUsuariosComponent,
+        component: CreaeditaestilousuarioComponent,
       },
     ],
   },

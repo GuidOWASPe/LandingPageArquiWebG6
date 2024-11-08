@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Comentarios } from '../../../models/Comentario';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 
 @Component({
   selector: 'app-listarcomentarios',
@@ -17,11 +20,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatPaginatorModule, 
     RouterModule,
     MatButtonModule,
-    MatToolbarModule],
+    MatToolbarModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './listarcomentarios.component.html',
   styleUrl: './listarcomentarios.component.css'
 })
-export class ListarcomentariosComponent {
+export class ListarcomentariosComponent implements OnInit{
   dataSource: MatTableDataSource<Comentarios> = new MatTableDataSource();
   displayedColumns: string[]=[
     'c1', 
@@ -31,13 +36,18 @@ export class ListarcomentariosComponent {
     'c5',
     'c6',
     'accion01', 
-    'accion02'];
+    'accion02'
+  ];
 
   @ViewChild(MatPaginator) paginator !: MatPaginator; 
 
-  constructor(private comenS: ComentariosService){}
+  constructor(
+    private comenS: ComentariosService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ){}
 
-  AfterViewInit(): void{
+  ngAfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
   }
 
@@ -53,12 +63,16 @@ export class ListarcomentariosComponent {
   };
   
   eliminar(id: number): void {
+    const dialogRef = this.dialog.open(MatDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
     this.comenS.delete(id).subscribe(data=> {
       this.comenS.list().subscribe((data) => {
         this.comenS.setList(data);
       });
     });
   }
-
+});
+  }
 
 }
