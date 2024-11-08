@@ -1,3 +1,4 @@
+
 <div class="container" style="text-align: center">
     <div style="margin: 5% ;"><h1>Registro de Estilo</h1></div>
     <div>
@@ -24,18 +25,18 @@
 
         <br />
         <mat-form-field class="example-full-width">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Nombre del estilo" formControlName="hnombre" />
-            <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
-                Maximo 100 caracteres
-            </mat-error>
-        </mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Ingrese nombre" formControlName="hnombre" />
+          <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
+              Maximo 100 caracteres
+          </mat-error>
+      </mat-form-field>
        
         <br />
         <mat-form-field class="example-full-width">
             <mat-label>Color</mat-label>
             <input matInput placeholder="Ingrese codigo del color" formControlName="hcolor" />
-            <mat-error *ngIf="form.get('himagen')?.hasError('maxlength')">
+            <mat-error *ngIf="form.get('hcolor')?.hasError('maxlength')">
                 Maximo 100 caracteres
             </mat-error>
         </mat-form-field>

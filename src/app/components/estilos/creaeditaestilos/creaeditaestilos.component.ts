@@ -30,6 +30,7 @@ export class CreaeditaestiloComponent implements OnInit{
   estilo: Estilo = new Estilo();
   id: number = 0;
   edicion: boolean = false;
+  
   constructor(
     private formBuilder: FormBuilder,
     private rS: RostroService,
@@ -61,8 +62,10 @@ export class CreaeditaestiloComponent implements OnInit{
       this.listaItem = data;
     });
   }
-  insertar() {
+
+  insertar(): void {
     if(this.form.valid){
+      console.log("Nombre ingresado:", this.form.value.hnombre);  // Verificar valor
       this.estilo.idEstilo = this.form.value.hcodigo;
       this.estilo.Nombre=this.form.value.hnombre;
       this.estilo.ro.idRostro=this.form.value.hrostro;
@@ -83,7 +86,6 @@ export class CreaeditaestiloComponent implements OnInit{
       }
       this.router.navigate(['estilos']);
     }else{
-      console.log(this.form.value)
       console.log("Campos invalidos")
     }
   }
@@ -92,9 +94,9 @@ export class CreaeditaestiloComponent implements OnInit{
       this.eS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idEstilo),
+          hnombre: new FormControl(data.Nombre),
           hrostro: new FormControl(data.ro.idRostro),
           hitem: new FormControl(data.it.idItem),
-          hnombre: new FormControl(data.Nombre),
           hcolor: new FormControl(data.CodigoColor),
         });
       });
