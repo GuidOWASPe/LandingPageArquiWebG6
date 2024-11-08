@@ -1,10 +1,14 @@
 
 <div class="container" style="text-align: center">
-    <div style="margin: 5% ;"><h1>Registro de Estilo</h1></div>
+  <div style="margin: 5% ;"><h1>Registro de Estilo</h1></div>
     <div>
       <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="hcodigo" />
+        </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
             <mat-label>Rostro</mat-label>
             <mat-select  formControlName="hrostro">
               @for (food of listaRostro; track food) {
@@ -14,7 +18,7 @@
         </mat-form-field>
 
         <br />
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
             <mat-label>Item</mat-label>
             <mat-select  formControlName="hitem">
                 @for (food of listaItem; track food) {
@@ -24,22 +28,16 @@
         </mat-form-field>
 
         <br />
-        <mat-form-field class="example-full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput placeholder="Ingrese nombre" formControlName="hnombre" />
-          <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
-              Maximo 100 caracteres
-          </mat-error>
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="hnombre" />
       </mat-form-field>
        
         <br />
-        <mat-form-field class="example-full-width">
-            <mat-label>Color</mat-label>
-            <input matInput placeholder="Ingrese codigo del color" formControlName="hcolor" />
-            <mat-error *ngIf="form.get('hcolor')?.hasError('maxlength')">
-                Maximo 100 caracteres
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Color</mat-label>
+        <input matInput formControlName="hcolor" />
+      </mat-form-field>
         
         <div>
           <button mat-flat-button class="custom-button">Registrar</button>

@@ -34,7 +34,7 @@
           <mat-label>Estilos</mat-label>
           <mat-select  formControlName="hEstilo">
             @for (food of listaEstilos; track food) {
-            <mat-option [value]="food.idEstilo">{{ food.Nombre }}</mat-option>
+            <mat-option [value]="food.idEstilo">{{ food.nombreEstilo }}</mat-option>
             }
           </mat-select>
         </mat-form-field>

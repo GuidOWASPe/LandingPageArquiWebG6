@@ -16,8 +16,8 @@ import { EstiloUsuarioService } from '../../../services/estilousuario.service';
 import { Estilo } from '../../../models/Estilo';
 import { Usuarios } from '../../../models/Usuarios';
 import { Router } from '@angular/router';
-import { EstiloService } from '../../../services/estilos.service';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { EstiloService } from '../../../services/estilo.service';
 
 
 
