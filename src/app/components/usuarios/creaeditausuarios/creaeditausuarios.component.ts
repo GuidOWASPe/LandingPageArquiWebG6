@@ -53,9 +53,8 @@ export class CreaeditausuariosComponent implements OnInit {
     { value: 'L', viewValue: 'L' },
   ];
   listaSexo: { value: String; viewValue: string }[] = [
-    { value: 'Aasadas', viewValue: 'Aasdasd' },
-    { value: 'Gasdasd', viewValue: 'Gasdas' },
-    { value: 'Lasdasd', viewValue: 'Lsdas' },
+    { value: 'Femenino', viewValue: 'Femenino' },
+    { value: 'Masculino', viewValue: 'Masculino' },
   ];
 
   constructor(
@@ -92,7 +91,17 @@ export class CreaeditausuariosComponent implements OnInit {
   }
 
   insertar(): void {
-    if (this.form.valid) {
+    if (this.form.valid && this.form.value.husername
+      && this.form.value.hpassword
+      && this.form.value.hrol
+      && this.form.value.hcorreo
+      && this.form.value.hfechanac
+      && this.form.value.hfechareg
+      && this.form.value.hpais
+      && this.form.value.hsexo
+      && this.form.value.hfoto
+    
+    ) {
       this.usuario.idUsuario = this.form.value.hcodigo;
       this.usuario.username = this.form.value.husername;
       this.usuario.password = this.form.value.hpassword;

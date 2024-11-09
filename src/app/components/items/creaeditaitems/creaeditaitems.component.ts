@@ -65,7 +65,7 @@ export class CreaeditaitemsComponent implements OnInit {
   }
 
   insertar(){
-    if (this.form.valid) {
+    if (this.form.valid  && this.form.value.hnombre && this.form.value.htipo && this.form.value.hdescripcion && this.form.value.hcalificacion && this.form.value.husos && this.form.value.himagen) {
       this.items.idItem = this.form.value.hcodigo;
       this.items.nombreItem = this.form.value.hnombre;
       this.items.ti.idTipo = this.form.value.htipo;

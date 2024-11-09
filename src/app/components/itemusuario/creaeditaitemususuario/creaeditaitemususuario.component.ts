@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { Usuarios } from '../../../models/Usuarios';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -31,9 +32,8 @@ import { Usuarios } from '../../../models/Usuarios';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatInputModule,
-    MatButtonModule,
     MatNativeDateModule,
+    MatSnackBarModule,
 
   ],
   templateUrl: './creaeditaitemususuario.component.html',
@@ -53,14 +53,9 @@ export class CreaeditaitemususuarioComponent implements OnInit{
     private uS:UsuariosService,
     private iS:ItemService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
-
-  // idItemFavorito: number = 0
- // fechaItemFavorito : Date=new Date(Date.now())
- // Calificacion:number=0
- // us:Usuarios=new Usuarios()
- // it:Item=new Item()
 
   ngOnInit():void {
     this.route.params.subscribe((data: Params) => {
@@ -86,19 +81,24 @@ export class CreaeditaitemususuarioComponent implements OnInit{
 
   insertar(): void {
 
-    if (this.form.valid) {
-
+    if (this.form.valid && this.form.value.hfechaitemfav && this.form.value.hcalificacion && this.form.value.husuario && this.form.value.hitem) {
+      const fechaIngresada = new Date(this.form.value.hfechaitemfav);
+      const fechaActual = new Date();
+      if (fechaIngresada > fechaActual) {
+        this.openSnackBar('La fecha debe ser menor a la fecha actual');
+        return;
+      }
       this.itemusuario.idItemFavorito = this.form.value.hcodigo;
       this.itemusuario.fechaItemFavorito=this.form.value.hfechaitemfav;
       this.itemusuario.calificacion=this.form.value.hcalificacion;
       this.itemusuario.us.idUsuario=this.form.value.husuario;
       this.itemusuario.it.idItem=this.form.value.hitem;
       
-      
       if(this.edicion){
         this.itemuS.update(this.itemusuario).subscribe((data) => {
           this.itemuS.list().subscribe(data => {
             this.itemuS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
 
         });
@@ -106,16 +106,25 @@ export class CreaeditaitemususuarioComponent implements OnInit{
         this.itemuS.insert(this.itemusuario).subscribe((data) => {
           this.itemuS.list().subscribe((data) => {
             this.itemuS.setList(data);
+            this.openSnackBar('Registro creado exitosamente');
           });
 
         });
       }
+      this.router.navigate(['itemusuario']);
+    } else {
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
     }
-    this.router.navigate(['itemusuario']);
+    
   }
 
-    
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['itemusuario']);
   }
 

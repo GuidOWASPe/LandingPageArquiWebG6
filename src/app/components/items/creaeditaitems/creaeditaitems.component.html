@@ -10,6 +10,8 @@
         <mat-form-field class="example-full-width">
           <mat-label>Nombre del Item</mat-label>
           <input matInput formControlName="hnombre" />
+          <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+          >El campo de Nombre es obligatorio</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -19,26 +21,36 @@
               <mat-option [value]="food.idTipo">{{ food.nombreTipo }}</mat-option>
               }
             </mat-select>
+            <mat-error *ngIf="form.get('htipo')?.hasError('required')"
+          >Seleccione un Tipo </mat-error>
         </mat-form-field>
   
         <mat-form-field class="example-full-width">
           <mat-label>Descripción</mat-label>
           <input matInput formControlName="hdescripcion" />
+          <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')"
+            >Ingrese una descripcion </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Calificación</mat-label>
             <input matInput formControlName="hcalificacion" />
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')"
+            >Ingrese una Calificacion </mat-error>
           </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Nro° de usos</mat-label>
             <input matInput formControlName="husos" />
+            <mat-error *ngIf="form.get('husos')?.hasError('required')"
+            >Ingrese el Numero de Usos </mat-error>
           </mat-form-field>
   
         <mat-form-field class="example-full-width">
           <mat-label>Imagen</mat-label>
           <input matInput formControlName="himagen" />
+          <mat-error *ngIf="form.get('himagen')?.hasError('required')"
+            >Ingrese una Imagen </mat-error>
         </mat-form-field>
   
         <div class="buttons">

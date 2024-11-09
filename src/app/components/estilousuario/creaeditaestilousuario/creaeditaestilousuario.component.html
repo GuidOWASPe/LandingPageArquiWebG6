@@ -16,12 +16,18 @@
               [for]="picker"
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('hfecha')?.hasError('required')"
+            >La fecha es obligatoria</mat-error
+          >
           </mat-form-field>
           <br>
 
         <mat-form-field class="example-full-width">
             <mat-label>Calificacion </mat-label>
             <input matInput placeholder="Calificacion" formControlName="hcalificacion" />
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')"
+            >Debe de ingresar la Calificacion</mat-error
+          >
           </mat-form-field>
           <br>
 
@@ -32,6 +38,9 @@
               <mat-option [value]="food.idUsuario">{{ food.username }}</mat-option>
               }
             </mat-select>
+            <mat-error *ngIf="form.get('husuario')?.hasError('required')"
+          >Seleccione un Usuario</mat-error
+        >
           </mat-form-field>
 
           <br>
@@ -42,6 +51,9 @@
                   <mat-option [value]="food.idEstilo">{{ food.nombre}}</mat-option>
                   }
                 </mat-select>
+                <mat-error *ngIf="form.get('hestilo')?.hasError('required')"
+                >Seleccione un Estilo </mat-error
+              >
               </mat-form-field>
               <br>
         <div class="buttons">
