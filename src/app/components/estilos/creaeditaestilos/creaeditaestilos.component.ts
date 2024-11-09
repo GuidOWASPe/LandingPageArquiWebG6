@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,8 +19,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-creaeditaestilo',
   standalone: true,
-  providers:[provideNativeDateAdapter()],
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, RouterModule],
+  providers:[
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    provideNativeDateAdapter(),
+
+  ],
+  imports: [
+    CommonModule,
+     ReactiveFormsModule, 
+     MatFormFieldModule, 
+     MatSelectModule, 
+     MatInputModule, 
+     MatButtonModule, 
+     RouterModule],
+     
   templateUrl: './creaeditaestilos.component.html',
   styleUrl: './creaeditaestilos.component.css'
 })
@@ -74,7 +86,6 @@ export class CreaeditaestiloComponent implements OnInit{
       this.estilo.it.idItem = this.form.value.hitem;
       if (this.edicion) {
         this.eS.update(this.estilo).subscribe((data) => {
-          this.openSnackBar('Actualizado correctamente.');
           this.eS.list().subscribe((data) => {
             this.eS.setList(data);
             this.openSnackBar('Registro actualizado exitosamente');

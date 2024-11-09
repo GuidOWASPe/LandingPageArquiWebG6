@@ -15,6 +15,7 @@ import { UsuariosService } from '../../../services/usuarios.service';
 import { EstiloService } from '../../../services/estilo.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EstiloUsuario } from '../../../models/EstiloUsuario';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaeditaestilousuario',
@@ -32,6 +33,7 @@ import { EstiloUsuario } from '../../../models/EstiloUsuario';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
   ],
   templateUrl: './creaeditaestilousuario.component.html',
   styleUrl: './creaeditaestilousuario.component.css'
@@ -51,7 +53,8 @@ export class CreaeditaestilousuarioComponent implements OnInit{
     private uS:UsuariosService,
     private eS:EstiloService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit():void {
@@ -60,11 +63,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
       this.edicion = data['id'] != null;
       this.init();
     });
-//  idEstiloFav:number=0
- //fechaEstiloFav:Date=new Date(Date.now())
- //calificacion:number=0
- //usuario:Usuarios=new Usuarios()
- //estilo:Estilo=new Estilo()
+
     this.form=this.formBuilder.group({
       hcodigo: [''],
       hfecha: ['', Validators.required],
@@ -82,8 +81,13 @@ export class CreaeditaestilousuarioComponent implements OnInit{
 
   insertar(): void {
 
-    if (this.form.valid) {
-
+    if (this.form.valid && this.form.value.hfecha && this.form.value.hcalificacion && this.form.value.husuario && this.form.value.hestilo ) {
+      const fechaIngresada = new Date(this.form.value.hfecha);
+      const fechaActual = new Date();
+      if (fechaIngresada > fechaActual) {
+        this.openSnackBar('La fecha debe ser menor a la fecha actual');
+        return;
+      }
       this.estilousuario.idEstiloFav = this.form.value.hcodigo;
       this.estilousuario.fechaEstiloFav = this.form.value.hfecha;
       this.estilousuario.calificacion = this.form.value.hcalificacion;
@@ -93,26 +97,38 @@ export class CreaeditaestilousuarioComponent implements OnInit{
         this.euS.update(this.estilousuario).subscribe((data) => {
           this.euS.list().subscribe(data => {
             this.euS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
-
         });
       } else{
         this.euS.insert(this.estilousuario).subscribe((data) => {
           this.euS.list().subscribe((data) => {
             this.euS.setList(data);
+            this.openSnackBar('Registro creado exitosamente');
           });
         });
       }
+      this.router.navigate(['estilousuarios']);
+    } else {
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
     }
-    this.router.navigate(['estilousuarios']);
-  }
-  cancel(): void {
-    this.router.navigate(['estilousuarios']);
+   
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
+
+  cancel(): void {
+    this.openSnackBar('Operación cancelada');
+    this.router.navigate(['estilousuarios']);
+  }
   init() {
     if (this.edicion) {
       this.euS.listId(this.id).subscribe((data) => {
+        
         this.form = new FormGroup({
           hcodigo:new FormControl(data.idEstiloFav),
           hfecha:new FormControl(data.fechaEstiloFav),

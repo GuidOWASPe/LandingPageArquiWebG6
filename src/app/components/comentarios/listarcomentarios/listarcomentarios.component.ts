@@ -16,38 +16,38 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
   standalone: true,
   imports: [
     MatTableModule,
-    MatIconModule, 
-    MatPaginatorModule, 
+    MatIconModule,
+    MatPaginatorModule,
     RouterModule,
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,
   ],
   templateUrl: './listarcomentarios.component.html',
-  styleUrl: './listarcomentarios.component.css'
+  styleUrl: './listarcomentarios.component.css',
 })
-export class ListarcomentariosComponent implements OnInit{
+export class ListarcomentariosComponent implements OnInit {
   dataSource: MatTableDataSource<Comentarios> = new MatTableDataSource();
-  displayedColumns: string[]=[
-    'c1', 
+  displayedColumns: string[] = [
+    'c1',
     'c2',
     'c3',
     'c4',
     'c5',
     'c6',
-    'accion01', 
-    'accion02'
+    'accion01',
+    'accion02',
   ];
 
-  @ViewChild(MatPaginator) paginator !: MatPaginator; 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private comenS: ComentariosService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
-  ){}
+  ) {}
 
-  ngAfterViewInit(): void{
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
@@ -55,24 +55,29 @@ export class ListarcomentariosComponent implements OnInit{
     this.comenS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-    })
+    });
     this.comenS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-    })
-  };
-  
+    });
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
+
   eliminar(id: number): void {
     const dialogRef = this.dialog.open(MatDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-    this.comenS.delete(id).subscribe(data=> {
-      this.comenS.list().subscribe((data) => {
-        this.comenS.setList(data);
-      });
+        this.comenS.delete(id).subscribe((data) => {
+          this.comenS.list().subscribe((data) => {
+            this.comenS.setList(data);
+            this.openSnackBar('Elemento eliminado correctamente.');
+          });
+        });
+      }
     });
   }
-});
-  }
-
 }

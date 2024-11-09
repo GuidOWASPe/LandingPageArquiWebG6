@@ -59,7 +59,6 @@ export class ListarformasComponent implements OnInit {
 
   eliminar(id: number): void {
     const dialogRef = this.dialog.open(MatDialogComponent);
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.fS.delete(id).subscribe(() => {

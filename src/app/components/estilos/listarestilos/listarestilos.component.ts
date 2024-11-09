@@ -7,27 +7,44 @@ import { RouterModule } from '@angular/router';
 import { Estilo } from '../../../models/Estilo';
 import { EstiloService } from '../../../services/estilo.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 
 @Component({
   selector: 'app-listarestilo',
   standalone: true,
-  imports: 
-  [MatTableModule,
+  imports: [
+    MatTableModule,
     MatIconModule,
     MatButtonModule,
-    RouterModule, 
+    RouterModule,
     MatPaginatorModule,
-     MatToolbarModule],
+    MatToolbarModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './listarestilos.component.html',
-  styleUrl: './listarestilos.component.css'
+  styleUrl: './listarestilos.component.css',
 })
-export class ListarestilosComponent implements OnInit{
+export class ListarestilosComponent implements OnInit {
   dataSource: MatTableDataSource<Estilo> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5', 'accion01', 'accion02'];
+  displayedColumns: string[] = [
+    'c1',
+    'c2',
+    'c3',
+    'c4',
+    'c5',
+    'accion01',
+    'accion02',
+  ];
 
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private eT: EstiloService){}
+  constructor(
+    private eT: EstiloService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {}
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -45,10 +62,15 @@ export class ListarestilosComponent implements OnInit{
   }
 
   eliminar(id: number) {
-    this.eT.delete(id).subscribe((data) => {
-      this.eT.list().subscribe((data) => {
-        this.eT.setList(data);
-      });
+    const dialogRef = this.dialog.open(MatDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.eT.delete(id).subscribe((data) => {
+          this.eT.list().subscribe((data) => {
+            this.eT.setList(data);
+          });
+        });
+      }
     });
   }
 }
