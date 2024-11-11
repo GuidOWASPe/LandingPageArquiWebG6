@@ -11,5 +11,5 @@ export class Usuarios {
   paisUsuario: string = '';
   sexoUsuario: string = '';
   enabled: boolean = true;
-  rol: Rol = new Rol();
+  rol: Rol = new Rol();  
 }

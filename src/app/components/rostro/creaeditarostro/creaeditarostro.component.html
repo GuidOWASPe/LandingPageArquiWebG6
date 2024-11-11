@@ -1,0 +1,60 @@
+<div class="container" style="text-align: center">
+    <div style="margin: 5% ;"><h1>Registro de Rostros</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+
+        <mat-form-field>
+            <mat-label>Formas</mat-label>
+            <mat-select  formControlName="hforma">
+              @for (food of listaFormas; track food) {
+              <mat-option [value]="food.idForma">{{ food.nombreForma }}</mat-option>
+              }
+            </mat-select>
+
+            <mat-error *ngIf="form.get('hforma')?.hasError('required')"
+            >Seleccione un Forma </mat-error>
+        </mat-form-field>
+
+        <br />
+        <mat-form-field>
+        <mat-label>Usuarios</mat-label>
+        <mat-select  formControlName="husuario">
+          @for (food of listaUsuarios; track food) {
+          <mat-option [value]="food.idUsuario">{{ food.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('husuario')?.hasError('required')"
+        >Seleccione un Usuario</mat-error>
+        </mat-form-field>
+
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre del rostro" formControlName="hnombre" />
+            <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
+                Maximo 100 caracteres
+            </mat-error>
+            <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+            >El campo Nombre es obligatorio  </mat-error>
+        </mat-form-field>
+       
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Imagen</mat-label>
+            <input matInput placeholder="Ruta" formControlName="himagen" />
+            <mat-error *ngIf="form.get('himagen')?.hasError('maxlength')">
+                Maximo 500 caracteres
+            </mat-error>
+            <mat-error *ngIf="form.get('himagen')?.hasError('required')"
+            >Ingrese una Imagen</mat-error
+          >
+        </mat-form-field>
+        
+        <div class="buttons">
+          <button mat-flat-button class="custom-button" (click)="cancel()"> Cancelar</button>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

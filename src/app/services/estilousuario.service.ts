@@ -8,14 +8,14 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class EstiloUsuarioService {
-  private url = `${base_url}/estiloUsuarios`;
+  private url = `${base_url}/estiloUsuario`;
   listaCambio=new Subject<EstiloUsuario[]>()
   constructor(private http:HttpClient) { }
   list() {
     return this.http.get<EstiloUsuario[]>(this.url);
   }
-  insert(tt: EstiloUsuario) {
-    return this.http.post(this.url, tt);
+  insert(eu: EstiloUsuario) {
+    return this.http.post(this.url, eu);
   }
   getList() {
     return this.listaCambio.asObservable();
@@ -31,7 +31,7 @@ export class EstiloUsuarioService {
     return this.http.get<EstiloUsuario>(`${this.url}/${id}`);
   }
 
-  update(f: EstiloUsuario){
-    return this.http.put(this.url, f);
+  update(esu: EstiloUsuario){
+    return this.http.put(this.url, esu);
   }
 }

@@ -1,31 +1,29 @@
-<div>
-    <div>
-      <h1>Rol</h1>
-    </div>
-    <div>
-      <form [formGroup]="form" (submit)="insertar()">
-  
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <mat-label>Codigo</mat-label>
-          <input
-            matInput
-            formControlName="hCodigo"
-          /> </mat-form-field
-        ><br />
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Nombre</mat-label>
-          <input
-            matInput
-            placeholder="Administrador"
-            formControlName="hNombre"
-          /> </mat-form-field
-        ><br />
-  
-        <div>
-          <button mat-flat-button class="botoncito">Registrar/Actualizar</button>
-        </div>
-      </form>
-    </div>
+<div class="container" style="text-align: center; margin: 5%">
+  <div><h1>Registro de Roles</h1></div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="hcodigo" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Ingresar nombre"
+          formControlName="hnombre"
+        />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+        >Ingrese un Nombre </mat-error>
+      </mat-form-field>
+
+      <div class="buttons">
+        <button mat-flat-button class="custom-button" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
   </div>
-  
+</div>

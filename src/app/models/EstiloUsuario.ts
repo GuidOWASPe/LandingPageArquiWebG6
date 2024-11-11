@@ -4,8 +4,9 @@ import { Usuarios } from "./Usuarios"
 export class EstiloUsuario
 {
     idEstiloFav:number=0
-    calificacionEstilo:number=0
     fechaEstiloFav:Date=new Date(Date.now())
-    es:Estilo=new Estilo()
-    us:Usuarios=new Usuarios()
+    calificacion:number=0
+    usuario:Usuarios=new Usuarios()
+    estilo:Estilo=new Estilo()
+    
 }

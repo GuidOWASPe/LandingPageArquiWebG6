@@ -14,6 +14,9 @@
           placeholder="Ingresar descripcion"
           formControlName="hdescripcion"
         />
+        <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')"
+          >Ingrese la descripcion</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -23,6 +26,9 @@
           placeholder="Ingresar nombre"
           formControlName="hnombre"
         />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+          >Ingrese el Nombre
+        </mat-error>
       </mat-form-field>
 
       <div class="buttons">
