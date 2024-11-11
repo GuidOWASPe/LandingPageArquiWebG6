@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-creaeditaformas',
@@ -32,7 +33,8 @@ export class CreaeditaformasComponent implements OnInit {
     private fS: FormasService,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
   ) {}
 
   ngOnInit() {
@@ -97,7 +99,7 @@ export class CreaeditaformasComponent implements OnInit {
   }
 
   ejecutarDeteccion() {
-    const imagenPath = 'C:/Users/Tamalito/Pictures/Camera Roll/WIN_20241030_01_54_11_Pro.jpg';
+    const imagenPath = 'C:/Users/lapul/Pictures/Camera Roll/7289bcaa-1beb-45bb-862c-0cdd1b9b7802.jpg';
 
     this.http.post<any>(`http://127.0.0.1:5000/api/detectar-forma`, { imagen_path: imagenPath })
       .subscribe(response => {

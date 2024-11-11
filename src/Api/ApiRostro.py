@@ -20,7 +20,7 @@ def calcular_aspecto_rostro(landmarks):
     return ancho_rostro / alto_rostro
 
 def identificar_forma_rostro(aspecto):
-    if aspecto > 1.7:
+    if aspecto > 1.7: 
         return "Cara alargada", "La longitud de la cara es mayor que el ancho."
     elif 1.5 < aspecto <= 1.7:
         return "Cara rectangular", "La longitud de la cara es mayor que el ancho, pero no tanto como en una cara alargada."

@@ -14,6 +14,7 @@ import { Forma } from '../../../models/Forma';
 import { RostroService } from '../../../services/rostro.service';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-creaeditarostro',
@@ -48,7 +49,8 @@ export class CreaeditarostroComponent implements OnInit{
     private rS: RostroService,
     private router:Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
   ){}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -75,7 +77,7 @@ export class CreaeditarostroComponent implements OnInit{
   insertar() {
     if(this.form.valid && this.form.value.hnombre && this.form.value.himagen){
       this.rostro.idRostro = this.form.value.hcodigo;
-      this.rostro.fo.idForma=this.form.value.hforma;
+      
       this.rostro.usu.idUsuario=this.form.value.husuario;
       this.rostro.nombre=this.form.value.hnombre;
       this.rostro.imagenRostro=this.form.value.himagen;
@@ -122,5 +124,54 @@ export class CreaeditarostroComponent implements OnInit{
         });
       });
     }
+  }
+
+  ejecutarDeteccion() {
+    const imagenPath = 'C:/Users/lapul/Pictures/Camera Roll/7289bcaa-1beb-45bb-862c-0cdd1b9b7802.jpg';
+
+    this.http.post<any>(`http://127.0.0.1:5000/api/detectar-forma`, { imagen_path: imagenPath })
+      .subscribe(response => {
+        console.log('Forma de rostro:', response.nombreForma);
+        console.log('Descripción:', response.descripcionForma);
+
+        // Llenar los campos del formulario con los datos de la respuesta
+        this.form.controls['hforma'].setValue(response.nombreForma);
+      if(this.form.value.hforma == 'Cara alargada'){
+        this.rostro.fo.idForma=1;
+      }
+    else{
+      if(this.form.value.hforma == 'Cara rectangular'){
+        this.rostro.fo.idForma=2;
+      }
+      else{
+        if(this.form.value.hforma == 'Cara ovalada'){
+        this.rostro.fo.idForma=3;
+      } else{
+        if(this.form.value.hforma == 'Cara cuadrada'){
+        this.rostro.fo.idForma=4;
+      } else{
+        if(this.form.value.hforma == 'Cara redonda'){
+        this.rostro.fo.idForma=5;
+      } else{
+        if(this.form.value.hforma == 'Cara hexagonal o diamante'){
+        this.rostro.fo.idForma=6;
+      } else{
+        if(this.form.value.hforma == 'Cara triangular'){
+        this.rostro.fo.idForma=7;
+      } else{
+        if(this.form.value.hforma == 'Forma de cara no identificada'){
+        this.rostro.fo.idForma=8;
+      }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+      
+      }, error => {
+        console.error('Error en la detección de rostro:', error);
+      });
   }
 }

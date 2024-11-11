@@ -5,11 +5,11 @@
 
         <mat-form-field>
             <mat-label>Formas</mat-label>
-            <mat-select  formControlName="hforma">
-              @for (food of listaFormas; track food) {
-              <mat-option [value]="food.idForma">{{ food.nombreForma }}</mat-option>
-              }
-            </mat-select>
+            <input
+          matInput
+          placeholder="Ingresar forma"
+          formControlName="hforma"
+        />
 
             <mat-error *ngIf="form.get('hforma')?.hasError('required')"
             >Seleccione un Forma </mat-error>
@@ -55,6 +55,9 @@
           <button mat-flat-button class="custom-button">Registrar</button>
         </div>
       </form>
+      <div>
+        <button (click)="ejecutarDeteccion()">Detectar Forma de Rostro</button>
+      </div>
     </div>
   </div>
   
