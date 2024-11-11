@@ -2,6 +2,12 @@
   <span class="app-title" routerLink="/" style="cursor: pointer"
     >StyleCheck</span>
 
+    <div class="nav-item">
+      <button mat-button class="nav-button" routerLink="/usuarios">
+        <mat-icon>person</mat-icon>Usuarios
+      </button>
+    </div>
+
   <div class="nav-item">
     <button mat-button class="nav-button">
       <mat-icon>category</mat-icon>Formas
@@ -55,18 +61,6 @@
 
   <div class="nav-item">
     <button mat-button class="nav-button">
-      <mat-icon>person</mat-icon>Usuarios
-    </button>
-    <div class="submenu">
-      <a routerLink="/usuarios" class="submenu-item">Listar Usuarios</a>
-      <a routerLink="/usuarios/nuevo" class="submenu-item"
-        >Registrar Usuarios</a
-      >
-    </div>
-  </div>
-
-  <div class="nav-item">
-    <button mat-button class="nav-button">
       <mat-icon>psychology_alt</mat-icon>Items
     </button>
     <div class="submenu">
@@ -76,7 +70,7 @@
   </div>
 
   <div class="nav-item">
-    <button mat-button class="nav-button">
+    <button mat-button class="nav-button" routerLink="/rostros">
       <mat-icon>face</mat-icon>Rostros
     </button>
     <div class="submenu">
