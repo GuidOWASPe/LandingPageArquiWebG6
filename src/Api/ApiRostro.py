@@ -40,7 +40,7 @@ def identificar_forma_rostro(aspecto):
 @app.route('/api/detectar-forma', methods=['POST'])
 def detectar_forma():
     data = request.json
-    imagen_path = data.get("imagen_path", "C:/Users/Tamalito/Pictures/Camera Roll/WIN_20241030_01_54_11_Pro.jpg")
+    imagen_path = data.get("imagen_path")
     frame = cv2.imread(imagen_path)
     
     if frame is None:

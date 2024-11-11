@@ -68,7 +68,7 @@ export class CreaeditaformasComponent implements OnInit {
         });
       }
     }
-    //this.router.navigate(['formas']);
+    this.router.navigate(['formas']);
   }
 
   cancel(): void {
@@ -88,7 +88,7 @@ export class CreaeditaformasComponent implements OnInit {
   }
 
   ejecutarDeteccion() {
-    const imagenPath = 'C:/Users/Tamalito/Pictures/Camera Roll/WIN_20241030_01_54_11_Pro.jpg';
+    const imagenPath = 'C:/Users/lapul/Pictures/Camera Roll/d3757abc-0c00-49a9-b29f-e8ddb5f08411.jpg'; 
 
     this.http.post<any>(`http://127.0.0.1:5000/api/detectar-forma`, { imagen_path: imagenPath })
       .subscribe(response => {
