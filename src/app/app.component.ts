@@ -30,4 +30,5 @@ import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component
 })
 export class AppComponent {
   title = 'backendStyleCheck';
+  
 }

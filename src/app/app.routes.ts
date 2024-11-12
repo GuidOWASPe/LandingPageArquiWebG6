@@ -11,17 +11,48 @@ import { LandingComponent } from './components/landing/landing.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
 import { EstiloComponent } from './components/estilo/estilo.component';
 import { CreaeditaestiloComponent } from './components/estilo/creaeditaestilo/creaeditaestilo.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { EstilosComponent } from './components/landing/estilos/estilos.component';
+import { AsesoramientoComponent } from './components/landing/asesoramiento/asesoramiento.component';
+import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
 
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'landin',
+    pathMatch: 'full',
+  },
+  {
+    path: 'landin',
     component: LandingComponent,
     children: [
       {
         path: 'webcam',
         component: WebcamComponent,
       },
+      {
+        path: 'Estilos',
+        component: EstilosComponent,
+      },
+      {
+        path: 'Asesoramiento',
+        component: AsesoramientoComponent,
+      },
+      {
+        path: 'Conocenos',
+        component: ConocenosComponent,
+      },
     ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [],
   },
   {
     path: 'formas',

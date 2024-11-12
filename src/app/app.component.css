@@ -956,7 +956,6 @@ footer {
   background-color: #111111;
   color: #ffffff;
   padding: 20px 0;
-  display: flex;
 }
 
 .footer-container {
@@ -1093,6 +1092,14 @@ footer {
 
 .border_hover:hover {
   border-color: #1abc9c;
+}
+.content-sr{
+  display: flex;
+  flex-direction: column;
+}
+.cont-1{
+  display: flex;
+  margin: 10px;
 }
 
 @media (max-width: 768px) {
