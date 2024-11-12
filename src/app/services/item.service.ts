@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Item } from '../models/Item';
 import { HttpClient } from '@angular/common/http';
+import { MaxNroUsosItemDTO } from '../models/MaxNroUsosItemDTO';
 const base_url = environment.base
 
 @Injectable({
@@ -40,5 +41,10 @@ export class ItemService {
 
   update(it: Item){
     return this.http.put(this.url, it);
+  }
+
+  //ItemMasUsadoPorUsuario"
+  itemMasUsadoPorUsuario():Observable<MaxNroUsosItemDTO[]>{
+    return this.http.get<MaxNroUsosItemDTO[]>(`${this.url}/ItemMasUsadoPorUsuario`)
   }
 }

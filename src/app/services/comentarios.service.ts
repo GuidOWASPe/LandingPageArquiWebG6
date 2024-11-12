@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Comentarios } from '../models/Comentario';
+import { ComentariosNegativosFrecuentesDTO } from '../models/ComentariosNegativosFrecuentesDTO';
 
 const base_url=environment.base;
 @Injectable({
@@ -40,5 +41,9 @@ export class ComentariosService {
 
   update(comen: Comentarios){
     return this.http.put(this.url, comen)
+  }
+
+  obtenerComentariosNegativosFrecuentes():Observable<ComentariosNegativosFrecuentesDTO[]>{
+    return this.http.get<ComentariosNegativosFrecuentesDTO[]>(`${this.url}/ListarCantidadComentariosNegativos`)
   }
 }

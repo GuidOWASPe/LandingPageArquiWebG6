@@ -24,6 +24,10 @@ import { RolesService } from '../../../services/roles.service';
 @Component({
   selector: 'app-creaeditausuarios',
   standalone: true,
+  providers: [
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   imports: [
     MatFormFieldModule,
     ReactiveFormsModule,
@@ -34,10 +38,7 @@ import { RolesService } from '../../../services/roles.service';
     MatButtonModule,
     MatSnackBarModule,
   ],
-  providers: [
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-  ],
+ 
   templateUrl: './creaeditausuarios.component.html',
   styleUrl: './creaeditausuarios.component.css',
 })

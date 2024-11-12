@@ -22,6 +22,19 @@ import { CreaeditaestilousuarioComponent } from './components/estilousuario/crea
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { seguridadGuard } from './guard/seguridad.guard';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReportecantidadusuariosporComponent } from './components/reportes/reportecantidadusuariospor/reportecantidadusuariospor.component';
+import { PorcentajeusuariospormesComponent } from './components/reportes/porcentajeusuariospormes/porcentajeusuariospormes.component';
+import { PorcentajeusuariosporgeneroComponent } from './components/reportes/porcentajeusuariosporgenero/porcentajeusuariosporgenero.component';
+import { CantidadusuariosporpaisesComponent } from './components/reportes/cantidadusuariosporpaises/cantidadusuariosporpaises.component';
+import { ItemmasusadoporusuarioComponent } from './components/reportes/itemmasusadoporusuario/itemmasusadoporusuario.component';
+import { ListarcomentariosComponent } from './components/comentarios/listarcomentarios/listarcomentarios.component';
+import { ListarestilosuauriopeorcalifiacionComponent } from './components/reportes/listarestilosuauriopeorcalifiacion/listarestilosuauriopeorcalifiacion.component';
+import { CantidadestilosporusuarioComponent } from './components/reportes/cantidadestilosporusuario/cantidadestilosporusuario.component';
+import { PopularidadcoloresestiloComponent } from './components/reportes/popularidadcoloresestilo/popularidadcoloresestilo.component';
+import { ReporteitemspornrousosComponent } from './components/reportes/reporteitemspornrousos/reporteitemspornrousos.component';
+import { ReportecantidadcomentariosnegativosComponent } from './components/reportes/reportecantidadcomentariosnegativos/reportecantidadcomentariosnegativos.component';
+import { ReporterostrosegunformaComponent } from './components/reportes/reporterostrosegunforma/reporterostrosegunforma.component';
 
 export const routes: Routes = [
   {
@@ -188,4 +201,44 @@ export const routes: Routes = [
     component: HomeComponent,
     canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
   },
+
+  {
+    path:'reportes',component:ReportesComponent,
+    children:[
+      {
+        path:'porcentajeusuariospormes',component:PorcentajeusuariospormesComponent
+      },
+      {
+        path:'porcentajeusuariosporgenero',component:PorcentajeusuariosporgeneroComponent
+      },
+      {
+        path:'cantidadusuariosporpaises',component:CantidadusuariosporpaisesComponent
+      },
+      {
+        path:'itemmasusadoporusuario',component:ItemmasusadoporusuarioComponent
+      },
+      {
+        path:'listarestilosuauriopeorcalifiacion',component:ListarestilosuauriopeorcalifiacionComponent
+      },
+      {
+        path:'cantidadestilosporusuario',component:CantidadestilosporusuarioComponent
+      },
+      {
+        path:'popularidadcoloresestilo',component:PopularidadcoloresestiloComponent
+      },
+      {
+        path:'listaritemspornrousos',component:ReporteitemspornrousosComponent
+      },
+      {
+        path:'cantidadcomentariosnegativos',component:ReportecantidadcomentariosnegativosComponent
+      },
+      {
+        path:'cantidadrostrosegunforma',component:ReporterostrosegunformaComponent
+      },
+      
+    ],
+    canActivate: [seguridadGuard],
+  },
+
+  
 ];

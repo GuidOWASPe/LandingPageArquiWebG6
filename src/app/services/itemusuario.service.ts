@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ItemUsuario } from '../models/ItemUsuario';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { ItemsMasUsadosDTO } from '../models/ItemsMasUsadosDTO';
 
 
 const base_url=environment.base;
@@ -41,5 +42,9 @@ export class ItemusuarioService {
 
   update(itemUs: ItemUsuario){
     return this.http.put(this.url,itemUs)
+  }
+
+  obtenerItemsPorNroUsos():Observable<ItemsMasUsadosDTO[]>{
+    return this.http.get<ItemsMasUsadosDTO[]>(`${this.url}/ListarItemsPorNroUsos`)
   }
 }

@@ -1,0 +1,38 @@
+/* Estilos para el contenedor del gráfico */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+.chart-container {
+    width: 60%; /* Ajusta el ancho del gráfico */
+    margin: 0 auto; /* Centra el gráfico horizontalmente */
+    padding: 20px; /* Espacio alrededor del gráfico */
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Fondo claro para destacar el gráfico */
+    border: 1px solid #ddd; /* Borde suave alrededor del gráfico */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  }
+  
+  /* Ajustes para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .chart-container {
+      width: 90%; /* Ancho ajustado para pantallas pequeñas */
+      padding: 15px; /* Reduce el padding en pantallas más pequeñas */
+    }
+  }
+  
+  /* Estilos para el contenedor del título */
+  .title-container {
+    text-align: center;
+    margin-bottom: 30px; /* Separación entre el título y el gráfico */
+    margin-top: 40px; /* Espacio superior */
+  }
+  
+  /* Estilos para el título */
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2.2em;
+    color: #444; /* Color oscuro pero no negro, para suavizar */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras para un efecto elegante */
+  }
+  
