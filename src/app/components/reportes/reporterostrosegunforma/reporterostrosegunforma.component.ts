@@ -35,9 +35,9 @@ export class ReporterostrosegunformaComponent implements OnInit {
     }
   };
   barChartLabels: string[] = [];
-  //barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'bar';
   //barChartType: ChartType = 'doughnut';
-  barChartType: ChartType = 'pie';
+  //barChartType: ChartType = 'pie';
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
@@ -48,7 +48,7 @@ export class ReporterostrosegunformaComponent implements OnInit {
 
       this.barChartLabels = data.map((item) => item.nombreForma);
 
-      // Configuración de los datos de la gráfica
+     
       this.barChartData = [
         {
           data: data.map((item) => item.cantidadRostro),

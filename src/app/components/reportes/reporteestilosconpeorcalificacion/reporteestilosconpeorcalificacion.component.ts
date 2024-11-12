@@ -1,59 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { BaseChartDirective } from 'ng2-charts';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
 import { ChartDataset, ChartOptions, ChartType } from './../../../../../node_modules/chart.js/dist/types/index.d';
-import { EstiloService } from '../../../services/estilo.service';
+import { EstiloUsuarioService } from '../../../services/estilousuario.service';
+import { EstiloUsuarioConPCDTO } from '../../../models/EstiloUsuarioConPCDTO';
 
 
 Chart.register(...registerables,ChartDataLabels);
-
 @Component({
-  selector: 'app-cantidadestilosporusuario',
+  selector: 'app-reporteestilosconpeorcalificacion',
   standalone: true,
-  imports: [BaseChartDirective],
-  templateUrl: './cantidadestilosporusuario.component.html',
-  styleUrl: './cantidadestilosporusuario.component.css'
+  imports: [BaseChartDirective,CommonModule],
+  templateUrl: './reporteestilosconpeorcalificacion.component.html',
+  styleUrl: './reporteestilosconpeorcalificacion.component.css'
 })
-export class CantidadestilosporusuarioComponent implements OnInit {
+export class ReporteestilosconpeorcalificacionComponent implements OnInit {
+  estilosUsuario: EstiloUsuarioConPCDTO[] = []; 
   barChartOptions: ChartOptions = {
     responsive: true,
     plugins: {
-      legend: {
-        display: false 
-      },
+      legend: { display: false }, 
       datalabels: {
         anchor: 'end',
         align: 'top',
         color: '#2C3E50',
-        font: {
-          weight: 'bold',
-          size: 12
-        },
+        font: { weight: 'bold', size: 12 },
         formatter: (value) => `${value}`
       }
     },
     scales: {
       x: {
-        title: {
-          display: true,
-          text: 'Usuario',
-          color: '#2C3E50'
-        },
-        ticks: {
-          color: '#2C3E50'
-        }
+        title: { display: true, text: 'Nombre Estilo', color: '#2C3E50' }
       },
       y: {
         beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Cantidad de Estilos',
-          color: '#2C3E50'
-        },
-        ticks: {
-          color: '#2C3E50'
-        }
+        title: { display: true, text: 'Calificación', color: '#2C3E50' }
       }
     }
   };
@@ -62,18 +45,18 @@ export class CantidadestilosporusuarioComponent implements OnInit {
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
-  constructor(private eS: EstiloService) {}
+  constructor(private euS: EstiloUsuarioService) {}
 
   ngOnInit(): void {
-    this.eS.cantidadEstilosPorUsuario().subscribe((data) => {
+    this.euS.listarEstiloDeUsuarioConPeorCalifiacion().subscribe((data) => {
 
       this.barChartLabels = data.map((item) => item.nickname_usuario);
       
-     
+      this.barChartLabels = data.map((item) => item.nombre_estilo);
       this.barChartData = [
         {
-          data: data.map((item) => item.cantidad_estilos),
-          label: 'Estilos por Usuario',
+          data: data.map((item) => item.calificacion_estilo),
+          label: 'Calificación Estilo',
           backgroundColor: '#1ABC9C',
           borderColor: '#1ABC9C',
           borderWidth: 1
@@ -81,4 +64,5 @@ export class CantidadestilosporusuarioComponent implements OnInit {
       ];
     });
   }
+
 }

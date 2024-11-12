@@ -34,9 +34,9 @@ export class ReporteitemspornrousosComponent implements OnInit{
     }
   };
   barChartLabels: string[] = [];
-  //barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'bar';
   //barChartType: ChartType = 'doughnut';
-  barChartType: ChartType = 'pie';
+ // barChartType: ChartType = 'pie';
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 

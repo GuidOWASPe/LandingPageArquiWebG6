@@ -32,16 +32,16 @@ export class ReportecantidadcomentariosnegativosComponent implements OnInit{
         },
         ticks: {
           callback: function(value) {
-            return (value as string).substring(0, 10) + '...'; // Limita la longitud del comentario para mejor visualización
+            return (value as string).substring(0, 10) + '...'; 
           }
         }
       }
     }
   };
   barChartLabels: string[] = [];
-  //barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'bar';
   //barChartType: ChartType = 'doughnut';
-  barChartType: ChartType = 'pie';
+  //barChartType: ChartType = 'pie';
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
@@ -52,7 +52,6 @@ export class ReportecantidadcomentariosnegativosComponent implements OnInit{
 
       this.barChartLabels = data.map((item) => item.contenido);
       
-      // Configuración de los datos de la gráfica, usando la cantidad de usuarios por país
       this.barChartData = [
         {
           data: data.map((item) => item.frecuencia),

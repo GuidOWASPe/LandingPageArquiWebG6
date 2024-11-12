@@ -42,16 +42,15 @@ export class PopularidadcoloresestiloComponent implements OnInit{
 
   ngOnInit(): void {
     this.estiloService.popularidadFormasYColoresEstilo().subscribe((data) => {
-      // Configuramos etiquetas del gráfico (nombres de las formas)
+      
       this.barChartLabels = data.map((item) => item.nombreForma);
 
-      // Configuración de los datos de la gráfica con colores personalizados
+      
       this.barChartData = [
         {
           data: data.map((item) => item.cantidadEstilo),
           label: 'Cantidad de Estilos',
-          backgroundColor: data.map((item) => item.codigoColor), // Aplica el color especificado en cada ítem
-          borderColor: '#ffffff',
+          backgroundColor: data.map((item) => item.codigoColor), 
           borderWidth: 1
         }
       ];

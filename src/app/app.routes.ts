@@ -29,12 +29,12 @@ import { PorcentajeusuariosporgeneroComponent } from './components/reportes/porc
 import { CantidadusuariosporpaisesComponent } from './components/reportes/cantidadusuariosporpaises/cantidadusuariosporpaises.component';
 import { ItemmasusadoporusuarioComponent } from './components/reportes/itemmasusadoporusuario/itemmasusadoporusuario.component';
 import { ListarcomentariosComponent } from './components/comentarios/listarcomentarios/listarcomentarios.component';
-import { ListarestilosuauriopeorcalifiacionComponent } from './components/reportes/listarestilosuauriopeorcalifiacion/listarestilosuauriopeorcalifiacion.component';
 import { CantidadestilosporusuarioComponent } from './components/reportes/cantidadestilosporusuario/cantidadestilosporusuario.component';
 import { PopularidadcoloresestiloComponent } from './components/reportes/popularidadcoloresestilo/popularidadcoloresestilo.component';
 import { ReporteitemspornrousosComponent } from './components/reportes/reporteitemspornrousos/reporteitemspornrousos.component';
 import { ReportecantidadcomentariosnegativosComponent } from './components/reportes/reportecantidadcomentariosnegativos/reportecantidadcomentariosnegativos.component';
 import { ReporterostrosegunformaComponent } from './components/reportes/reporterostrosegunforma/reporterostrosegunforma.component';
+import { ReporteestilosconpeorcalificacionComponent } from './components/reportes/reporteestilosconpeorcalificacion/reporteestilosconpeorcalificacion.component';
 
 export const routes: Routes = [
   {
@@ -199,7 +199,7 @@ export const routes: Routes = [
   {
     path: 'homes',
     component: HomeComponent,
-    canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
+    canActivate: [seguridadGuard], 
   },
 
   {
@@ -218,7 +218,7 @@ export const routes: Routes = [
         path:'itemmasusadoporusuario',component:ItemmasusadoporusuarioComponent
       },
       {
-        path:'estilosuauriopeorcalifiacion',component:ListarestilosuauriopeorcalifiacionComponent
+        path:'estilosconpeorcalificacion',component:ReporteestilosconpeorcalificacionComponent
       },
       {
         path:'cantidadestilosporusuario',component:CantidadestilosporusuarioComponent

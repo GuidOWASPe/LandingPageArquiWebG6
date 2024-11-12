@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
 import { ChartDataset, ChartOptions, ChartType } from './../../../../../node_modules/chart.js/dist/types/index.d';
 import { UsuariosService } from '../../../services/usuarios.service';
 
-Chart.register(...registerables);
+Chart.register(...registerables,ChartDataLabels);
 
 @Component({
   selector: 'app-cantidadusuariosporpaises',
@@ -16,26 +17,64 @@ Chart.register(...registerables);
 export class CantidadusuariosporpaisesComponent implements OnInit{
   barChartOptions: ChartOptions = {
     responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Cantidad de Usuarios'
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          color: '#2C3E50',
+          font: {
+            size: 14
+          }
         }
       },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.raw || 0;
+            return `${label}: ${value} usuarios`;
+          }
+        }
+      },
+      datalabels: {
+        anchor: 'end', 
+        align: 'end', 
+        offset: -10, 
+        color: '#2C3E50', 
+        font: {
+          weight: 'bold',
+          size: 12
+        },
+        formatter: (value) => `${value}` 
+      }
+    },
+    scales: {
       x: {
         title: {
           display: true,
-          text: 'País'
+          text: 'País',
+          color: '#2C3E50'
+        },
+        ticks: {
+          color: '#2C3E50'
         }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Cantidad de Usuarios',
+          color: '#2C3E50'
+        },
+        ticks: {
+          color: '#2C3E50'
+        },
+        beginAtZero: true
       }
     }
   };
   barChartLabels: string[] = [];
-  //barChartType: ChartType = 'bar';
-  //barChartType: ChartType = 'doughnut';
-  barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'bar';
+
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
@@ -45,15 +84,13 @@ export class CantidadusuariosporpaisesComponent implements OnInit{
     this.uS.cantidadUsuariosPorPaises().subscribe((data) => {
 
       this.barChartLabels = data.map((item) => item.paisUsuario);
-      
-      // Configuración de los datos de la gráfica, usando la cantidad de usuarios por país
       this.barChartData = [
         {
           data: data.map((item) => item.cantidad),
           label: 'Usuarios por País',
-          backgroundColor: '#3e95cd',
-          borderColor: '#3e95cd',
-          borderWidth: 1
+          backgroundColor: data.map((_, index) => index % 2 === 0 ? '#1ABC9C' : '#3e95cd'),
+          borderColor: '#FFFFFF',
+          borderWidth: 2
         }
       ];
     });
