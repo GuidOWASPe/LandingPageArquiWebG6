@@ -12,7 +12,6 @@ import { EstiloComponent } from './components/estilo/estilo.component';
 import { CreaeditaestiloComponent } from './components/estilo/creaeditaestilo/creaeditaestilo.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { AsesoramientoComponent } from './components/landing/asesoramiento/asesoramiento.component';
 import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
 import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
@@ -34,10 +33,6 @@ export const routes: Routes = [
       {
         path: 'estilosdi',
         component: EstilosdiComponent,
-      },
-      {
-        path: 'asesoramiento',
-        component: AsesoramientoComponent,
       },
       {
         path: 'conocenos',

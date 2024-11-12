@@ -7,7 +7,7 @@ import { EstilosdiComponent } from './estilosdi/estilosdi.component';
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterOutlet, IndexComponent,WebcamComponent,EstilosdiComponent],
+  imports: [RouterOutlet, IndexComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })

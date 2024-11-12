@@ -1192,6 +1192,9 @@ footer {
     width: calc(90% - 40px);
     margin: 50px auto 50px auto;
   }
+  .cont-1{
+    flex-wrap: wrap;
+  }
 }
 
 /* Diseño responsive */
@@ -1207,12 +1210,18 @@ footer {
   .dropdown_menu {
     display: block;
   }
+  .cont-1{
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 576px) {
   .dropdown_menu {
     left: 2rem;
     width: unset;
+  }
+  .cont-1{
+    flex-wrap: wrap;
   }
 }
 

@@ -258,7 +258,7 @@ header .princ .Page a img {
 
 /* Estilos del título */
 .main-title {
-  font-family: "Playfair Display", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 3em;
   margin-bottom: 20px;
   opacity: 0;
@@ -350,6 +350,7 @@ header .princ .Page a img {
   .princ {
     flex-direction: column;
     text-align: center;
+    margin-top: 50px;
   }
 
   .main-img {
@@ -703,6 +704,10 @@ header .princ .Page a img {
     flex: 1 1 calc(50% - 20px);
     max-width: calc(50% - 20px);
   }
+  .container-testimonios {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 768px) {
@@ -900,7 +905,7 @@ h2 {
   flex-direction: column;
   border-radius: 50%;
   padding: 20px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .card-back p {
