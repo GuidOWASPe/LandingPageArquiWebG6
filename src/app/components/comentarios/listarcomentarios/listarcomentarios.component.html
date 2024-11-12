@@ -1,0 +1,69 @@
+<div>
+  <div style="text-align: center; margin: 5%">
+    <h1>Lista de Comentarios</h1>
+  </div>
+  <div class="container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef>Código</th>
+        <td mat-cell *matCellDef="let element">{{ element.idcomentario }}</td>
+      </ng-container>
+
+      <!-- Name contenido   -->
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef>Contenido</th>
+        <td mat-cell *matCellDef="let element">{{ element.contenido }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef>Me Gustas</th>
+        <td mat-cell *matCellDef="let element">{{ element.likes }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef>Fecha Publicada</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fecha_publicada }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let element">{{ element.us.username }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef>Estilo</th>
+        <td mat-cell *matCellDef="let element">{{ element.et.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          (click)="eliminar(element.idcomentario)"
+        >
+          <mat-icon style="color: rgb(8, 138, 95)">delete</mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            [routerLink]="['ediciones', element.idcomentario]"
+          >
+            <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>

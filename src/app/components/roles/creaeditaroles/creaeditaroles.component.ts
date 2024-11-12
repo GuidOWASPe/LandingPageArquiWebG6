@@ -17,7 +17,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-creaeditaroles',
   standalone: true,
-  imports: [MatInputModule,
+  imports: [
+    MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
     CommonModule,
@@ -60,14 +61,17 @@ export class CreaeditarolesComponent implements OnInit {
       this.rol.nombre = this.form.value.hnombre;
       if(this.edicion){
         this.rS.update(this.rol).subscribe((data) => {
+          
           this.rS.list().subscribe(data => {
             this.rS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
         });
       } else{
         this.rS.insert(this.rol).subscribe((data) => {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
+            this.openSnackBar('Registro creado exitosamente');
           });
         });
       }
@@ -84,6 +88,7 @@ export class CreaeditarolesComponent implements OnInit {
   }
 
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['roles']);
   }
 

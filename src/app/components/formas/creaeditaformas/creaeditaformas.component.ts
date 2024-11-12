@@ -19,7 +19,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatSnackBarModule],
   templateUrl: './creaeditaformas.component.html',
-  styleUrl: './creaeditaformas.component.css',
+  styleUrls: ['./creaeditaformas.component.css'],
 })
 export class CreaeditaformasComponent implements OnInit {
   form: FormGroup = new FormGroup({});
@@ -80,6 +80,7 @@ export class CreaeditaformasComponent implements OnInit {
   }
 
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['formas']);
   }
 

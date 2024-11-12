@@ -1,5 +1,13 @@
 <mat-toolbar color="primary" class="custom-toolbar">
-  <span class="app-title">My Application</span>
+  <span class="app-title" routerLink="/" style="cursor: pointer"
+    >StyleCheck</span>
+
+    <div class="nav-item">
+      <button mat-button class="nav-button" routerLink="/usuarios">
+        <mat-icon>person</mat-icon>Usuarios
+      </button>
+    </div>
+
   <div class="nav-item">
     <button mat-button class="nav-button">
       <mat-icon>category</mat-icon>Formas
@@ -9,6 +17,7 @@
       <a routerLink="/formas/nuevo" class="submenu-item">Registrar Formas</a>
     </div>
   </div>
+
   <div class="nav-item">
     <button mat-button class="nav-button">
       <mat-icon>shield</mat-icon>Roles
@@ -18,6 +27,7 @@
       <a routerLink="/roles/nuevo" class="submenu-item">Registrar Roles</a>
     </div>
   </div>
+
   <div class="nav-item">
     <button mat-button class="nav-button">
       <mat-icon>title</mat-icon>Tipos
@@ -27,8 +37,40 @@
       <a routerLink="/tipos/nuevo" class="submenu-item">Registrar Tipos</a>
     </div>
   </div>
+
   <div class="nav-item">
     <button mat-button class="nav-button">
+      <mat-icon>chat</mat-icon>Comentarios
+    </button>
+    <div class="submenu">
+      <a routerLink="/comentarios" class="submenu-item">Listar comentarios</a>
+      <a routerLink="/comentarios/nuevo" class="submenu-item">Registrar Comentarios</a>
+    </div>
+  </div>
+
+
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>category</mat-icon>Item por Usuario 
+    </button>
+    <div class="submenu">
+      <a routerLink="/itemusuario" class="submenu-item">Listar Items por Usuario</a>
+      <a routerLink="/itemusuario/nuevo" class="submenu-item">Registrar Item por Usuario</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>psychology_alt</mat-icon>Items
+    </button>
+    <div class="submenu">
+      <a routerLink="/items" class="submenu-item">Listar Items</a>
+      <a routerLink="/items/nuevo" class="submenu-item">Registrar Items</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <button mat-button class="nav-button" routerLink="/rostros">
       <mat-icon>face</mat-icon>Rostros
     </button>
     <div class="submenu">
@@ -36,6 +78,26 @@
       <a routerLink="/rostros/nuevo" class="submenu-item">Registrar Rostros</a>
     </div>
   </div>
-</mat-toolbar>
+  
+    <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>settings_accessibility</mat-icon>EstiloUsuarios
+    </button>
+    <div class="submenu">
+      <a routerLink="/estilousuarios" class="submenu-item">Listar Estilo Usuarios</a>
+      <a routerLink="/estilousuarios/nuevo" class="submenu-item">Registrar Estilo Usuarios</a>
+    </div>
+  </div>
 
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>wb_sunny</mat-icon>Estilos
+    </button>
+    <div class="submenu">
+      <a routerLink="/estilos" class="submenu-item">Listar Estilos</a>
+      <a routerLink="/estilos/nuevo" class="submenu-item">Registrar Estilos</a>
+    </div>
+  </div>
+</mat-toolbar>
 <router-outlet></router-outlet>
+
