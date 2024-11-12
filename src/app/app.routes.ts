@@ -218,7 +218,7 @@ export const routes: Routes = [
         path:'itemmasusadoporusuario',component:ItemmasusadoporusuarioComponent
       },
       {
-        path:'listarestilosuauriopeorcalifiacion',component:ListarestilosuauriopeorcalifiacionComponent
+        path:'estilosuauriopeorcalifiacion',component:ListarestilosuauriopeorcalifiacionComponent
       },
       {
         path:'cantidadestilosporusuario',component:CantidadestilosporusuarioComponent
