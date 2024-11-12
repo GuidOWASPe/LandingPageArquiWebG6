@@ -84,12 +84,12 @@ export class CreaeditaestiloComponent implements OnInit{
   insertar(): void {
     if(this.form.valid){
       this.estilo.idEstilo = this.form.value.hcodigo;
-      this.estilo.NombreEstilo = this.form.value.hnombre;
-      this.estilo.CodigoColor = this.form.value.hcolor;
+      this.estilo.nombreEstilo = this.form.value.hnombre;
+      this.estilo.codigoColor = this.form.value.hcolor;
       this.estilo.ro.idRostro = this.form.value.hrostro;
       this.estilo.it.idItem = this.form.value.hitem;
-      this.estilo.FechaCreado = this.form.value.hfechacre;
-      this.estilo.ImagenEstilo = this.form.value.himagen;
+      this.estilo.fechaCreado = this.form.value.hfechacre;
+      this.estilo.imagenEstilo = this.form.value.himagen;
       if (this.edicion) {
         this.eS.update(this.estilo).subscribe((data) => {
           this.eS.list().subscribe((data) => {
@@ -127,12 +127,12 @@ export class CreaeditaestiloComponent implements OnInit{
       this.eS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idEstilo),
-          hnombre: new FormControl(data.NombreEstilo),
+          hnombre: new FormControl(data.nombreEstilo),
           hrostro: new FormControl(data.ro.idRostro),
           hitem: new FormControl(data.it.idItem),
-          hcolor: new FormControl(data.CodigoColor),
-          himagen: new FormControl(data.ImagenEstilo),
-          hfechacre: new FormControl(data.FechaCreado), 
+          hcolor: new FormControl(data.codigoColor),
+          himagen: new FormControl(data.imagenEstilo),
+          hfechacre: new FormControl(data.fechaCreado), 
         });
       });
     }

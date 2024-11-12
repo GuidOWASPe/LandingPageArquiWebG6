@@ -70,7 +70,7 @@
               <mat-option
                 *ngFor="let food of listaestilos"
                 [value]="food.idEstilo"
-                >{{ food.NombreEstilo }}</mat-option
+                >{{ food.nombreEstilo }}</mat-option
               >
             </mat-select>
             <mat-error *ngIf="form.get('hestilo')?.hasError('required')"
