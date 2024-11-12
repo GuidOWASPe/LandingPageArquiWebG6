@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EstiloUsuario } from '../models/EstiloUsuario';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 const base_url = environment.base;
 @Injectable({

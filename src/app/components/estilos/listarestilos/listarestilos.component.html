@@ -10,7 +10,7 @@
         
         <ng-container matColumnDef="c2">
           <th mat-header-cell *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{ element.nombre }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.NombreEstilo }} </td>
         </ng-container>
   
         <ng-container matColumnDef="c3">
@@ -26,6 +26,16 @@
         <ng-container matColumnDef="c5">
           <th mat-header-cell *matHeaderCellDef> Item </th>
           <td mat-cell *matCellDef="let element"> {{element.it.nombreItem}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c6">
+          <th mat-header-cell *matHeaderCellDef> Item </th>
+          <td mat-cell *matCellDef="let element"> {{element.FechaCreado}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c7">
+          <th mat-header-cell *matHeaderCellDef> Item </th>
+          <td mat-cell *matCellDef="let element"> {{element.ImagenEstilo}} </td>
         </ng-container>
   
         <ng-container matColumnDef="accion01">

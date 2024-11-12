@@ -56,7 +56,7 @@
                 <mat-label>Estilos</mat-label>
                 <mat-select  formControlName="hestilo">
                   @for (food of listaestilos; track food) {
-                  <mat-option [value]="food.idEstilo">{{ food.nombre }}</mat-option>
+                  <mat-option [value]="food.idEstilo">{{ food.NombreEstilo }}</mat-option>
                   }
                 </mat-select>
                 <mat-error *ngIf="form.get('hestilo')?.hasError('required')"

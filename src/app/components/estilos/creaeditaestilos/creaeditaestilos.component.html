@@ -52,6 +52,29 @@
       >
       </mat-form-field>
       <br>
+
+      <mat-form-field>
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="hfechacre" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('hfechacre')?.hasError('required')"
+          >Ingrese una fecha</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="himagen" />
+        <mat-error *ngIf="form.get('himagen')?.hasError('required')"
+          >Ingrese una imagen </mat-error
+        >
+      </mat-form-field>
+
       <div class="buttons">
         <button mat-flat-button class="custom-button" (click)="cancel()"> Cancelar</button>
         <button mat-flat-button class="custom-button">Registrar</button>
