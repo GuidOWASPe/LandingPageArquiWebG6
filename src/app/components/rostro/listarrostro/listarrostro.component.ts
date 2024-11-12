@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Rostro } from '../../../models/Rostro';
 import { RostroService } from '../../../services/rostro.service';
@@ -8,6 +8,9 @@ import { RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listarrostro',
@@ -18,12 +21,17 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatButtonModule,
     RouterModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './listarrostro.component.html',
   styleUrl: './listarrostro.component.css',
 })
 export class ListarrostroComponent implements OnInit {
   dataSource: MatTableDataSource<Rostro> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = [
     'r1',
     'r2',
@@ -33,6 +41,9 @@ export class ListarrostroComponent implements OnInit {
     'accion01',
     'accion02',
   ];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(
     private rS: RostroService,
     private snackBar: MatSnackBar,
@@ -41,11 +52,21 @@ export class ListarrostroComponent implements OnInit {
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
     this.rS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
+
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombreForma.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,

@@ -10,6 +10,8 @@ import { ItemusuarioService } from '../../../services/itemusuario.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listaritemususuario',
@@ -22,12 +24,16 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './listaritemususuario.component.html',
   styleUrl: './listaritemususuario.component.css',
 })
 export class ListaritemususuarioComponent {
   dataSource: MatTableDataSource<ItemUsuario> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -60,6 +66,14 @@ export class ListaritemususuarioComponent {
       this.dataSource.paginator = this.paginator;
     });
   }
+
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombreItem.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
   openSnackBar(message: string) {
     
     this.snackBar.open(message, 'Cerrar', {

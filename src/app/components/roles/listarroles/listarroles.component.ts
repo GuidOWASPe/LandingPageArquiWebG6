@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listarroles',
@@ -22,12 +24,16 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatInputModule,
+    FormsModule,
   ],
   templateUrl: './listarroles.component.html',
   styleUrl: './listarroles.component.css',
 })
 export class ListarrolesComponent implements OnInit {
   dataSource: MatTableDataSource<Rol> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = ['c1', 'c2', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -53,6 +59,13 @@ export class ListarrolesComponent implements OnInit {
     });
   }
 
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombre.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
@@ -62,13 +75,13 @@ export class ListarrolesComponent implements OnInit {
     const dialogRef = this.dialog.open(MatDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-    this.rS.delete(id).subscribe((data) => {
-      this.rS.list().subscribe((data) => {
-        this.rS.setList(data);
-        this.openSnackBar('Elemento eliminado correctamente.');
-      });
+        this.rS.delete(id).subscribe((data) => {
+          this.rS.list().subscribe((data) => {
+            this.rS.setList(data);
+            this.openSnackBar('Elemento eliminado correctamente.');
+          });
+        });
+      }
     });
-  }
-});
   }
 }

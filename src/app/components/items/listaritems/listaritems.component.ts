@@ -9,6 +9,8 @@ import { ItemService } from '../../../services/item.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listaritems',
@@ -19,13 +21,17 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatIconModule,
     MatPaginatorModule,
     RouterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './listaritems.component.html',
   styleUrl: './listaritems.component.css',
 })
 export class ListaritemsComponent implements OnInit {
   dataSource: MatTableDataSource<Item> = new MatTableDataSource();
+  filterValue: string = '';
+  
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -57,6 +63,13 @@ export class ListaritemsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombreItem.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
 
   openSnackBar(message: string) {

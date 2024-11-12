@@ -1,65 +1,101 @@
 <div class="container" style="text-align: center">
-    <div style="margin: 5%"><h1>Registro de Items</h1></div>
-    <div>
-      <form [formGroup]="form" (submit)="insertar()">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <mat-label>Código</mat-label>
-          <input matInput formControlName="hcodigo" />
-        </mat-form-field>
-
+  <div style="margin: 5%">
+    <h1>Registro de Items</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- Código -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="hcodigo" />
+          </mat-form-field>
+        </div>
+              <!-- Nombre del Item -->
+      <div class="form-column">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre del Item</mat-label>
           <input matInput formControlName="hnombre" />
-          <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
-          >El campo de Nombre es obligatorio</mat-error>
+          <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+            El campo de Nombre es obligatorio
+          </mat-error>
         </mat-form-field>
+      </div>
+      </div>
 
-        <mat-form-field>
+      <!-- Tipos -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
             <mat-label>Tipos</mat-label>
-            <mat-select formControlName="htipo">
-              @for (food of listaTipos; track food) {
-              <mat-option [value]="food.idTipo">{{ food.nombreTipo }}</mat-option>
-              }
+            <mat-select [disabled]="edicion" formControlName="htipo">
+              <mat-option *ngFor="let food of listaTipos" [value]="food.idTipo">
+                {{ food.nombreTipo }}
+              </mat-option>
             </mat-select>
-            <mat-error *ngIf="form.get('htipo')?.hasError('required')"
-          >Seleccione un Tipo </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Descripción</mat-label>
-          <input matInput formControlName="hdescripcion" />
-          <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')"
-            >Ingrese una descripcion </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Calificación</mat-label>
-            <input matInput formControlName="hcalificacion" />
-            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')"
-            >Ingrese una Calificacion </mat-error>
+            <mat-error *ngIf="form.get('htipo')?.hasError('required')">
+              Seleccione un Tipo
+            </mat-error>
           </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Nro° de usos</mat-label>
-            <input matInput formControlName="husos" />
-            <mat-error *ngIf="form.get('husos')?.hasError('required')"
-            >Ingrese el Numero de Usos </mat-error>
-          </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Imagen</mat-label>
-          <input matInput formControlName="himagen" />
-          <mat-error *ngIf="form.get('himagen')?.hasError('required')"
-            >Ingrese una Imagen </mat-error>
-        </mat-form-field>
-  
-        <div class="buttons">
-          <button mat-flat-button class="custom-button" (click)="cancel()">
-            Cancelar
-          </button>
-          <button mat-flat-button class="custom-button">Registrar</button>
         </div>
-      </form>
-    </div>
+              <!-- Descripción -->
+      <div class="form-column">
+        <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input matInput [disabled]="edicion" formControlName="hdescripcion" />
+          <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
+            Ingrese una descripcion
+          </mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+
+
+      <!-- Calificación -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Calificación</mat-label>
+            <input matInput [disabled]="edicion" formControlName="hcalificacion" />
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')">
+              Ingrese una Calificación
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+      <!-- Nro° de usos -->
+      <div class="form-column">
+        <mat-form-field>
+          <mat-label>Nro° de usos</mat-label>
+          <input matInput formControlName="husos" />
+          <mat-error *ngIf="form.get('husos')?.hasError('required')">
+            Ingrese el Número de Usos
+          </mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+
+      <!-- Imagen -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Imagen</mat-label>
+            <input matInput [disabled]="edicion" formControlName="himagen" />
+            <mat-error *ngIf="form.get('himagen')?.hasError('required')">
+              Ingrese una Imagen
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="buttons">
+        <button mat-flat-button class="custom-button" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
   </div>
-  
+</div>
