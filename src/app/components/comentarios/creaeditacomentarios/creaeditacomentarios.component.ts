@@ -96,7 +96,7 @@ export class CreaeditacomentariosComponent implements OnInit {
         this.openSnackBar('La fecha debe ser menor a la fecha actual');
         return;
       }
-      this.comentario.idcomentario = this.form.value.hcodigo;
+      this.comentario.idComentario = this.form.value.hcodigo;
       this.comentario.contenido = this.form.value.hcontenido;
       this.comentario.likes = this.form.value.hmegustas;
       this.comentario.fecha_publicada = this.form.value.hfechapublicada;
@@ -137,7 +137,7 @@ export class CreaeditacomentariosComponent implements OnInit {
     if (this.edicion) {
       this.comenS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hcodigo: new FormControl(data.idcomentario),
+          hcodigo: new FormControl(data.idComentario),
           hcontenido: new FormControl(data.contenido),
           hmegustas: new FormControl(data.likes),
           hfechapublicada: new FormControl(data.fecha_publicada),

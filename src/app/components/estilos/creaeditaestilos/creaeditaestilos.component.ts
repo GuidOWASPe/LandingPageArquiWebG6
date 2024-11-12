@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { ItemService } from '../../../services/item.service';
 import { Item } from '../../../models/Item';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-creaeditaestilo',
@@ -31,7 +32,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
      MatSelectModule, 
      MatInputModule, 
      MatButtonModule, 
-     RouterModule],
+     RouterModule,
+    MatDatepickerModule],
      
   templateUrl: './creaeditaestilos.component.html',
   styleUrl: './creaeditaestilos.component.css'
@@ -66,6 +68,8 @@ export class CreaeditaestiloComponent implements OnInit{
       hrostro: ['', Validators.required],
       hcolor: ['', Validators.required],
       hitem: ['', Validators.required],
+      himagen: ['', Validators.required],
+      hfechacre: ['', Validators.required],
     });
 
     this.rS.list().subscribe((data) => {
@@ -80,10 +84,12 @@ export class CreaeditaestiloComponent implements OnInit{
   insertar(): void {
     if(this.form.valid){
       this.estilo.idEstilo = this.form.value.hcodigo;
-      this.estilo.nombreEstilo = this.form.value.hnombre;
-      this.estilo.codigoColor = this.form.value.hcolor;
+      this.estilo.NombreEstilo = this.form.value.hnombre;
+      this.estilo.CodigoColor = this.form.value.hcolor;
       this.estilo.ro.idRostro = this.form.value.hrostro;
       this.estilo.it.idItem = this.form.value.hitem;
+      this.estilo.FechaCreado = this.form.value.hfechacre;
+      this.estilo.ImagenEstilo = this.form.value.himagen;
       if (this.edicion) {
         this.eS.update(this.estilo).subscribe((data) => {
           this.eS.list().subscribe((data) => {
@@ -121,10 +127,12 @@ export class CreaeditaestiloComponent implements OnInit{
       this.eS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idEstilo),
-          hnombre: new FormControl(data.nombreEstilo),
+          hnombre: new FormControl(data.NombreEstilo),
           hrostro: new FormControl(data.ro.idRostro),
           hitem: new FormControl(data.it.idItem),
-          hcolor: new FormControl(data.codigoColor),
+          hcolor: new FormControl(data.CodigoColor),
+          himagen: new FormControl(data.ImagenEstilo),
+          hfechacre: new FormControl(data.FechaCreado), 
         });
       });
     }

@@ -11,6 +11,9 @@ import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RostroComponent } from './components/rostro/rostro.component';
 import { EstilosComponent } from './components/estilos/estilos.component';
+import { LoginService } from './services/login.service';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './components/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +31,8 @@ import { EstilosComponent } from './components/estilos/estilos.component';
     MatDialogComponent,
     UsuariosComponent,
     RostroComponent, 
-    EstilosComponent
+    EstilosComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -36,4 +40,22 @@ import { EstilosComponent } from './components/estilos/estilos.component';
 })
 export class AppComponent {
   title = 'backendStyleCheck';
+  role: string = '';
+
+  constructor(private loginService: LoginService){}
+  cerrar() {
+    sessionStorage.clear();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isAdmin() {
+    return this.role === 'ADMIN';
+  }
+
+  isUser() {
+    return this.role === 'USUARIO';
+  }
 }

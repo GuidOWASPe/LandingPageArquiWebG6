@@ -19,8 +19,20 @@ import { EstilosComponent } from './components/estilos/estilos.component';
 import { CreaeditaestiloComponent } from './components/estilos/creaeditaestilos/creaeditaestilos.component';
 import { EstilousuarioComponent } from './components/estilousuario/estilousuario.component';
 import { CreaeditaestilousuarioComponent } from './components/estilousuario/creaeditaestilousuario/creaeditaestilousuario.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { seguridadGuard } from './guard/seguridad.guard';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'formas',
     component: FormasComponent,
@@ -34,6 +46,7 @@ export const routes: Routes = [
         component: CreaeditaformasComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'roles',
@@ -48,6 +61,7 @@ export const routes: Routes = [
         component: CreaeditarolesComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'usuarios',
@@ -62,6 +76,7 @@ export const routes: Routes = [
         component: CreaeditausuariosComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'items',
@@ -76,6 +91,7 @@ export const routes: Routes = [
         component: CreaeditaitemsComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'tipos',
@@ -90,6 +106,7 @@ export const routes: Routes = [
         component: CreaeditatiposComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'comentarios',
@@ -104,6 +121,7 @@ export const routes: Routes = [
         component: CreaeditacomentariosComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'itemusuario',
@@ -118,6 +136,7 @@ export const routes: Routes = [
         component: CreaeditaitemususuarioComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'rostros',
@@ -132,6 +151,7 @@ export const routes: Routes = [
         component: CreaeditarostroComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'estilousuarios',
@@ -146,6 +166,7 @@ export const routes: Routes = [
         component: CreaeditaestilousuarioComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'estilos',
@@ -160,5 +181,11 @@ export const routes: Routes = [
         component: CreaeditaestiloComponent,
       },
     ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'homes',
+    component: HomeComponent,
+    canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
   },
 ];

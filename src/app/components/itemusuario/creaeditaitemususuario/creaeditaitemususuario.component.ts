@@ -81,14 +81,14 @@ export class CreaeditaitemususuarioComponent implements OnInit{
 
   insertar(): void {
 
-    if (this.form.valid && this.form.value.hfechaitemfav && this.form.value.hcalificacion && this.form.value.husuario && this.form.value.hitem) {
+    if (this.form.valid) {
       const fechaIngresada = new Date(this.form.value.hfechaitemfav);
       const fechaActual = new Date();
       if (fechaIngresada > fechaActual) {
         this.openSnackBar('La fecha debe ser menor a la fecha actual');
         return;
       }
-      this.itemusuario.idItemFavorito = this.form.value.hcodigo;
+      this.itemusuario.idItemUsuario = this.form.value.hcodigo;
       this.itemusuario.fechaItemFavorito=this.form.value.hfechaitemfav;
       this.itemusuario.calificacion=this.form.value.hcalificacion;
       this.itemusuario.us.idUsuario=this.form.value.husuario;
@@ -132,7 +132,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
     if (this.edicion) {
       this.itemuS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hcodigo:new FormControl(data.idItemFavorito),
+          hcodigo:new FormControl(data.idItemUsuario),
           hfechaitemfav:new FormControl(data.fechaItemFavorito),
           hcalificacion: new FormControl(data.calificacion),
           husuario:new FormControl(data.us.idUsuario),

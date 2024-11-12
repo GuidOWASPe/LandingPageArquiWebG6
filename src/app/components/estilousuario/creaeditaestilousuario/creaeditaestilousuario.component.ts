@@ -81,14 +81,14 @@ export class CreaeditaestilousuarioComponent implements OnInit{
 
   insertar(): void {
 
-    if (this.form.valid && this.form.value.hfecha && this.form.value.hcalificacion && this.form.value.husuario && this.form.value.hestilo ) {
+    if (this.form.valid) {
       const fechaIngresada = new Date(this.form.value.hfecha);
       const fechaActual = new Date();
       if (fechaIngresada > fechaActual) {
         this.openSnackBar('La fecha debe ser menor a la fecha actual');
         return;
       }
-      this.estilousuario.idEstiloFav = this.form.value.hcodigo;
+      this.estilousuario.idEstiloUsuario = this.form.value.hcodigo;
       this.estilousuario.fechaEstiloFav = this.form.value.hfecha;
       this.estilousuario.calificacion = this.form.value.hcalificacion;
       this.estilousuario.usuario.idUsuario = this.form.value.husuario;
@@ -130,7 +130,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
       this.euS.listId(this.id).subscribe((data) => {
         
         this.form = new FormGroup({
-          hcodigo:new FormControl(data.idEstiloFav),
+          hcodigo:new FormControl(data.idEstiloUsuario),
           hfecha:new FormControl(data.fechaEstiloFav),
           hcalificacion:new FormControl(data.calificacion),
           husuario:new FormControl(data.usuario.idUsuario),
