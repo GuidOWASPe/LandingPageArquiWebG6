@@ -24,6 +24,10 @@ import { RolesService } from '../../../services/roles.service';
 @Component({
   selector: 'app-creaeditausuarios',
   standalone: true,
+  providers: [
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   imports: [
     MatFormFieldModule,
     ReactiveFormsModule,
@@ -34,10 +38,7 @@ import { RolesService } from '../../../services/roles.service';
     MatButtonModule,
     MatSnackBarModule,
   ],
-  providers: [
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-  ],
+ 
   templateUrl: './creaeditausuarios.component.html',
   styleUrl: './creaeditausuarios.component.css',
 })
@@ -48,13 +49,61 @@ export class CreaeditausuariosComponent implements OnInit {
   edicion: boolean = false;
   listaRoles: Rol[] = [];
   listaPaises: { value: String; viewValue: string }[] = [
-    { value: 'M', viewValue: 'M' },
-    { value: 'G', viewValue: 'G' },
-    { value: 'L', viewValue: 'L' },
+    { value: 'Argentina', viewValue: 'Argentina' },
+    { value: 'Australia', viewValue: 'Australia' },
+    { value: 'Austria', viewValue: 'Austria' },
+    { value: 'Bélgica', viewValue: 'Bélgica' },
+    { value: 'Bolivia', viewValue: 'Bolivia' },
+    { value: 'Brasil', viewValue: 'Brasil' },
+    { value: 'Canadá', viewValue: 'Canadá' },
+    { value: 'Chile', viewValue: 'Chile' },
+    { value: 'China', viewValue: 'China' },
+    { value: 'Colombia', viewValue: 'Colombia' },
+    { value: 'Corea del Sur', viewValue: 'Corea del Sur' },
+    { value: 'Costa Rica', viewValue: 'Costa Rica' },
+    { value: 'Cuba', viewValue: 'Cuba' },
+    { value: 'Dinamarca', viewValue: 'Dinamarca' },
+    { value: 'Ecuador', viewValue: 'Ecuador' },
+    { value: 'Egipto', viewValue: 'Egipto' },
+    { value: 'El Salvador', viewValue: 'El Salvador' },
+    { value: 'España', viewValue: 'España' },
+    { value: 'Estados Unidos', viewValue: 'Estados Unidos' },
+    { value: 'Filipinas', viewValue: 'Filipinas' },
+    { value: 'Finlandia', viewValue: 'Finlandia' },
+    { value: 'Francia', viewValue: 'Francia' },
+    { value: 'Grecia', viewValue: 'Grecia' },
+    { value: 'Guatemala', viewValue: 'Guatemala' },
+    { value: 'Honduras', viewValue: 'Honduras' },
+    { value: 'India', viewValue: 'India' },
+    { value: 'Indonesia', viewValue: 'Indonesia' },
+    { value: 'Inglaterra', viewValue: 'Inglaterra' },
+    { value: 'Irlanda', viewValue: 'Irlanda' },
+    { value: 'Israel', viewValue: 'Israel' },
+    { value: 'Italia', viewValue: 'Italia' },
+    { value: 'Japón', viewValue: 'Japón' },
+    { value: 'México', viewValue: 'México' },
+    { value: 'Noruega', viewValue: 'Noruega' },
+    { value: 'Nueva Zelanda', viewValue: 'Nueva Zelanda' },
+    { value: 'Panamá', viewValue: 'Panamá' },
+    { value: 'Paraguay', viewValue: 'Paraguay' },
+    { value: 'Perú', viewValue: 'Perú' },
+    { value: 'Polonia', viewValue: 'Polonia' },
+    { value: 'Portugal', viewValue: 'Portugal' },
+    { value: 'Reino Unido', viewValue: 'Reino Unido' },
+    { value: 'República Dominicana', viewValue: 'República Dominicana' },
+    { value: 'Rusia', viewValue: 'Rusia' },
+    { value: 'Sudáfrica', viewValue: 'Sudáfrica' },
+    { value: 'Suecia', viewValue: 'Suecia' },
+    { value: 'Suiza', viewValue: 'Suiza' },
+    { value: 'Tailandia', viewValue: 'Tailandia' },
+    { value: 'Turquía', viewValue: 'Turquía' },
+    { value: 'Uruguay', viewValue: 'Uruguay' },
+    { value: 'Venezuela', viewValue: 'Venezuela' }
   ];
   listaSexo: { value: String; viewValue: string }[] = [
     { value: 'Femenino', viewValue: 'Femenino' },
     { value: 'Masculino', viewValue: 'Masculino' },
+    { value: 'Otro', viewValue: 'Otro' },
   ];
 
   constructor(

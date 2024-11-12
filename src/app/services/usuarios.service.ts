@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Usuarios } from '../models/Usuarios';
 import { HttpClient } from '@angular/common/http';
+import { CantidadUsuarioSegunEdadGeneroDTO } from '../models/CantidadUsuarioSegunEdadGeneroDTO';
+import { PorcentUsuariosMesDTO } from '../models/PorcentUsuariosMesDTO';
+import { PorcentajeUsuariosPorGeneroDTO } from '../models/PorcentajeUsuariosPorGeneroDTO';
+import { ReportePaisesPorUsuarioDTO } from '../models/ReportePaisesPorUsuarioDTO';
 const base_url = environment.base
 @Injectable({
   providedIn: 'root'
@@ -39,4 +43,25 @@ export class UsuariosService {
   update(usu: Usuarios){
     return this.http.put(this.url, usu)
   }
+
+  cantidadUsuariosPorGeneroSegunRangoEdad():Observable<CantidadUsuarioSegunEdadGeneroDTO[]>{
+    return this.http.get<CantidadUsuarioSegunEdadGeneroDTO[]>(`${this.url}/CantidadUsuariosPorGeneroSegunRangoEdad`)
+  }
+
+  porcentajeUsuariosRegistradosPorMes():Observable<PorcentUsuariosMesDTO[]>{
+    return this.http.get<PorcentUsuariosMesDTO[]>(`${this.url}/PorcentajeUsuariosRegistradosPorMes`)
+  }
+
+  //PorcentajeUsuariosPorGenero
+  porcentajeUsuariosPorGenero():Observable<PorcentajeUsuariosPorGeneroDTO[]>{
+    return this.http.get<PorcentajeUsuariosPorGeneroDTO[]>(`${this.url}/PorcentajeUsuariosPorGenero`)
+  }
+
+  //CantidadUsuariosPorPaises
+  cantidadUsuariosPorPaises():Observable<ReportePaisesPorUsuarioDTO[]>{
+    return this.http.get<ReportePaisesPorUsuarioDTO[]>(`${this.url}/CantidadUsuariosPorPaises`)
+  }
+
+  
+
 }

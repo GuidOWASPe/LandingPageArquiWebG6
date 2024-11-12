@@ -62,11 +62,35 @@
     </button>
   </div>
 
+  <div class="nav-item">
+    <button mat-button class="nav-button">
+      <mat-icon>wb_sunny</mat-icon>Reportes
+    </button>
+    <div class="submenu">
+      <a routerLink="/reportes" class="submenu-item">Usuarios por Género y Edad</a>
+      <a routerLink="/reportes/porcentajeusuariospormes" class="submenu-item">Registros Mensuales</a>
+      <a routerLink="/reportes/porcentajeusuariosporgenero" class="submenu-item">Usuarios por Género</a>
+      <a routerLink="/reportes/cantidadusuariosporpaises" class="submenu-item">Registro por País </a>
+      <a routerLink="/reportes/itemmasusadoporusuario" class="submenu-item">Ítems con Más Uso</a>
+      <a routerLink="/reportes/estilosconpeorcalificacion" class="submenu-item">Estilos Menos Valorados</a>
+      
+      <a routerLink="/reportes/cantidadestilosporusuario" class="submenu-item">Estilos Asociados a Usuarios</a>
+      <a routerLink="/reportes/popularidadcoloresestilo" class="submenu-item">Colores y Formas Mas populares por Usuario</a>
+      <a routerLink="/reportes/listaritemspornrousos" class="submenu-item">Items por Numero de Usos por Usuario</a>
+      <a routerLink="/reportes/cantidadcomentariosnegativos" class="submenu-item">Comentarios Negativos</a>
+      <a routerLink="/reportes/cantidadrostrosegunforma" class="submenu-item">Cantidad de Rostros segun forma</a>
+      
+     
+    </div>
+  </div>
+  
   <div class="right-menu">
     <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
       <mat-icon>person</mat-icon><span>{{ username }}</span>
     </button>
   </div>
+  
+
 
   <mat-menu #menuSalir="matMenu">
     <button

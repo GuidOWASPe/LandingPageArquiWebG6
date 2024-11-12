@@ -1,0 +1,17 @@
+<div>
+    <div class="title-container" style="text-align: center">
+      <h1>Porcentaje de Usuarios Registrados por Mes</h1>
+    </div>
+    <div class="chart-container" style="text-align: center">
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+  

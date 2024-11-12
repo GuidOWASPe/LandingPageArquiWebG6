@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Rostro } from '../models/Rostro';
 import { HttpClient } from '@angular/common/http';
+import { CantidadRostroFormaDTO } from '../models/CantidadRostroFormaDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,9 @@ export class RostroService {
   update(ro: Rostro) {
     return this.http.put(this.url,ro);
   }
+  obtenerCantidadRostroForma():Observable<CantidadRostroFormaDTO[]>{
+    return this.http.get<CantidadRostroFormaDTO[]>(`${this.url}/CantidadRostroSegunForma`)
+  }
+
+  //cantidadrostrosegunforma
 }

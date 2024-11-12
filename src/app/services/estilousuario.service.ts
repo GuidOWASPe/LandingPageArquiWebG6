@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EstiloUsuario } from '../models/EstiloUsuario';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { EstiloUsuarioConPCDTO } from '../models/EstiloUsuarioConPCDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,8 @@ export class EstiloUsuarioService {
 
   update(esu: EstiloUsuario){
     return this.http.put(this.url, esu);
+  }
+  listarEstiloDeUsuarioConPeorCalifiacion():Observable<EstiloUsuarioConPCDTO[]>{
+    return this.http.get<EstiloUsuarioConPCDTO[]>(`${this.url}/ListarEstiloDeUsuarioConPeorCalifiacion`)
   }
 }
