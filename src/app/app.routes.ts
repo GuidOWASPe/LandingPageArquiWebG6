@@ -8,14 +8,14 @@ import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creae
 import { RostroComponent } from './components/rostro/rostro.component';
 import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { WebcamComponent } from './components/landing/webcam/webcam.component';
 import { EstiloComponent } from './components/estilo/estilo.component';
 import { CreaeditaestiloComponent } from './components/estilo/creaeditaestilo/creaeditaestilo.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { EstilosComponent } from './components/landing/estilos/estilos.component';
 import { AsesoramientoComponent } from './components/landing/asesoramiento/asesoramiento.component';
 import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
+import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
+import { WebcamComponent } from './components/landing/webcam/webcam.component';
 
 export const routes: Routes = [
   {
@@ -32,15 +32,15 @@ export const routes: Routes = [
         component: WebcamComponent,
       },
       {
-        path: 'Estilos',
-        component: EstilosComponent,
+        path: 'estilosdi',
+        component: EstilosdiComponent,
       },
       {
-        path: 'Asesoramiento',
+        path: 'asesoramiento',
         component: AsesoramientoComponent,
       },
       {
-        path: 'Conocenos',
+        path: 'conocenos',
         component: ConocenosComponent,
       },
     ],

@@ -1,26 +1,91 @@
-<div style="position: relative; text-align: center">
-  <video
-    onloadedmetadata="onPlay(this)"
-    id="inputVideo"
-    autoplay
-    muted
-    playsinline
-  ></video>
-  <canvas id="overlay"></canvas>
+<div class="encabezado">
+  <h1>Escanea tu rostro</h1>
+  <h3>Pasos a seguir para que puedas escaner bien tu rostro</h3>
+</div>
+<div id="Neurologicas" class="section_c_1">
+  <div class="imagen-izquierda">
+    <img src="../../../../assets/imagen-1.avif" alt="Imagen de dos personas" />
+  </div>
+  <div class="texto-derecha">
+    <div class="encabezado">
+      <h2>Entra a la seccion "escanear mi rostro"</h2>
+    </div>
+    <div class="parrafo">
+      <p>
+        Primero, tendrás que ingresar a tu cuenta. Una vez dentro, en la parte superior de la pantalla, encontrarás un botón que dice "Escanear mi rostro". Haz clic en él para iniciar el proceso. Es importante asegurarte de que tu cámara funcione correctamente antes de continuar. <br>Si tienes algún problema al ingresar, verifica tu conexión a internet o intenta reiniciar la aplicación. Nuestro sistema está diseñado para ser fácil de usar y guiarte paso a paso para garantizar que la experiencia de escaneo sea fluida y efectiva.
+      </p>
+    </div>
+  </div>
+</div>
+<div id="Electromiografía_Neuroconducción" class="section_c_2">
+  <div class="texto-izquierda">
+    <div class="encabezado">
+      <h2>Escanea tu rostro</h2>
+    </div>
+    <div class="parrafo">
+      <p>
+        Al momento de escanear tu rostro, sigue cuidadosamente las instrucciones para asegurar la mejor calidad en el servicio. Una buena iluminación y una posición adecuada son claves para obtener resultados precisos. <br> Además, mantén tu cabeza recta y evita hacer movimientos bruscos. La tecnología de reconocimiento facial que utilizamos es sensible a los cambios en la iluminación y los obstáculos, así que asegúrate de seguir estas indicaciones al pie de la letra.
+      </p>
+    </div>
+    <ul>
+      <li>
+        <img src="../../../../assets/chek.svg" alt="" />No utilizar lentes
+      </li>
+      <li>
+        <img src="../../../../assets/chek.svg" alt="" />Cabello recogido
+      </li>
+      <li>
+        <img src="../../../../assets/chek.svg" alt="" />Estar en una sona iluminada
+      </li>
+    </ul>
+  </div>
+  <div class="imagen-derecha">
+    <img src="../../../../assets/imagen-2.svg" alt="Imagen de dos personas" />
+  </div>
+</div>
+<div id="psiquiátricas_adultos" class="section_c_1">
+  <div class="imagen-izquierda">
+    <img src="../../../../assets/imagen-3.webp" alt="Imagen de dos personas" />
+  </div>
+  <div class="texto-derecha">
+    <div class="encabezado">
+      <h2>Forma del Rostro</h2>
+    </div>
+    <div class="parrafo">
+      <p>
+        Según nuestro escáner, podremos determinar si la forma de tu rostro es cuadrada, ovalada, redonda o con otras características particulares. Esta información es útil para sugerirte estilos que resalten tu belleza natural. <br> Comprender la estructura de tu rostro es esencial al elegir peinados y cortes que complementen tus facciones. Nuestro análisis detallado te proporcionará recomendaciones que se adapten perfectamente a tu forma facial.
+      </p>
+    </div>
+  </div>
+</div>
+<div id="neurológicas" class="section_c_2">
+  <div class="texto-izquierda">
+    <div class="encabezado">
+      <h2>Hora de escoger los estilos</h2>
+    </div>
+    <div class="parrafo">
+      <p>
+        Con nuestra aplicación, tendrás acceso a una amplia variedad de cortes, peinados, y otros estilos que puedes probar de inmediato. La realidad aumentada te permitirá visualizar cómo te verás con cada estilo antes de tomar una decisión. <br> Desde peinados clásicos hasta los más modernos y atrevidos, te damos la libertad de experimentar y descubrir lo que mejor te queda. También puedes guardar tus estilos favoritos y compartirlos con amigos para obtener su opinión.
+      </p>
+    </div>
+  </div>
+  <div class="imagen-derecha">
+    <img src="../../../../assets/imagen-4.png" alt="Imagen de dos personas" />
+  </div>
+</div>
+<div id="psiquiátricas" class="section_c_1">
+  <div class="imagen-izquierda">
+    <img src="../../../../assets/imagen-5.jpg" alt="Imagen de dos personas" />
+  </div>
+  <div class="texto-derecha">
+    <div class="encabezado">
+      <h2>Resultados</h2>
+    </div>
+    <div class="parrafo">
+      <p>
+        Verás todos los cambios de manera inmediata, en un abrir y cerrar de ojos. Nuestra tecnología avanzada te muestra resultados precisos y personalizados para que sepas exactamente cómo te verás. <br> Ya sea que busques un cambio sutil o una transformación total, nuestros resultados te permitirán tomar decisiones informadas y sentirte seguro de tu elección. Disfruta de una experiencia divertida y sin complicaciones.
+      </p>
+    </div>
+  </div>
 </div>
 
-<!-- Botón centrado debajo del video -->
-<div class="centered-btn">
-  <button id="takePhotoBtn">Tomar Foto</button>
-</div>
-
-<div class="hidden-menu" id="photoMenu" style="display: none">
-  <h3>Menú de Foto</h3>
-  <button id="capturePhotoBtn">Capturar Foto</button>
-  <br />
-  <canvas id="photo"></canvas>
-  <a id="downloadLink" style="display: none">Descargar Foto</a>
-</div>
-
-
-<script src="public/js/script_webcam.js"></script>

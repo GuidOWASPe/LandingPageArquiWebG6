@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { ListartiposComponent } from '../tipos/listartipos/listartipos.component';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { IndexComponent } from "./index/index.component";
+import { WebcamComponent } from './webcam/webcam.component';
+import { EstilosdiComponent } from './estilosdi/estilosdi.component';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterOutlet, ListartiposComponent, IndexComponent],
+  imports: [RouterOutlet, IndexComponent,WebcamComponent,EstilosdiComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })

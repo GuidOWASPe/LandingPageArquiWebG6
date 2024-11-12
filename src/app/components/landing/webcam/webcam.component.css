@@ -1,0 +1,157 @@
+.Aerticle_color {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 1) 12%,
+    rgba(255, 255, 255, 1) 95%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  font-family: Arial, sans-serif;
+}
+
+.encabezado h1 {
+  margin-top: 70px;
+  font-size: 45px; /* Aumentado */
+  text-align: center;
+}
+
+.encabezado h3 {
+  font-size: 24px; /* Aumentado */
+  color: gray;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section_c_1,
+.section_c_2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px; /* Más espacio */
+}
+
+.imagen-izquierda img {
+  display: block;
+  float: left;
+  width: 625px;
+  height: 350px; /* Aumentado */
+  border-radius: 0px 30px 30px 0px;
+}
+
+.imagen-derecha img {
+  display: block;
+  float: right;
+  width: 625px;
+  height: 350px; /* Aumentado */
+  border-radius: 30px 0px 0px 30px;
+}
+
+.texto-derecha,
+.texto-izquierda {
+  display: block;
+  width: 100%;
+  padding: 30px; /* Más espacio */
+}
+
+.encabezado h2 {
+  font-size: 42px; /* Aumentado */
+  color: #1abc9c;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.parrafo p {
+  font-size: 24px; /* Aumentado */
+  color: black;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  font-size: 22px; /* Aumentado */
+  color: #1abc9c;
+}
+
+li img {
+  width: 24px; /* Aumentado */
+  margin-right: 8px;
+}
+
+@media (max-width: 1024px) {
+  .encabezado h1 {
+    font-size: 35px;
+  }
+
+  .encabezado h3 {
+    font-size: 18px;
+  }
+
+  .imagen-izquierda img,
+  .imagen-derecha img {
+    width: 525px;
+    height: 300px;
+  }
+
+  .encabezado h2 {
+    font-size: 32px;
+  }
+
+  .parrafo p {
+    font-size: 18px;
+  }
+
+  li {
+    font-size: 18px;
+  }
+
+  li img {
+    width: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .encabezado h1 {
+    font-size: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .encabezado h3 {
+    font-size: 16px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .section_c_1 {
+    flex-direction: column;
+  }
+
+  .section_c_2 {
+    flex-direction: column-reverse;
+  }
+
+  .imagen-izquierda img,
+  .imagen-derecha img {
+    width: 95%;
+    height: auto;
+    border-radius: 0px;
+  }
+
+  .parrafo p {
+    font-size: 16px;
+  }
+
+  li {
+    font-size: 16px;
+  }
+
+  li img {
+    width: 16px;
+  }
+}
