@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,18 +6,18 @@ import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/cor
 import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Usuarios } from '../../../models/Usuarios';
+import { Forma } from '../../../models/Forma';
 import { Rostro } from '../../../models/Rostro';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { FormasService } from '../../../services/formas.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Forma } from '../../../models/Forma';
 import { RostroService } from '../../../services/rostro.service';
-import { CommonModule } from '@angular/common';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-creaeditarostro',
+  selector: 'app-vincular-forma',
   standalone: true,
   providers:[
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
@@ -31,15 +32,16 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     CommonModule,
     MatSnackBarModule,
   ],
-  templateUrl: './creaeditarostro.component.html',
-  styleUrl: './creaeditarostro.component.css'
+  templateUrl: './vincular-forma.component.html',
+  styleUrl: './vincular-forma.component.css'
 })
-export class CreaeditarostroComponent implements OnInit{
+export class VincularFormaComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   listaUsuarios: Usuarios[] = [];
+  listaFormas: Forma[] = [];
   rostro: Rostro = new Rostro();
   id: number = 0;
-  edicion: boolean = false;
+  vincular: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private uS: UsuariosService,
@@ -47,19 +49,18 @@ export class CreaeditarostroComponent implements OnInit{
     private rS: RostroService,
     private router:Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
   ){}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
-      this.edicion = data['id'] != null;
+      this.vincular = data['id'] != null;
       this.init();
-
     });
 
     this.form = this.formBuilder.group({
-      hcodigo: [''],
-      hforma: [''],
+      hforma: ['', Validators.required],
       husuario: ['', Validators.required],
       hnombre: ['', [Validators.required, Validators.maxLength(100)]],
       himagen: ['', [Validators.required, Validators.maxLength(500)]],
@@ -67,17 +68,65 @@ export class CreaeditarostroComponent implements OnInit{
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
     });
-    
+    this.fS.list().subscribe((data) => {
+      this.listaFormas = data;
+    });
   }
+  
   insertar() {
-    if(this.form.valid && this.form.value.hnombre && this.form.value.himagen){
-      this.rostro.idRostro = this.form.value.hcodigo;
-      this.rostro.fo.idForma=this.form.value.hforma;
-      this.rostro.usu.idUsuario=this.form.value.husuario;
-      this.rostro.nombre=this.form.value.hnombre;
-      this.rostro.imagenRostro=this.form.value.himagen;
-      if (this.edicion) {
-        if(this.form.value.hforma == 'Cara alargada'){
+    this.rostro.idRostro = this.form.value.hcodigo;
+    this.rostro.usu.idUsuario=this.form.value.husuario;
+    this.rostro.nombre=this.form.value.hnombre;
+    this.rostro.imagenRostro=this.form.value.himagen;
+    if (this.vincular) {
+      this.rS.update(this.rostro).subscribe((data) => {
+        this.rS.list().subscribe((data) => {
+          this.rS.setList(data);
+          this.openSnackBar('Forma reconocida exitosamente');
+          this.router.navigate(['rostros']);
+
+        });
+      });
+    } else {
+      this.openSnackBar('Error al reconocer forma');
+    }
+  }
+
+  cancel(): void {
+    this.openSnackBar('Operación cancelada');
+    this.router.navigate(['rostros']);
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
+  
+  init() {
+    if (this.vincular) {
+      this.rS.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          hcodigo: new FormControl(data.idRostro),
+          hforma: new FormControl(data.fo.nombreForma),
+          husuario: new FormControl(data.usu.idUsuario),
+          hnombre: new FormControl(data.nombre),
+          himagen: new FormControl(data.imagenRostro),
+        });
+      });
+    }
+  }
+
+  ejecutarDeteccion() {
+    const imagenPath = 'C:/Users/lapul/Pictures/Camera Roll/7289bcaa-1beb-45bb-862c-0cdd1b9b7802.jpg';
+
+    this.http.post<any>(`http://127.0.0.1:5000/api/detectar-forma`, { imagen_path: imagenPath })
+      .subscribe(response => {
+        console.log('Forma de rostro:', response.nombreForma);
+        console.log('Descripción:', response.descripcionForma);
+
+        // Llenar los campos del formulario con los datos de la respuesta
+        this.form.controls['hforma'].setValue(response.nombreForma);
+      if(this.form.value.hforma == 'Cara alargada'){
         this.rostro.fo.idForma=1;
       }
     else{
@@ -110,51 +159,9 @@ export class CreaeditarostroComponent implements OnInit{
     }
     }
     }
-        this.rostro.idRostro = this.form.value.hcodigo;
-
-        this.rS.update(this.rostro).subscribe((data) => {
-          this.rS.list().subscribe((data) => {
-            this.rS.setList(data);
-            this.openSnackBar('Registro actualizado exitosamente');
-          });
-        });
-      } else {
-        this.rostro.fo.idForma=8;
-        this.rS.insert(this.rostro).subscribe(data=>{
-          this.rS.list().subscribe(data=>{
-            this.rS.setList(data)
-            this.openSnackBar('Registro creado exitosamente');
-          })
-        })
-      }
-      this.router.navigate(['rostros'])
-    } else {
-      this.rostro.fo.idForma=8;
-      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
-    }
-  }
-
-  cancel(): void {
-    this.openSnackBar('Operación cancelada');
-    this.router.navigate(['rostros']);
-  }
-  openSnackBar(message: string) {
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 3000,
-    });
-  }
-  
-  init() {
-    if (this.edicion) {
-      this.rS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          hcodigo: new FormControl(data.idRostro),
-          hforma: new FormControl(data.fo.nombreForma),
-          husuario: new FormControl(data.usu.idUsuario),
-          hnombre: new FormControl(data.nombre),
-          himagen: new FormControl(data.imagenRostro),
-        });
+      
+      }, error => {
+        console.error('Error en la detección de rostro:', error);
       });
-    }
   }
 }

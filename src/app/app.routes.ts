@@ -19,6 +19,7 @@ import { EstilosComponent } from './components/estilos/estilos.component';
 import { CreaeditaestiloComponent } from './components/estilos/creaeditaestilos/creaeditaestilos.component';
 import { EstilousuarioComponent } from './components/estilousuario/estilousuario.component';
 import { CreaeditaestilousuarioComponent } from './components/estilousuario/creaeditaestilousuario/creaeditaestilousuario.component';
+import { VincularFormaComponent } from './components/rostro/vincular-forma/vincular-forma.component';
 
 export const routes: Routes = [
   {
@@ -130,6 +131,10 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditarostroComponent,
+      },
+      {
+        path: 'vincularForma/:id',
+        component: VincularFormaComponent,
       },
     ],
   },
