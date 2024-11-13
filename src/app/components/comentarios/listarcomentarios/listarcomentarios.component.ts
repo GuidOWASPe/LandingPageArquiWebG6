@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listarcomentarios',
@@ -22,12 +24,16 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './listarcomentarios.component.html',
   styleUrl: './listarcomentarios.component.css',
 })
 export class ListarcomentariosComponent implements OnInit {
   dataSource: MatTableDataSource<Comentarios> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -61,6 +67,14 @@ export class ListarcomentariosComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
+
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.contenido.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,

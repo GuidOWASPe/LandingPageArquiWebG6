@@ -89,7 +89,7 @@ export class CreaeditacomentariosComponent implements OnInit {
   }
 
   insertar(): void {
-    if (this.form.valid && this.form.value.hcontenido && this.form.value.hmegustas && this.form.value.hfechapublicada && this.form.value.husuario && this.form.value.hestilo ) {
+    if (this.form.valid) {
       const fechaIngresada = new Date(this.form.value.hfecha);
       const fechaActual = new Date();
       if (fechaIngresada > fechaActual) {

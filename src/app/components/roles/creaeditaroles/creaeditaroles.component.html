@@ -1,5 +1,7 @@
-<div class="container" style="text-align: center; margin: 5%">
-  <div><h1>Registro de Roles</h1></div>
+<div class="container" style="text-align: center">
+  <div style="margin: 5%">
+    <h1>Registro de Roles</h1>
+  </div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -14,8 +16,9 @@
           placeholder="Ingresar nombre"
           formControlName="hnombre"
         />
-        <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
-        >Ingrese un Nombre </mat-error>
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+          Ingrese un Nombre
+        </mat-error>
       </mat-form-field>
 
       <div class="buttons">

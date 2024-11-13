@@ -1,70 +1,102 @@
-<div>
-  <div style="text-align: center; margin: 5%"><h1>Lista de Items</h1></div>
-  <div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef>Código</th>
-        <td mat-cell *matCellDef="let element">{{ element.idItem }}</td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef>Item</th>
-        <td mat-cell *matCellDef="let element">{{ element.nombreItem }}</td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef>Tipo</th>
-        <td mat-cell *matCellDef="let element">{{ element.ti.nombreTipo }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef>Calificación</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.calificacionItem }}
-        </td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="c5">
-        <th mat-header-cell *matHeaderCellDef>Nro° de usos</th>
-        <td mat-cell *matCellDef="let element">{{ element.nrUsos }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-          (click)="eliminar(element.idItem)"
-        >
-          <mat-icon style="color: rgb(8, 138, 95)">delete</mat-icon>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="accion02">
-        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-        <td mat-cell *matCellDef="let element">
-          <button
-            mat-raised-button
-            [routerLink]="['ediciones', element.idItem]"
-          >
-            <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator
-      [length]="100"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      aria-label="Select page"
-    >
-    </mat-paginator>
+<div class="container">
+  <!-- Título -->
+  <div style="text-align: center; margin-bottom: 2rem">
+    <h1>Lista de Items</h1>
   </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
+    <!-- Texto indicativo de la búsqueda -->
+    <div
+      class="search-label"
+      style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
+    >
+      Buscar item por nombre
+    </div>
+
+    <!-- Campo de búsqueda -->
+    <mat-form-field appearance="fill" class="search-input" style="width: 80%">
+      <input
+        matInput
+        placeholder="Ingresar nombre del ítem"
+        [(ngModel)]="filterValue"
+      />
+    </mat-form-field>
+
+    <!-- Botón de búsqueda -->
+    <button mat-raised-button color="primary" (click)="applyFilter()">
+      Buscar
+    </button>
+  </div>
+
+  <!-- Contenedor para agregar item -->
+  <div class="add-item-container">
+    <p>¿Deseas agregar un nuevo ítem? Haz click aquí:</p>
+    <button mat-fab extended color="primary" [routerLink]="['nuevo']">
+      <mat-icon>add_circle</mat-icon> Agregar Ítem
+    </button>
+  </div>
+
+  <!-- Tabla de items -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="c1">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let element">{{ element.idItem }}</td>
+    </ng-container>
+
+    <!-- Item Column -->
+    <ng-container matColumnDef="c2">
+      <th mat-header-cell *matHeaderCellDef>Item</th>
+      <td mat-cell *matCellDef="let element">{{ element.nombreItem }}</td>
+    </ng-container>
+
+    <!-- Tipo Column -->
+    <ng-container matColumnDef="c3">
+      <th mat-header-cell *matHeaderCellDef>Tipo</th>
+      <td mat-cell *matCellDef="let element">{{ element.ti.nombreTipo }}</td>
+    </ng-container>
+
+    <!-- Calificación Column -->
+    <ng-container matColumnDef="c4">
+      <th mat-header-cell *matHeaderCellDef>Calificación</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.calificacionItem }}
+      </td>
+    </ng-container>
+
+    <!-- Nro° de Usos Column -->
+    <ng-container matColumnDef="c5">
+      <th mat-header-cell *matHeaderCellDef>Nro° de usos</th>
+      <td mat-cell *matCellDef="let element">{{ element.nrUsos }}</td>
+    </ng-container>
+
+    <!-- Eliminar Column -->
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let element" (click)="eliminar(element.idItem)">
+        <mat-icon style="color: rgb(8, 138, 95)">delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Actualizar Column -->
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button [routerLink]="['ediciones', element.idItem]">
+          <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Seleccione página"
+  ></mat-paginator>
 </div>

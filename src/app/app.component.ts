@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormasComponent } from './components/formas/formas.component';
 import { RolesComponent } from './components/roles/roles.component';
@@ -38,16 +38,19 @@ import { LoginComponent } from './components/login/login.component';
   styleUrl: './app.component.css',
 
 })
-export class AppComponent {
+export class AppComponent{
   title = 'backendStyleCheck';
+  username: string = '';
   role: string = '';
 
   constructor(private loginService: LoginService){}
+
   cerrar() {
     sessionStorage.clear();
   }
 
   verificar() {
+    this.username = this.loginService.showUsername();
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
   }

@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listartipos',
@@ -22,12 +24,16 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './listartipos.component.html',
   styleUrl: './listartipos.component.css',
 })
 export class ListartiposComponent implements OnInit {
   dataSource: MatTableDataSource<Tipo> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = ['c1', 'c2', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -52,6 +58,14 @@ export class ListartiposComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
+
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombreTipo.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,

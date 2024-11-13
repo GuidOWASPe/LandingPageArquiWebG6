@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-listarestilousuario',
@@ -22,12 +24,16 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,
+    FormsModule,
+    MatInputModule
   ],
   templateUrl: './listarestilousuario.component.html',
   styleUrl: './listarestilousuario.component.css',
 })
 export class ListarestilousuarioComponent implements OnInit {
   dataSource: MatTableDataSource<EstiloUsuario> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -61,6 +67,19 @@ export class ListarestilousuarioComponent implements OnInit {
     });
   }
 
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.username.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
+
   eliminar(id: number): void {
     const dialogRef = this.dialog.open(MatDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
@@ -68,6 +87,7 @@ export class ListarestilousuarioComponent implements OnInit {
         this.euS.delete(id).subscribe((data) => {
           this.euS.list().subscribe((data) => {
             this.euS.setList(data);
+            this.openSnackBar('Elemento eliminado correctamente.');
           });
         });
       }

@@ -25,4 +25,14 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.role;
   }
+
+  showUsername() {
+    let token = sessionStorage.getItem('token');
+    if (!token) {
+      return null; // Si no hay token, no se puede obtener el username
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.username; // Obtener el username del token
+  }
 }

@@ -1,9 +1,20 @@
-<div class="container" style="text-align: center" >
-    <div>
-      <img src="assets/logo.png" alt="Logo de la empresa" >
-
-    </div>  
-    <h2>Inicie sesión</h2>
+<div class="container">
+  <video autoplay muted loop class="background-video">
+    <source src="assets/3998510-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+    Tu navegador no soporta video.
+  </video>
+  <div class="form-container">
+    <h2>Iniciar Sesión <span class="cut-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24">
+      <g class="cut-sc">
+        <path stroke="#0A0A30" stroke-linecap="round" stroke-width="1.5" d="M10.025 10.025l7.9 7.9"/>
+        <circle cx="8.05" cy="8.05" r="2.043" stroke="#265BFF" stroke-width="1.5" transform="rotate(45 8.05 8.05)"/>
+      </g>
+      <g class="cut-sc-2">
+        <path stroke="#0A0A30" stroke-linecap="round" stroke-width="1.5" d="M10.025 13.975l7.9-7.9"/>
+        <circle r="2.043" stroke="#265BFF" stroke-width="1.5" transform="scale(1 -1) rotate(45 23.279 1.742)"/>
+      </g>
+    </svg></span>
+  </h2>
     <mat-form-field class="example-full-width">
       <mat-label>Usuario</mat-label>
       <input matInput placeholder="Username" [(ngModel)]="username" />
@@ -19,5 +30,6 @@
       />
     </mat-form-field>
     <br />
-    <button mat-raised-button class="custom-button " (click)="login()">Ingresar</button>
+    <button mat-raised-button class="custom-button" (click)="login()">Ingresar</button>
   </div>
+</div>

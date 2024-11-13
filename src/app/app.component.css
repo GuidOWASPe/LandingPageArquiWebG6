@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wght@100;400&display=swap');
+
 .custom-toolbar {
+  font-family: 'Roboto condensed', serif;
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
-  background-color: rgb(8, 138, 95);
+  background-color: #1ABC9C;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
