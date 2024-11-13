@@ -35,7 +35,7 @@ export class EstiloUsuarioService {
   update(esu: EstiloUsuario){
     return this.http.put(this.url, esu);
   }
-  listarEstiloDeUsuarioConPeorCalifiacion():Observable<EstiloUsuarioConPCDTO[]>{
+  obtenerEstiloDeUsuarioConPeorCalifiacion():Observable<EstiloUsuarioConPCDTO[]>{
     return this.http.get<EstiloUsuarioConPCDTO[]>(`${this.url}/ListarEstiloDeUsuarioConPeorCalifiacion`)
   }
 }

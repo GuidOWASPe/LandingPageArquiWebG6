@@ -1,7 +1,13 @@
 <div>
-    <div style="text-align: center">
-      <h1>Estilos Mas populares por Color y Forma</h1>
-    </div>
+  <h1 class="chart-title">
+    Combinaciones Populares de Formas de Rostro y Colores de Estilo
+  </h1>
+
+  <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
+    {{ noDataMessage }}
+  </div>
+
+  <ng-template #chartContent>
     <div class="chart-container" style="text-align: center">
       <canvas
         baseChart
@@ -13,6 +19,5 @@
       >
       </canvas>
     </div>
-  </div>
-
-
+  </ng-template>
+</div>

@@ -16,6 +16,21 @@
     padding: 15px;
   }
 }
+.no-data-message {
+  text-align: center;
+  font-size: 18px;
+  color: #95A5A6;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.no-data-message {
+  text-align: center;
+  font-size: 18px;
+  color: #95A5A6;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
 
 h1 {
   color: #2C3E50; 

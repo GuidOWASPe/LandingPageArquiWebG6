@@ -1,16 +1,23 @@
 <div>
-    <div style="text-align: center">
-      <h1>Items por Numero de Usos por Usuario </h1>
-    </div>
+  <div style="text-align: center">
+    <h1 class="chart-title">Ítems Más Usados por Usuarios</h1>
+  </div>
+
+  <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
+    {{ noDataMessage }}
+  </div>
+
+  <ng-template #chartContent>
     <div class="chart-container" style="text-align: center">
       <canvas
         baseChart
         [datasets]="barChartData"
         [labels]="barChartLabels"
         [options]="barChartOptions"
-        [legend]="barChartLegend"
+        [legend]="true"
         [type]="barChartType"
       >
       </canvas>
     </div>
-  </div>
+  </ng-template>
+</div>

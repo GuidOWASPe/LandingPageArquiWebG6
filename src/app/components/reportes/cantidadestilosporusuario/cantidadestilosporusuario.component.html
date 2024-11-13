@@ -1,17 +1,27 @@
 <div>
-    <div style="text-align: center">
-      <h1>Estilos Asociados a Usuarios </h1>
+  <div class="centered-text">
+    <h1>Cantidad De Estilos Usados Por Usuarios</h1>
+  </div>
+   
+    <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
+      {{ noDataMessage }}
     </div>
-    <div class="chart-container" style="text-align: center">
+
+    
+    <ng-template #chartContent>
+     <div class="chart-container" style="text-align: center">
       <canvas
-        baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [legend]="barChartLegend"
-        [type]="barChartType"
-      >
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [type]="barChartType">
       </canvas>
     </div>
+    </ng-template>
   </div>
+
+
+
 
