@@ -36,20 +36,47 @@ import { ReportecantidadcomentariosnegativosComponent } from './components/repor
 import { ReporterostrosegunformaComponent } from './components/reportes/reporterostrosegunforma/reporterostrosegunforma.component';
 import { ReporteestilosconpeorcalificacionComponent } from './components/reportes/reporteestilosconpeorcalificacion/reporteestilosconpeorcalificacion.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { EstiloComponent } from './components/estilo/estilo.component';
+import { CreaeditaestiloComponent } from './components/estilo/creaeditaestilo/creaeditaestilo.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
+import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
+import { WebcamComponent } from './components/landing/webcam/webcam.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'landin',
     pathMatch: 'full',
+  },
+  {
+    path: 'landin',
+    component: LandingComponent,
+    children: [
+      {
+        path: 'webcam',
+        component: WebcamComponent,
+      },
+      {
+        path: 'estilosdi',
+        component: EstilosdiComponent,
+      },
+      {
+        path: 'conocenos',
+        component: ConocenosComponent,
+      },
+    ],
   },
   {
     path: 'login',
     component: LoginComponent,
   },
   {
-    path: 'register',
-    component: RegisterComponent, 
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [],
   },
   {
     path: 'formas',
