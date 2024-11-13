@@ -35,6 +35,7 @@ import { ReporteitemspornrousosComponent } from './components/reportes/reporteit
 import { ReportecantidadcomentariosnegativosComponent } from './components/reportes/reportecantidadcomentariosnegativos/reportecantidadcomentariosnegativos.component';
 import { ReporterostrosegunformaComponent } from './components/reportes/reporterostrosegunforma/reporterostrosegunforma.component';
 import { ReporteestilosconpeorcalificacionComponent } from './components/reportes/reporteestilosconpeorcalificacion/reporteestilosconpeorcalificacion.component';
+import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
   {
@@ -45,6 +46,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent, 
   },
   {
     path: 'formas',
@@ -89,7 +94,6 @@ export const routes: Routes = [
         component: CreaeditausuariosComponent,
       },
     ],
-    canActivate: [seguridadGuard],
   },
   {
     path: 'items',

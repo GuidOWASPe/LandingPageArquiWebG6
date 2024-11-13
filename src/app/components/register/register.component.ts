@@ -1,53 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { Usuarios } from '../../models/Usuarios';
+import { Rol } from '../../models/Rol';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Usuarios } from '../../../models/Usuarios';
-import { UsuariosService } from '../../../services/usuarios.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Rol } from '../../../models/Rol';
-import { RolesService } from '../../../services/roles.service';
+import { UsuariosService } from '../../services/usuarios.service';
+import { RolesService } from '../../services/roles.service';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-creaeditausuarios',
+  selector: 'app-register',
   standalone: true,
-  providers: [
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-  ],
+  providers: [provideNativeDateAdapter()],
   imports: [
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatDatepickerModule,
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    RouterModule,
+    MatCheckboxModule,
+    FormsModule
   ],
- 
-  templateUrl: './creaeditausuarios.component.html',
-  styleUrl: './creaeditausuarios.component.css',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
 })
-export class CreaeditausuariosComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   usuario: Usuarios = new Usuarios();
-  id: number = 0;
-  edicion: boolean = false;
-  listaRoles: Rol[] = [];
+  selectedSexo: string = ''; 
+  fechaActual: Date = new Date();
+
   listaPaises: { value: String; viewValue: string }[] = [
     { value: 'Argentina', viewValue: 'Argentina' },
     { value: 'Australia', viewValue: 'Australia' },
@@ -98,12 +96,7 @@ export class CreaeditausuariosComponent implements OnInit {
     { value: 'Tailandia', viewValue: 'Tailandia' },
     { value: 'Turquía', viewValue: 'Turquía' },
     { value: 'Uruguay', viewValue: 'Uruguay' },
-    { value: 'Venezuela', viewValue: 'Venezuela' }
-  ];
-  listaSexo: { value: String; viewValue: string }[] = [
-    { value: 'Femenino', viewValue: 'Femenino' },
-    { value: 'Masculino', viewValue: 'Masculino' },
-    { value: 'Otro', viewValue: 'Otro' },
+    { value: 'Venezuela', viewValue: 'Venezuela' },
   ];
 
   constructor(
@@ -116,26 +109,14 @@ export class CreaeditausuariosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
-      this.edicion = data['id'] != null;
-      this.init();
-    });
-
     this.form = this.formBuilder.group({
       hcodigo: [''],
       husername: ['', Validators.required],
-      hpassword: ['', Validators.required],
-      hrol: ['', Validators.required],
-      hcorreo: ['', Validators.required],
+      hpassword: ['', [Validators.required, Validators.minLength(6)]], 
+      hcorreo: ['', [Validators.required, Validators.email]],
       hfechanac: ['', Validators.required],
-      hfechareg: ['', Validators.required],
       hpais: ['', Validators.required],
       hsexo: ['', Validators.required],
-      hfoto: ['', Validators.required],
-    });
-    this.rS.list().subscribe((data) => {
-      this.listaRoles = data;
     });
   }
 
@@ -144,33 +125,30 @@ export class CreaeditausuariosComponent implements OnInit {
       this.usuario.idUsuario = this.form.value.hcodigo;
       this.usuario.username = this.form.value.husername;
       this.usuario.password = this.form.value.hpassword;
-      this.usuario.rol.idRol = this.form.value.hrol;
+      this.usuario.rol.idRol = 2;
       this.usuario.correoUsuario = this.form.value.hcorreo;
       this.usuario.fechaNacimientoUsuario = this.form.value.hfechanac;
-      this.usuario.fechaRegistroUsuario = this.form.value.hfechareg;
+      this.usuario.fechaRegistroUsuario = new Date();
       this.usuario.paisUsuario = this.form.value.hpais;
       this.usuario.sexoUsuario = this.form.value.hsexo;
-      this.usuario.fotoPerfilUsuario = this.form.value.hfoto;
+      this.usuario.fotoPerfilUsuario = 'string';
 
-      if (this.edicion) {
-        this.uS.update(this.usuario).subscribe((data) => {
-          this.openSnackBar('Actualizado correctamente.');
-          this.uS.list().subscribe((data) => {
-            this.uS.setList(data);
-            this.openSnackBar('Registro actualizado exitosamente');
-          });
-        });
-      } else {
-        this.uS.insert(this.usuario).subscribe((data) => {
-          this.uS.list().subscribe((data) => {
-            this.uS.setList(data);
-            this.openSnackBar('Registro creado exitosamente');
-          });
-        });
-      }
-      this.router.navigate(['usuarios']);
+      this.uS.insert(this.usuario).subscribe((data) => {
+        this.openSnackBar('Registro creado exitosamente');
+      });
+      this.router.navigate(['login']);
     } else {
       this.openSnackBar('Por favor, rellena todos los campos obligatorios');
+    }
+  }
+
+  onCheckChange(value: string): void {
+    if (this.selectedSexo === value) {
+      this.selectedSexo = ''; // Desmarcar si ya está seleccionado
+      this.form.get('hsexo')?.setValue(''); // Limpiar el valor de hsexo en el formulario
+    } else {
+      this.selectedSexo = value; // Marcar el nuevo género seleccionado
+      this.form.get('hsexo')?.setValue(value); // Actualizar hsexo en el formulario
     }
   }
 
@@ -178,29 +156,5 @@ export class CreaeditausuariosComponent implements OnInit {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
     });
-  }
-
-  cancel(): void {
-    this.openSnackBar('Operación cancelada');
-    this.router.navigate(['usuarios']);
-  }
-
-  init() {
-    if (this.edicion) {
-      this.uS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          hcodigo: new FormControl(data.idUsuario),
-          husername: new FormControl(data.username),
-          hpassword: new FormControl(data.password),
-          hrol: new FormControl(data.rol.idRol),
-          hcorreo: new FormControl(data.correoUsuario),
-          hfechanac: new FormControl(data.fechaNacimientoUsuario),
-          hfechareg: new FormControl(data.fechaRegistroUsuario),
-          hpais: new FormControl(data.paisUsuario),
-          hsexo: new FormControl(data.sexoUsuario),
-          hfoto: new FormControl(data.fotoPerfilUsuario),
-        });
-      });
-    }
   }
 }

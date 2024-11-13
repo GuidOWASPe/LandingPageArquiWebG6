@@ -16,8 +16,7 @@ body {
   text-align: center;
 }
 
-/* Video de fondo */
-.background-video {
+.background-img{
   position: absolute;
   top: 0;
   left: 0;
@@ -27,6 +26,7 @@ body {
   z-index: -1;
   filter: grayscale(100%) brightness(50%) contrast(120%) blur(4px); /* Filtro más fuerte */
 }
+
 
 /* Contenedor del formulario */
 .form-container {
@@ -81,6 +81,10 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.texto{
+  color: white;
 }
 
 /* Estilos de los campos del formulario */
@@ -211,3 +215,22 @@ mat-error {
     transform: rotate(-20deg);
   }
 }
+
+/* Estilo para el contenedor del enlace de registro */
+.register-container {
+  margin-top: 20px; /* Añade espacio arriba del enlace */
+  text-align: center; /* Centra el enlace dentro del contenedor */
+}
+
+.register-link {
+  color: #1abc9c; 
+  font-weight: bold;
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+}
+
+.register-link:hover {
+  color: magenta;
+  text-decoration: none; 
+}
+
