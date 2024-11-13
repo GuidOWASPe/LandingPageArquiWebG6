@@ -28,7 +28,6 @@ import { PorcentajeusuariospormesComponent } from './components/reportes/porcent
 import { PorcentajeusuariosporgeneroComponent } from './components/reportes/porcentajeusuariosporgenero/porcentajeusuariosporgenero.component';
 import { CantidadusuariosporpaisesComponent } from './components/reportes/cantidadusuariosporpaises/cantidadusuariosporpaises.component';
 import { ItemmasusadoporusuarioComponent } from './components/reportes/itemmasusadoporusuario/itemmasusadoporusuario.component';
-import { ListarcomentariosComponent } from './components/comentarios/listarcomentarios/listarcomentarios.component';
 import { CantidadestilosporusuarioComponent } from './components/reportes/cantidadestilosporusuario/cantidadestilosporusuario.component';
 import { PopularidadcoloresestiloComponent } from './components/reportes/popularidadcoloresestilo/popularidadcoloresestilo.component';
 import { ReporteitemspornrousosComponent } from './components/reportes/reporteitemspornrousos/reporteitemspornrousos.component';
@@ -37,10 +36,6 @@ import { ReporterostrosegunformaComponent } from './components/reportes/reporter
 import { ReporteestilosconpeorcalificacionComponent } from './components/reportes/reporteestilosconpeorcalificacion/reporteestilosconpeorcalificacion.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { EstiloComponent } from './components/estilo/estilo.component';
-import { CreaeditaestiloComponent } from './components/estilo/creaeditaestilo/creaeditaestilo.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
 import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
@@ -48,11 +43,11 @@ import { WebcamComponent } from './components/landing/webcam/webcam.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landin',
+    redirectTo: 'landing',
     pathMatch: 'full',
   },
   {
-    path: 'landin',
+    path: 'landing',
     component: LandingComponent,
     children: [
       {
@@ -74,9 +69,13 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
     path: 'home',
     component: HomeComponent,
-    canActivate: [],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'formas',
@@ -230,46 +229,54 @@ export const routes: Routes = [
   {
     path: 'homes',
     component: HomeComponent,
-    canActivate: [seguridadGuard], 
-  },
-
-  {
-    path:'reportes',component:ReportesComponent,
-    children:[
-      {
-        path:'porcentajeusuariospormes',component:PorcentajeusuariospormesComponent
-      },
-      {
-        path:'porcentajeusuariosporgenero',component:PorcentajeusuariosporgeneroComponent
-      },
-      {
-        path:'cantidadusuariosporpaises',component:CantidadusuariosporpaisesComponent
-      },
-      {
-        path:'itemmasusadoporusuario',component:ItemmasusadoporusuarioComponent
-      },
-      {
-        path:'estilosconpeorcalificacion',component:ReporteestilosconpeorcalificacionComponent
-      },
-      {
-        path:'cantidadestilosporusuario',component:CantidadestilosporusuarioComponent
-      },
-      {
-        path:'popularidadcoloresestilo',component:PopularidadcoloresestiloComponent
-      },
-      {
-        path:'listaritemspornrousos',component:ReporteitemspornrousosComponent
-      },
-      {
-        path:'cantidadcomentariosnegativos',component:ReportecantidadcomentariosnegativosComponent
-      },
-      {
-        path:'cantidadrostrosegunforma',component:ReporterostrosegunformaComponent
-      },
-      
-    ],
     canActivate: [seguridadGuard],
   },
 
-  
+  {
+    path: 'reportes',
+    component: ReportesComponent,
+    children: [
+      {
+        path: 'porcentajeusuariospormes',
+        component: PorcentajeusuariospormesComponent,
+      },
+      {
+        path: 'porcentajeusuariosporgenero',
+        component: PorcentajeusuariosporgeneroComponent,
+      },
+      {
+        path: 'cantidadusuariosporpaises',
+        component: CantidadusuariosporpaisesComponent,
+      },
+      {
+        path: 'itemmasusadoporusuario',
+        component: ItemmasusadoporusuarioComponent,
+      },
+      {
+        path: 'estilosconpeorcalificacion',
+        component: ReporteestilosconpeorcalificacionComponent,
+      },
+      {
+        path: 'cantidadestilosporusuario',
+        component: CantidadestilosporusuarioComponent,
+      },
+      {
+        path: 'popularidadcoloresestilo',
+        component: PopularidadcoloresestiloComponent,
+      },
+      {
+        path: 'listaritemspornrousos',
+        component: ReporteitemspornrousosComponent,
+      },
+      {
+        path: 'cantidadcomentariosnegativos',
+        component: ReportecantidadcomentariosnegativosComponent,
+      },
+      {
+        path: 'cantidadrostrosegunforma',
+        component: ReporterostrosegunformaComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
 ];

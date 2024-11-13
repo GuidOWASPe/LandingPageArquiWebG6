@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
 import { IndexComponent } from "./index/index.component";
-import { WebcamComponent } from './webcam/webcam.component';
-import { EstilosdiComponent } from './estilosdi/estilosdi.component';
+
 
 @Component({
   selector: 'app-landing',
