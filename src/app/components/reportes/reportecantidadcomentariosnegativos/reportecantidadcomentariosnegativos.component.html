@@ -1,8 +1,14 @@
 <div>
-    <div style="text-align: center">
-      <h1>Reporte de Comentarios Negativos </h1>
-    </div>
-    <div class="chart-container" style="text-align: center">
+  <div class="title-container">
+    <h1>Cantidad de comentarios negativos según palabras claves</h1>
+  </div>
+
+  <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
+    {{ noDataMessage }}
+  </div>
+
+  <ng-template #chartContent>
+    <div class="chart-container">
       <canvas
         baseChart
         [datasets]="barChartData"
@@ -13,6 +19,5 @@
       >
       </canvas>
     </div>
-  </div>
-
-
+  </ng-template>
+</div>

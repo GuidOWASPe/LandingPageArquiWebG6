@@ -1,17 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { ItemUsuario } from '../../../models/ItemUsuario';
 import { ItemusuarioService } from '../../../services/itemusuario.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { ItemUsuario } from '../../../models/ItemUsuario';
 
 @Component({
   selector: 'app-listaritemususuario',
@@ -30,8 +30,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './listaritemususuario.component.html',
   styleUrl: './listaritemususuario.component.css',
 })
-export class ListaritemususuarioComponent {
+export class ListaritemususuarioComponent implements OnInit{
   dataSource: MatTableDataSource<ItemUsuario> = new MatTableDataSource();
+  
   filterValue: string = '';
 
   displayedColumns: string[] = [
@@ -44,6 +45,7 @@ export class ListaritemususuarioComponent {
     'accion02',
   ];
 
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(

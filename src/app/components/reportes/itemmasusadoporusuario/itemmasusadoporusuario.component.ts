@@ -4,11 +4,12 @@ import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ChartDataset, ChartOptions, ChartType } from './../../../../../node_modules/chart.js/dist/types/index.d';
 import { ItemService } from '../../../services/item.service';
+import { CommonModule } from '@angular/common';
 Chart.register(...registerables,ChartDataLabels);
 @Component({
   selector: 'app-itemmasusadoporusuario',
   standalone: true,
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective,CommonModule],
   templateUrl: './itemmasusadoporusuario.component.html',
   styleUrl: './itemmasusadoporusuario.component.css'
 })
@@ -72,13 +73,19 @@ export class ItemmasusadoporusuarioComponent {
   };
   barChartLabels: string[] = [];
   barChartType: ChartType = 'bar';
-  barChartLegend = true;
+  barChartLegend = false;
   barChartData: ChartDataset[] = [];
+  noDataMessage: string | null = null;
 
   constructor(private iS: ItemService) {}
 
   ngOnInit(): void {
     this.iS.itemMasUsadoPorUsuario().subscribe((data) => {
+      if (data.length === 0) {
+        this.noDataMessage = 'NO HAY DATOS REGISTRADOS PARA ESTE REPORTE';
+        return;
+      }
+      this.noDataMessage = null;
 
       this.barChartLabels = data.map((item) => item.nombreItem);
       

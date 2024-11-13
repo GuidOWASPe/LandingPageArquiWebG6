@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wght@100;400&display=swap');
+
 .chart-container {
-  width: 60%; 
+  width: 30%; 
   margin: 0 auto; 
   padding: 20px;
   box-sizing: border-box;
@@ -14,6 +16,13 @@
     width: 60%;
     padding: 15px;
   }
+}
+.no-data-message {
+  text-align: center;
+  font-size: 18px;
+  color: #95A5A6;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
 h1 {

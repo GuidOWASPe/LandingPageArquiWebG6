@@ -4,13 +4,14 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
 import { ChartDataset, ChartOptions, ChartType } from './../../../../../node_modules/chart.js/dist/types/index.d';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { CommonModule } from '@angular/common';
 
 Chart.register(...registerables,ChartDataLabels);
 
 @Component({
   selector: 'app-porcentajeusuariosporgenero',
   standalone: true,
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective,CommonModule],
   templateUrl: './porcentajeusuariosporgenero.component.html',
   styleUrl: './porcentajeusuariosporgenero.component.css'
 })
@@ -49,16 +50,21 @@ export class PorcentajeusuariosporgeneroComponent implements OnInit {
   };
   barChartLabels: string[] = [];
   barChartType: ChartType = 'pie';
-  
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
+  noDataMessage: string | null = null;
 
   constructor(private uS: UsuariosService) {}
-
   ngOnInit(): void {
     this.uS.porcentajeUsuariosPorGenero().subscribe((data) => {
-      this.barChartLabels = data.map((item) => item.genero);
+      if (data.length === 0) {
+        this.noDataMessage = 'NO HAY DATOS REGISTRADOS PARA ESTE REPORTE';
+        return;
+      }
 
+      this.noDataMessage = null;
+
+      this.barChartLabels = data.map((item) => item.genero);
       this.barChartData = [
        
         {

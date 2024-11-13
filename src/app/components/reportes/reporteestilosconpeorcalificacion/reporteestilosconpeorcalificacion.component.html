@@ -1,35 +1,23 @@
-<div class="report-container">
-    <div class="table-container">
-      <h1>Estilos de Usuario con Menor Puntuación</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID Estilo</th>
-            <th>Usuario</th>
-            <th>Nombre Estilo</th>
-            <th>Calificación</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let estilo of estilosUsuario">
-            <td>{{ estilo.id_estilo_fav }}</td>
-            <td>{{ estilo.nickname_usuario }}</td>
-            <td>{{ estilo.nombre_estilo }}</td>
-            <td>{{ estilo.calificacion_estilo }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <div class="chart-container">
-      <h2>Estilos de Usuario con Menor Puntuación</h2>
+<div>
+  <div class="title-container">
+    <h1>Estilo con Peor Calificación</h1>
+  </div>
+
+  <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
+    {{ noDataMessage }}
+  </div>
+
+  <ng-template #chartContent>
+    <div class="chart-container" style="text-align: center">
       <canvas
         baseChart
         [datasets]="barChartData"
         [labels]="barChartLabels"
         [options]="barChartOptions"
+        [legend]="true"
         [type]="barChartType"
-      ></canvas>
+      >
+      </canvas>
     </div>
-  </div>
-  
+  </ng-template>
+</div>

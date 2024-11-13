@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ItemUsuario } from '../models/ItemUsuario';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { ItemsMasUsadosDTO } from '../models/ItemsMasUsadosDTO';
+import { ItemUsuario } from '../models/ItemUsuario';
 
-
-const base_url=environment.base;
+const base_url = environment.base;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemusuarioService {
   private url = `${base_url}/itemUsuario`;
@@ -36,15 +35,17 @@ export class ItemusuarioService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  listId(id: number){
-    return this.http.get<ItemUsuario>(`${this.url}/${id}`)
+  listId(id: number) {
+    return this.http.get<ItemUsuario>(`${this.url}/${id}`);
   }
 
-  update(itemUs: ItemUsuario){
-    return this.http.put(this.url,itemUs)
+  update(itemUs: ItemUsuario) {
+    return this.http.put(this.url, itemUs);
   }
 
-  obtenerItemsPorNroUsos():Observable<ItemsMasUsadosDTO[]>{
-    return this.http.get<ItemsMasUsadosDTO[]>(`${this.url}/ListarItemsPorNroUsos`)
+  obtenerItemsPorNroUsos(): Observable<ItemsMasUsadosDTO[]> {
+    return this.http.get<ItemsMasUsadosDTO[]>(
+      `${this.url}/ListarItemsPorNroUsos`
+    );
   }
 }
