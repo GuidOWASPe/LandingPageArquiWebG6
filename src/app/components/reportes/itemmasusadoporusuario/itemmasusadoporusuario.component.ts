@@ -73,7 +73,7 @@ export class ItemmasusadoporusuarioComponent {
   };
   barChartLabels: string[] = [];
   barChartType: ChartType = 'bar';
-  barChartLegend = true;
+  barChartLegend = false;
   barChartData: ChartDataset[] = [];
   noDataMessage: string | null = null;
 

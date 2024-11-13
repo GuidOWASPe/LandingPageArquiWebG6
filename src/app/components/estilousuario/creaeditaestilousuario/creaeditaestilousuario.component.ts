@@ -93,6 +93,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
       this.estilousuario.calificacion = this.form.value.hcalificacion;
       this.estilousuario.usuario.idUsuario = this.form.value.husuario;
       this.estilousuario.estilo.idEstilo = this.form.value.hestilo;
+      
       if(this.edicion){
         this.euS.update(this.estilousuario).subscribe((data) => {
           this.euS.list().subscribe(data => {

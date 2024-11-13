@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ItemUsuario } from '../../../models/ItemUsuario';
 import { Item } from '../../../models/Item';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { ItemusuarioService } from '../../../services/itemusuario.service';
@@ -15,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { Usuarios } from '../../../models/Usuarios';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ItemUsuario } from '../../../models/ItemUsuario';
 
 
 @Component({
@@ -136,7 +136,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
           hfechaitemfav:new FormControl(data.fechaItemFavorito),
           hcalificacion: new FormControl(data.calificacion),
           husuario:new FormControl(data.us.idUsuario),
-          hitem:new FormControl(data.it.idItem),
+          hitem:new FormControl(data.it.idItem)
         
         });
       });

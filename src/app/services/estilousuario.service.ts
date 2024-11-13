@@ -6,12 +6,12 @@ import { Observable, Subject } from 'rxjs';
 import { EstiloUsuarioConPCDTO } from '../models/EstiloUsuarioConPCDTO';
 const base_url = environment.base;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EstiloUsuarioService {
   private url = `${base_url}/estiloUsuario`;
-  listaCambio=new Subject<EstiloUsuario[]>()
-  constructor(private http:HttpClient) { }
+  listaCambio = new Subject<EstiloUsuario[]>();
+  constructor(private http: HttpClient) {}
   list() {
     return this.http.get<EstiloUsuario[]>(this.url);
   }
@@ -24,18 +24,22 @@ export class EstiloUsuarioService {
   setList(listaNueva: EstiloUsuario[]) {
     this.listaCambio.next(listaNueva);
   }
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  listId(id: number){
+  listId(id: number) {
     return this.http.get<EstiloUsuario>(`${this.url}/${id}`);
   }
 
-  update(esu: EstiloUsuario){
+  update(esu: EstiloUsuario) {
     return this.http.put(this.url, esu);
   }
-  obtenerEstiloDeUsuarioConPeorCalifiacion():Observable<EstiloUsuarioConPCDTO[]>{
-    return this.http.get<EstiloUsuarioConPCDTO[]>(`${this.url}/ListarEstiloDeUsuarioConPeorCalifiacion`)
+  obtenerEstiloDeUsuarioConPeorCalifiacion(): Observable<
+    EstiloUsuarioConPCDTO[]
+  > {
+    return this.http.get<EstiloUsuarioConPCDTO[]>(
+      `${this.url}/ListarEstiloDeUsuarioConPeorCalifiacion`
+    );
   }
 }
