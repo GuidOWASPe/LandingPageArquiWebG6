@@ -19,7 +19,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 import { RolesService } from '../../services/roles.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-register',
@@ -133,7 +133,7 @@ export class RegisterComponent implements OnInit {
       this.usuario.sexoUsuario = this.form.value.hsexo;
       this.usuario.fotoPerfilUsuario = 'string';
 
-      this.uS.insert(this.usuario).subscribe((data) => {
+      this.uS.register(this.usuario).subscribe((data) => {
         this.openSnackBar('Registro creado exitosamente');
       });
       this.router.navigate(['login']);

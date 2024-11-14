@@ -27,7 +27,7 @@
 }
 
 .nav-button:hover {
-  color: #ffeb3b;
+  color: magenta;
   transform: scale(1.05);
 }
 

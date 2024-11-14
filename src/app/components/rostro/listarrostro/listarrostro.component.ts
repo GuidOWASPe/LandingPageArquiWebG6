@@ -62,7 +62,7 @@ export class ListarrostroComponent implements OnInit {
 
   applyFilter(): void {
     this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.nombreForma.trim().toLowerCase().includes(filter);
+      data.nombre.trim().toLowerCase().includes(filter);
 
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
