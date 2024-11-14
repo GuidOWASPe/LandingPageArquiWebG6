@@ -1,0 +1,303 @@
+/* Estilos generales */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto condensed", serif;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: grayscale(100%) brightness(50%) contrast(120%) blur(4px);
+}
+
+/* Contenedor del formulario */
+.form-container {
+  position: relative;
+  background-color: rgba(44, 62, 80, 0.9); 
+  padding: 60px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.3),
+    0px 0px 15px rgba(26, 188, 156, 0.7); 
+  animation: fadeIn 1.5s ease-in-out; 
+  z-index: 1;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 20px;
+}
+
+.form-title {
+  text-align: center;
+  font-family: 'Roboto condensed', serif;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título */
+h2 {
+  color: #fff;
+  font-family: "Roboto condensed", serif;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para los campos del formulario */
+mat-form-field {
+  background-color: rgba(255, 255, 255, 0.471);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.301);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.mat-label {
+  color: #fff;
+  font-weight: bold;
+}
+
+input, mat-select {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+input:focus, mat-select:focus {
+  outline: none;
+  border-color: #1abc9c;
+}
+
+/* Estilo de los checkbox para género */
+.gender-checkbox {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+mat-checkbox {
+  color: #fff;
+}
+
+/* Estilos adicionales para "Género" */
+.gender-section {
+    margin-top: 20px;
+  }
+  
+  .gender-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+/* Botón personalizado */
+.custom-button {
+  background-color: #1abc9c;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #16a085;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 25px rgba(26, 188, 156, 0.6);
+  border: 2px solid #fff;
+  filter: brightness(1.2);
+}
+
+/* Estilo del enlace "Volver al Inicio" en la esquina superior izquierda */
+.landing-link {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: rgba(26, 188, 156, 0.9); /* Color de fondo turquesa */
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: slideIn 1s ease forwards;
+  z-index: 1000; /* Asegura que esté en la parte superior */
+}
+
+.landing-link:hover {
+  background-color: #16a085; /* Color más oscuro en hover */
+  transform: scale(1.05); /* Escala al pasar el cursor */
+}
+
+.landing-link .arrow-icon {
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.landing-link:hover .arrow-icon {
+  transform: translateX(-5px); /* Movimiento a la izquierda en hover */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Estilo para el enlace de registro */
+.register-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-link {
+  color: #1abc9c;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: magenta;
+  text-decoration: none;
+}
+
+#pais{
+    max-width: 340px;
+}
+
+.texto{
+  color: #fff;
+}
+
+
+/* Estilos de las filas en el formulario para dos columnas */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-row mat-form-field {
+  flex: 1;
+}
+
+/* Reducir el ancho del campo País */
+#pais-select {
+  max-width: 250px; /* Ancho reducido para el campo País */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 25px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .custom-button {
+    font-size: 1rem;
+  }
+}
+
+/* Animación del SVG */
+@keyframes jello {
+    0%,
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+  }
+  
+  /* Estilo del SVG */
+  .jello-icon {
+    animation: jello 1s both infinite cubic-bezier(0.69, 0.34, 0.09, 0.6);
+    transform-origin: center;
+    width: 50px; /* Aumenta el tamaño del SVG */
+    height: 50px; /* Aumenta el tamaño del SVG */
+    margin-top: 10px; /* Ajusta la posición vertical del SVG */
+  }

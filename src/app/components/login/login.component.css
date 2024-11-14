@@ -1,0 +1,281 @@
+/* Configuración para el contenedor */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto condensed", serif;
+  overflow: hidden; /* Ocultar barras de desplazamiento */
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.background-img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: grayscale(100%) brightness(50%) contrast(120%) blur(4px); /* Filtro más fuerte */
+}
+
+/* Estilo del enlace "Volver al Inicio" en la esquina superior izquierda */
+.landing-link {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: rgba(26, 188, 156, 0.9); /* Color de fondo turquesa */
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: slideIn 1s ease forwards;
+  z-index: 1000; /* Asegura que esté en la parte superior */
+}
+
+.landing-link:hover {
+  background-color: #16a085; /* Color más oscuro en hover */
+  transform: scale(1.05); /* Escala al pasar el cursor */
+}
+
+.landing-link .arrow-icon {
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.landing-link:hover .arrow-icon {
+  transform: translateX(-5px); /* Movimiento a la izquierda en hover */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Contenedor del formulario */
+.form-container {
+  position: relative;
+  background-color: rgba(
+    44,
+    62,
+    80,
+    0.9
+  ); /* Fondo azul oscuro con más opacidad */
+  padding: 60px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.3),
+    0px 0px 15px rgba(26, 188, 156, 0.7); /* Sombra más pronunciada y brillo azul */
+  animation: fadeIn 1.5s ease-in-out; /* Animación de aparición */
+  z-index: 1; /* Asegura que el formulario esté encima del video */
+  width: 100%;
+  max-width: 400px; /* Máxima anchura */
+  border-radius: 20px; /* Bordes más suaves */
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título */
+h2 {
+  color: #fff;
+  font-family: "Roboto condensed", serif;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  animation: fadeInUp 1.2s ease-in-out; /* Animación de aparición hacia arriba */
+}
+
+/* Animación de título */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.texto{
+  color: white;
+}
+
+/* Estilos de los campos del formulario */
+mat-form-field {
+  background-color: rgba(255, 255, 255, 0.471); /* Fondo semi-transparente */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.301); /* Sombra suave */
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Asegura que los campos de entrada ocupen el 100% del ancho disponible */
+}
+
+/* Etiquetas de los campos */
+.mat-label {
+  color: #fff; /* Etiquetas blancas */
+  font-weight: bold;
+}
+
+/* Campos de entrada */
+input {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%; /* Asegura que los campos ocupen el 100% del ancho disponible */
+}
+
+/* Efecto al enfocar los campos de entrada */
+input:focus {
+  outline: none;
+  border-color: #1abc9c; /* Verde turquesa al enfocarse */
+}
+
+/* Mensajes de error */
+mat-error {
+  color: #e74c3c; /* Rojo para el texto de error */
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Botón personalizado */
+.custom-button {
+  background-color: #1abc9c; /* Turquesa claro */
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave por defecto */
+}
+
+/* Efecto del botón al pasar el cursor */
+.custom-button:hover {
+  background-color: #16a085; /* Turquesa más oscuro */
+  transform: scale(1.05); /* Aumento del tamaño */
+  box-shadow: 0px 8px 25px rgba(26, 188, 156, 0.6); /* Sombra intensa para resaltar */
+  border: 2px solid #fff; /* Borde blanco al hacer hover */
+  filter: brightness(1.2); /* Efecto de brillo */
+}
+
+/* Responsividad para dispositivos pequeños */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 25px;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  .custom-button {
+    font-size: 1rem;
+  }
+}
+
+/* Estilo para el contenedor del ícono */
+.cut-icon {
+  display: inline-flex; /* Cambia de inline-block a inline-flex */
+  align-items: center; /* Centra verticalmente el ícono */
+  justify-content: center; /* Centra horizontalmente el ícono */
+  width: 50px; /* Tamaño mayor del ícono */
+  height: 50px; /* Tamaño mayor del ícono */
+  margin-left: 10px; /* Espacio entre el texto y el ícono */
+  vertical-align: middle; /* Alineación vertical al centro */
+  top: 2px; /* Ajusta el ícono a la altura del texto */
+}
+
+/* Animación de rotación para el primer grupo */
+.cut-sc {
+  animation: cut-sc 1s cubic-bezier(1, -0.28, 0.01, 1.13) infinite
+    alternate-reverse both;
+  transform-origin: center center;
+}
+
+/* Animación de rotación para el segundo grupo */
+.cut-sc-2 {
+  animation: cut-sc-2 1s cubic-bezier(1, -0.28, 0.01, 1.13) infinite
+    alternate-reverse both;
+  transform-origin: center center;
+}
+
+/* Asegúrate de que el ícono SVG ocupe todo el tamaño del contenedor */
+.cut-icon svg {
+  width: 100%; /* Toma el 100% del contenedor */
+  height: 100%; /* Toma el 100% del contenedor */
+}
+
+@keyframes cut-sc-2 {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes cut-sc {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+/* Estilo para el contenedor del enlace de registro */
+.register-container {
+  margin-top: 20px; /* Añade espacio arriba del enlace */
+  text-align: center; /* Centra el enlace dentro del contenedor */
+}
+
+.register-link {
+  color: #1abc9c; 
+  font-weight: bold;
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+}
+
+.register-link:hover {
+  color: magenta;
+  text-decoration: none; 
+}
+
