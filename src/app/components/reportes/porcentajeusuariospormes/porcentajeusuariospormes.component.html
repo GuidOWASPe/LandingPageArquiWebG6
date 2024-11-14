@@ -1,12 +1,8 @@
 <div>
-    <div class="title-container" style="text-align: center">
-      <h1>Porcentaje de Usuarios Registrados por Mes</h1>
-    </div>
     <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
       {{ noDataMessage }}
     </div>
     <ng-template #chartContent>
-    <div class="chart-container" style="text-align: center">
       <canvas
         baseChart
         [datasets]="barChartData"
@@ -16,7 +12,6 @@
         [type]="barChartType"
       >
       </canvas>
-    </div>
   </ng-template>
   </div>
 

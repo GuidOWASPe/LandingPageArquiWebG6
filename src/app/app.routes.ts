@@ -39,6 +39,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
 import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
+import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 
 export const routes: Routes = [
   {
@@ -77,6 +78,8 @@ export const routes: Routes = [
     component: HomeComponent,
     canActivate: [seguridadGuard],
   },
+  
+
   {
     path: 'formas',
     component: FormasComponent,
@@ -228,7 +231,7 @@ export const routes: Routes = [
   },
   {
     path: 'homes',
-    component: HomeComponent,
+    component: HomeAdminComponent,//Hnola aqui hice una modificacion para el 
     canActivate: [seguridadGuard],
   },
 
