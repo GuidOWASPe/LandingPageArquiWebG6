@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="landing-link" [routerLink]="['/landing']">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      class="arrow-icon"
+    >
+      <path d="M10.707 5.707a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L6.414 11H20a1 1 0 1 0 0-2H6.414l4.293-3.293z" />
+    </svg>
+    <span>Volver al Inicio</span>
+  </div>
+  <img class="background-img" src="assets/barber.jpg" />
+  <div class="form-container">
+    <h2 class="form-title">
+      Registrarse
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="50"
+        fill="none"
+        class="jello-icon"
+      >
+        <path
+          stroke="#0A0A30"
+          stroke-width="1.5"
+          d="M11.081 5.141c.347-.807 1.491-.807 1.838 0l1.274 2.97a1 1 0 00.828.601l3.218.295c.875.08 1.229 1.168.568 1.748l-2.43 2.13a1 1 0 00-.316.972l.714 3.152c.194.857-.732 1.53-1.487 1.08l-2.776-1.653a1 1 0 00-1.024 0l-2.776 1.653c-.755.45-1.681-.223-1.487-1.08l.715-3.152a1 1 0 00-.317-.973l-2.43-2.13c-.66-.579-.307-1.667.568-1.747l3.218-.295a1 1 0 00.828-.601l1.274-2.97z"
+          style="
+            animation: jello 1s both infinite
+              cubic-bezier(0.69, 0.34, 0.09, 0.6);
+            transform-origin: center;
+          "
+        />
+      </svg>
+    </h2>
+    <form [formGroup]="form" (submit)="insertar()">
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="husername" />
+          <mat-error *ngIf="form.get('husername')?.hasError('required')">
+            Ingrese un nombre de usuario
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="hpassword" type="password" />
+          <mat-error *ngIf="form.get('hpassword')?.hasError('required')">
+            Ingrese una contraseña
+          </mat-error>
+          <mat-error *ngIf="form.get('hpassword')?.hasError('minlength')">
+            La contraseña debe tener al menos 6 caracteres
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="hcorreo" type="email" />
+          <mat-error *ngIf="form.get('hcorreo')?.hasError('required')">
+            Ingrese un correo
+          </mat-error>
+          <mat-error *ngIf="form.get('hcorreo')?.hasError('email')">
+            Ingrese un correo válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="hfechanac" 
+            [max]="fechaActual"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker" 
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.get('hfechanac')?.hasError('required')">
+            Ingrese una fecha
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field class="example-full-width" id="pais">
+          <mat-label>País</mat-label>
+          <mat-select formControlName="hpais">
+            <mat-option *ngFor="let food of listaPaises" [value]="food.value">
+              {{ food.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('hpais')?.hasError('required')">
+            Seleccione un país
+          </mat-error>
+        </mat-form-field>
+
+        <div class="gender-section">
+          <label class="gender-label">Género</label>
+          <div class="gender-checkbox">
+            <mat-checkbox
+              [checked]="selectedSexo === 'Masculino'"
+              (change)="onCheckChange('Masculino')"
+              >Masculino</mat-checkbox
+            >
+            <mat-checkbox
+              [checked]="selectedSexo === 'Femenino'"
+              (change)="onCheckChange('Femenino')"
+              >Femenino</mat-checkbox
+            >
+            <mat-checkbox
+              [checked]="selectedSexo === 'Otro'"
+              (change)="onCheckChange('Otro')"
+              >Otro</mat-checkbox
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="register-container">
+        <p class="texto">
+          ¿Ya tienes una cuenta?
+          <a class="register-link" [routerLink]="['/login']">Inicia Sesión</a>
+        </p>
+      </div>
+
+      <button mat-flat-button class="custom-button">Registrar</button>
+    </form>
+  </div>
+</div>

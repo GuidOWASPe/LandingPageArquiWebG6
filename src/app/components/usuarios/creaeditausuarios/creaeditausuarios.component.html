@@ -1,0 +1,152 @@
+<div class="container" style="text-align: center">
+  <div style="margin: 5%">
+    <h1>Registro de Usuarios</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- Fila 1 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="hcodigo" />
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="husername" />
+            <mat-error *ngIf="form.get('husername')?.hasError('required')">
+              El campo Username es obligatorio
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="hpassword" />
+            <mat-error *ngIf="form.get('hpassword')?.hasError('required')">
+              Ingrese una contraseña
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Roles</mat-label>
+            <mat-select formControlName="hrol">
+              @for (food of listaRoles; track food) {
+              <mat-option [value]="food.idRol">{{ food.nombre }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('hrol')?.hasError('required')">
+              Seleccione un Rol
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 3 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput formControlName="hcorreo" />
+            <mat-error *ngIf="form.get('hcorreo')?.hasError('required')">
+              Ingrese un Correo
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="hfechanac"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error *ngIf="form.get('hfechanac')?.hasError('required')">
+              Ingrese una fecha
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 4 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Fecha de registro</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              formControlName="hfechareg"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="form.get('hfechareg')?.hasError('required')">
+              Ingrese una Fecha
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>País</mat-label>
+            <mat-select formControlName="hpais">
+              @for (food of listaPaises; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('hpais')?.hasError('required')">
+              Seleccione un Pais
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 5 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Sexo</mat-label>
+            <mat-select formControlName="hsexo">
+              @for (food of listaSexo; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('hsexo')?.hasError('required')">
+              Seleccione un Genero
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Foto de perfil</mat-label>
+            <input matInput formControlName="hfoto" />
+            <mat-error *ngIf="form.get('hfoto')?.hasError('required')">
+              Ingrese una Imagen
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button mat-flat-button class="custom-button" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

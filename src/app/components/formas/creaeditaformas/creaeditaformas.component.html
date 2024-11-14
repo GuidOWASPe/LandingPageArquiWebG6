@@ -1,0 +1,46 @@
+<div class="container" style="text-align: center">
+  <div style="margin: 5%">
+    <h1>Registro de Formas</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="hcodigo" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Ingresar nombre"
+          formControlName="hnombre"
+        />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+          Ingrese el Nombre
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <input
+          matInput
+          placeholder="Ingresar descripcion"
+          formControlName="hdescripcion"
+        />
+        <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
+          Ingrese la descripcion
+        </mat-error>
+      </mat-form-field>
+
+      <div class="buttons">
+        <button mat-flat-button class="custom-button" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button class="custom-button" type="submit">
+          Registrar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

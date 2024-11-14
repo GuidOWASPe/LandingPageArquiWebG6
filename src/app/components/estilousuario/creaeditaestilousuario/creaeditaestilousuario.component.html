@@ -1,0 +1,92 @@
+<div class="container" style="text-align: center">
+  <div style="margin: 5%">
+    <h1>Registro de Estilos por Usuario</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- Fila 1 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="hcodigo" />
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('hfecha')?.hasError('required')"
+              >La fecha es obligatoria</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Calificación</mat-label>
+            <input
+              matInput
+              placeholder="Calificación"
+              formControlName="hcalificacion"
+            />
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')"
+              >Debe de ingresar la Calificación</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Usuarios</mat-label>
+            <mat-select formControlName="husuario">
+              <mat-option
+                *ngFor="let food of listausuarios"
+                [value]="food.idUsuario"
+                >{{ food.username }}</mat-option
+              >
+            </mat-select>
+            <mat-error *ngIf="form.get('husuario')?.hasError('required')"
+              >Seleccione un Usuario</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 3 -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Estilos</mat-label>
+            <mat-select formControlName="hestilo">
+              <mat-option
+                *ngFor="let food of listaestilos"
+                [value]="food.idEstilo"
+                >{{ food.nombreEstilo }}</mat-option
+              >
+            </mat-select>
+            <mat-error *ngIf="form.get('hestilo')?.hasError('required')"
+              >Seleccione un Estilo</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="buttons">
+        <button mat-flat-button class="custom-button" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

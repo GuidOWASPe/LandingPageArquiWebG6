@@ -1,0 +1,41 @@
+.chart-container {
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 40%; 
+  margin: 0 auto;
+}
+
+.chart-title {
+  text-align: center;
+  color: #2C3E50;
+  font-size: 2.4em;
+  margin-bottom: 0.5px;
+  font-weight: bold;
+}
+
+
+.no-data-message {
+  text-align: center;
+  font-size: 18px;
+  color: #95A5A6;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    width: 70%;
+    padding: 15px;
+  }
+}
+
+h1 {
+  color: #2C3E50; 
+  font-size: 2.4em; 
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
