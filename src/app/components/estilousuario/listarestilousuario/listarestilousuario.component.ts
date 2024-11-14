@@ -69,7 +69,7 @@ export class ListarestilousuarioComponent implements OnInit {
 
   applyFilter(): void {
     this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.username.trim().toLowerCase().includes(filter);
+      data.estilo.nombreEstilo.trim().toLowerCase().includes(filter);
 
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }

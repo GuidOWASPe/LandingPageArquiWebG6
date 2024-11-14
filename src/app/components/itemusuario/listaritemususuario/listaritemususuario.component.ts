@@ -71,7 +71,7 @@ export class ListaritemususuarioComponent implements OnInit{
 
   applyFilter(): void {
     this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.nombreItem.trim().toLowerCase().includes(filter);
+      data.it.nombreItem.trim().toLowerCase().includes(filter);
 
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }

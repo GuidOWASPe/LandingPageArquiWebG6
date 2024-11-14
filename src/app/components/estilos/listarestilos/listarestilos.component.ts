@@ -71,7 +71,7 @@ export class ListarestilosComponent implements OnInit {
 
   applyFilter(): void {
     this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.NombreEstilo.trim().toLowerCase().includes(filter);
+      data.nombreEstilo.trim().toLowerCase().includes(filter);
 
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }

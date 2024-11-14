@@ -1,17 +1,17 @@
 <mat-toolbar color="primary" class="custom-toolbar" *ngIf="verificar()">
   <span class="app-title" routerLink="/homes" style="cursor: pointer;">StyleCheck</span>
 
-    <div class="nav-item">
-      <button mat-button class="nav-button" routerLink="/usuarios">
-        <mat-icon>person</mat-icon>Usuarios
-      </button>
-    </div>
+  <div class="nav-item" *ngIf="isAdmin()">
+    <button mat-button class="nav-button" routerLink="/usuarios">
+      <mat-icon>person</mat-icon>Usuarios
+    </button>
+  </div>
 
-    <div class="nav-item">
-      <button mat-button class="nav-button" routerLink="/roles">
-        <mat-icon>shield</mat-icon>Roles
-      </button>
-    </div>
+  <div class="nav-item" *ngIf="isAdmin()">
+    <button mat-button class="nav-button" routerLink="/roles">
+      <mat-icon>shield</mat-icon>Roles
+    </button>
+  </div>
 
   <div class="nav-item">
     <button mat-button class="nav-button" routerLink="/formas">
@@ -19,7 +19,7 @@
     </button>
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" *ngIf="isAdmin()">
     <button mat-button class="nav-button" routerLink="/tipos">
       <mat-icon>title</mat-icon>Tipos
     </button>
@@ -31,14 +31,13 @@
     </button>
   </div>
 
-
   <div class="nav-item">
     <button mat-button class="nav-button" routerLink="/itemusuario">
-      <mat-icon>category</mat-icon>Item por Usuario 
+      <mat-icon>category</mat-icon>Item por Usuario
     </button>
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" *ngIf="isAdmin()">
     <button mat-button class="nav-button" routerLink="/items">
       <mat-icon>psychology_alt</mat-icon>Items
     </button>
@@ -49,8 +48,8 @@
       <mat-icon>face</mat-icon>Rostros
     </button>
   </div>
-  
-    <div class="nav-item">
+
+  <div class="nav-item">
     <button mat-button class="nav-button" routerLink="/estilousuarios">
       <mat-icon>settings_accessibility</mat-icon>EstiloUsuarios
     </button>
@@ -62,9 +61,9 @@
     </button>
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" *ngIf="isAdmin()">
     <button mat-button class="nav-button">
-      <mat-icon>wb_sunny</mat-icon>Reportes
+      <mat-icon>signal_cellular_alt</mat-icon>Reportes
     </button>
     <div class="submenu">
       <a routerLink="/reportes" class="submenu-item">Distribución de Usuarios</a>
@@ -82,22 +81,15 @@
      
     </div>
   </div>
-  
+
   <div class="right-menu">
     <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
       <mat-icon>person</mat-icon><span>{{ username }}</span>
     </button>
   </div>
-  
-
 
   <mat-menu #menuSalir="matMenu">
-    <button
-      mat-menu-item
-      routerLink="/login"
-      (click)="cerrar()"
-      class="custom-menu-item"
-    >
+    <button mat-menu-item routerLink="/login" (click)="cerrar()" class="custom-menu-item">
       <mat-icon>logout</mat-icon>
       <span>Cerrar sesión</span>
     </button>
@@ -108,4 +100,3 @@
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>
-

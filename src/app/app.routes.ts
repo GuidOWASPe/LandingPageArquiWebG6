@@ -28,23 +28,54 @@ import { PorcentajeusuariospormesComponent } from './components/reportes/porcent
 import { PorcentajeusuariosporgeneroComponent } from './components/reportes/porcentajeusuariosporgenero/porcentajeusuariosporgenero.component';
 import { CantidadusuariosporpaisesComponent } from './components/reportes/cantidadusuariosporpaises/cantidadusuariosporpaises.component';
 import { ItemmasusadoporusuarioComponent } from './components/reportes/itemmasusadoporusuario/itemmasusadoporusuario.component';
-import { ListarcomentariosComponent } from './components/comentarios/listarcomentarios/listarcomentarios.component';
 import { CantidadestilosporusuarioComponent } from './components/reportes/cantidadestilosporusuario/cantidadestilosporusuario.component';
 import { PopularidadcoloresestiloComponent } from './components/reportes/popularidadcoloresestilo/popularidadcoloresestilo.component';
 import { ReporteitemspornrousosComponent } from './components/reportes/reporteitemspornrousos/reporteitemspornrousos.component';
 import { ReportecantidadcomentariosnegativosComponent } from './components/reportes/reportecantidadcomentariosnegativos/reportecantidadcomentariosnegativos.component';
 import { ReporterostrosegunformaComponent } from './components/reportes/reporterostrosegunforma/reporterostrosegunforma.component';
 import { ReporteestilosconpeorcalificacionComponent } from './components/reportes/reporteestilosconpeorcalificacion/reporteestilosconpeorcalificacion.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
+import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
+import { WebcamComponent } from './components/landing/webcam/webcam.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'landing',
     pathMatch: 'full',
+  },
+  {
+    path: 'landing',
+    component: LandingComponent,
+    children: [
+      {
+        path: 'webcam',
+        component: WebcamComponent,
+      },
+      {
+        path: 'estilosdi',
+        component: EstilosdiComponent,
+      },
+      {
+        path: 'conocenos',
+        component: ConocenosComponent,
+      },
+    ],
   },
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [seguridadGuard],
   },
   {
     path: 'formas',
@@ -89,7 +120,6 @@ export const routes: Routes = [
         component: CreaeditausuariosComponent,
       },
     ],
-    canActivate: [seguridadGuard],
   },
   {
     path: 'items',
@@ -199,46 +229,54 @@ export const routes: Routes = [
   {
     path: 'homes',
     component: HomeComponent,
-    canActivate: [seguridadGuard], 
-  },
-
-  {
-    path:'reportes',component:ReportesComponent,
-    children:[
-      {
-        path:'porcentajeusuariospormes',component:PorcentajeusuariospormesComponent
-      },
-      {
-        path:'porcentajeusuariosporgenero',component:PorcentajeusuariosporgeneroComponent
-      },
-      {
-        path:'cantidadusuariosporpaises',component:CantidadusuariosporpaisesComponent
-      },
-      {
-        path:'itemmasusadoporusuario',component:ItemmasusadoporusuarioComponent
-      },
-      {
-        path:'estilosconpeorcalificacion',component:ReporteestilosconpeorcalificacionComponent
-      },
-      {
-        path:'cantidadestilosporusuario',component:CantidadestilosporusuarioComponent
-      },
-      {
-        path:'popularidadcoloresestilo',component:PopularidadcoloresestiloComponent
-      },
-      {
-        path:'listaritemspornrousos',component:ReporteitemspornrousosComponent
-      },
-      {
-        path:'cantidadcomentariosnegativos',component:ReportecantidadcomentariosnegativosComponent
-      },
-      {
-        path:'cantidadrostrosegunforma',component:ReporterostrosegunformaComponent
-      },
-      
-    ],
     canActivate: [seguridadGuard],
   },
 
-  
+  {
+    path: 'reportes',
+    component: ReportesComponent,
+    children: [
+      {
+        path: 'porcentajeusuariospormes',
+        component: PorcentajeusuariospormesComponent,
+      },
+      {
+        path: 'porcentajeusuariosporgenero',
+        component: PorcentajeusuariosporgeneroComponent,
+      },
+      {
+        path: 'cantidadusuariosporpaises',
+        component: CantidadusuariosporpaisesComponent,
+      },
+      {
+        path: 'itemmasusadoporusuario',
+        component: ItemmasusadoporusuarioComponent,
+      },
+      {
+        path: 'estilosconpeorcalificacion',
+        component: ReporteestilosconpeorcalificacionComponent,
+      },
+      {
+        path: 'cantidadestilosporusuario',
+        component: CantidadestilosporusuarioComponent,
+      },
+      {
+        path: 'popularidadcoloresestilo',
+        component: PopularidadcoloresestiloComponent,
+      },
+      {
+        path: 'listaritemspornrousos',
+        component: ReporteitemspornrousosComponent,
+      },
+      {
+        path: 'cantidadcomentariosnegativos',
+        component: ReportecantidadcomentariosnegativosComponent,
+      },
+      {
+        path: 'cantidadrostrosegunforma',
+        component: ReporterostrosegunformaComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
 ];

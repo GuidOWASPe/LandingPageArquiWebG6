@@ -1,20 +1,63 @@
 <div class="container">
-  <video autoplay muted loop class="background-video">
-    <source src="assets/3998510-uhd_4096_2160_25fps.mp4" type="video/mp4" />
-    Tu navegador no soporta video.
-  </video>
+  <div class="landing-link" [routerLink]="['/landing']">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      class="arrow-icon"
+    >
+      <path d="M10.707 5.707a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L6.414 11H20a1 1 0 1 0 0-2H6.414l4.293-3.293z" />
+    </svg>
+    <span>Volver al Inicio</span>
+  </div>
+  <img class="background-img" src="assets/barber.jpg" />
   <div class="form-container">
-    <h2>Iniciar Sesión <span class="cut-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24">
-      <g class="cut-sc">
-        <path stroke="#0A0A30" stroke-linecap="round" stroke-width="1.5" d="M10.025 10.025l7.9 7.9"/>
-        <circle cx="8.05" cy="8.05" r="2.043" stroke="#265BFF" stroke-width="1.5" transform="rotate(45 8.05 8.05)"/>
-      </g>
-      <g class="cut-sc-2">
-        <path stroke="#0A0A30" stroke-linecap="round" stroke-width="1.5" d="M10.025 13.975l7.9-7.9"/>
-        <circle r="2.043" stroke="#265BFF" stroke-width="1.5" transform="scale(1 -1) rotate(45 23.279 1.742)"/>
-      </g>
-    </svg></span>
-  </h2>
+    <h2>
+      Iniciar Sesión
+      <span class="cut-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <g class="cut-sc">
+            <path
+              stroke="#0A0A30"
+              stroke-linecap="round"
+              stroke-width="1.5"
+              d="M10.025 10.025l7.9 7.9"
+            />
+            <circle
+              cx="8.05"
+              cy="8.05"
+              r="2.043"
+              stroke="#265BFF"
+              stroke-width="1.5"
+              transform="rotate(45 8.05 8.05)"
+            />
+          </g>
+          <g class="cut-sc-2">
+            <path
+              stroke="#0A0A30"
+              stroke-linecap="round"
+              stroke-width="1.5"
+              d="M10.025 13.975l7.9-7.9"
+            />
+            <circle
+              r="2.043"
+              stroke="#265BFF"
+              stroke-width="1.5"
+              transform="scale(1 -1) rotate(45 23.279 1.742)"
+            />
+          </g>
+        </svg>
+      </span>
+    </h2>
+    <!-- Login fields here -->
     <mat-form-field class="example-full-width">
       <mat-label>Usuario</mat-label>
       <input matInput placeholder="Username" [(ngModel)]="username" />
@@ -23,13 +66,26 @@
     <mat-form-field class="example-full-width">
       <mat-label>Password</mat-label>
       <input
-        type="password"
+        [type]="passwordVisible ? 'text' : 'password'" 
         matInput
         placeholder="Password"
         [(ngModel)]="password"
       />
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+        <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon> 
+      </button>
     </mat-form-field>
     <br />
-    <button mat-raised-button class="custom-button" (click)="login()">Ingresar</button>
+    <button mat-raised-button class="custom-button" (click)="login()">
+      Ingresar
+    </button>
+    <br />   
+
+    <div class="register-container">
+      <p class="texto">
+        ¿No tienes cuenta?
+        <a class="register-link" [routerLink]="['/register']">Regístrate aquí</a>
+      </p>
+    </div>
   </div>
 </div>

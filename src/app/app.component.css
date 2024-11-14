@@ -27,7 +27,7 @@
 }
 
 .nav-button:hover {
-  color: #ffeb3b;
+  color: magenta;
   transform: scale(1.05);
 }
 
@@ -43,6 +43,8 @@
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  min-width: 220px; /* Ajusta el ancho mínimo para el submenú */
+  padding: 5px 0; /* Espaciado para separar los elementos */
 }
 
 .nav-item:hover .submenu {
@@ -58,6 +60,9 @@
   text-decoration: none;
   transition: background-color 0.3s, padding-left 0.3s;
   font-size: 0.9rem;
+  white-space: normal; /* Permite que el texto haga salto de línea */
+  word-wrap: break-word; /* Divide el texto en palabras largas */
+  line-height: 1.2; /* Ajusta la altura de línea para texto en varias líneas */
 }
 
 .submenu-item:hover {

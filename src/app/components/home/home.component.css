@@ -1,59 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wght@100;400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Ocupa toda la altura de la ventana */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1abc9c, #3498db);
+  color: white;
 }
 
 .image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: auto;
-    min-height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra toda el área */
-    opacity: 0.6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: blur(5px) brightness(0.7);
+  animation: zoomInOut 10s ease-in-out infinite;
 }
 
 .text {
-    position: absolute;
-    text-align: center;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro transparente */
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%; /* Asegura que el texto no sea demasiado grande */
-    box-sizing: border-box;
+font-family: 'Roboto condensed', serif;
+  position: relative;
+  text-align: center;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px 40px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 2s ease-out;
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    font-weight: bold;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
 }
 
 p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.5;
 }
 
 .cta-btn {
-    background-color: #46b0e5; /* Color atractivo */
-    color: white;
-    font-size: 1.1rem;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  background-color: #46b0e5;
+  color: white;
+  font-size: 1rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .cta-btn:hover {
-    background-color: #3498db; /* Color más oscuro al pasar el cursor */
+  background-color: #3498db;
+  transform: scale(1.05);
+}
+
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

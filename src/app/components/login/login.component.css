@@ -16,8 +16,7 @@ body {
   text-align: center;
 }
 
-/* Video de fondo */
-.background-video {
+.background-img{
   position: absolute;
   top: 0;
   left: 0;
@@ -26,6 +25,52 @@ body {
   object-fit: cover;
   z-index: -1;
   filter: grayscale(100%) brightness(50%) contrast(120%) blur(4px); /* Filtro más fuerte */
+}
+
+/* Estilo del enlace "Volver al Inicio" en la esquina superior izquierda */
+.landing-link {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: rgba(26, 188, 156, 0.9); /* Color de fondo turquesa */
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: slideIn 1s ease forwards;
+  z-index: 1000; /* Asegura que esté en la parte superior */
+}
+
+.landing-link:hover {
+  background-color: #16a085; /* Color más oscuro en hover */
+  transform: scale(1.05); /* Escala al pasar el cursor */
+}
+
+.landing-link .arrow-icon {
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.landing-link:hover .arrow-icon {
+  transform: translateX(-5px); /* Movimiento a la izquierda en hover */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Contenedor del formulario */
@@ -81,6 +126,10 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.texto{
+  color: white;
 }
 
 /* Estilos de los campos del formulario */
@@ -211,3 +260,22 @@ mat-error {
     transform: rotate(-20deg);
   }
 }
+
+/* Estilo para el contenedor del enlace de registro */
+.register-container {
+  margin-top: 20px; /* Añade espacio arriba del enlace */
+  text-align: center; /* Centra el enlace dentro del contenedor */
+}
+
+.register-link {
+  color: #1abc9c; 
+  font-weight: bold;
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+}
+
+.register-link:hover {
+  color: magenta;
+  text-decoration: none; 
+}
+
