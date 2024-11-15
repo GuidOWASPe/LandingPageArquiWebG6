@@ -20,6 +20,9 @@
           <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
             El campo de Nombre es obligatorio
           </mat-error>
+          <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+            Solo se permiten letras
+          </mat-error>
         </mat-form-field>
       </div>
       </div>
@@ -47,6 +50,9 @@
           <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
             Ingrese una descripcion
           </mat-error>
+          <mat-error *ngIf="form.get('hdescripcion')?.hasError('pattern')">
+            Solo se permiten letras
+          </mat-error>
         </mat-form-field>
       </div>
       </div>
@@ -61,6 +67,9 @@
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')">
               Ingrese una Calificación
             </mat-error>
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
+              Solo se permiten números
+            </mat-error>
           </mat-form-field>
         </div>
         
@@ -72,6 +81,9 @@
           <mat-error *ngIf="form.get('husos')?.hasError('required')">
             Ingrese el Número de Usos
           </mat-error>
+          <mat-error *ngIf="form.get('husos')?.hasError('pattern')">
+            Solo se permiten números
+          </mat-error>
         </mat-form-field>
       </div>
       </div>
@@ -79,13 +91,16 @@
       <!-- Imagen -->
       <div class="form-row">
         <div class="form-column">
-          <mat-form-field class="example-full-width">
-            <mat-label>Imagen</mat-label>
-            <input matInput [disabled]="edicion" formControlName="himagen" />
-            <mat-error *ngIf="form.get('himagen')?.hasError('required')">
-              Ingrese una Imagen
-            </mat-error>
+          <mat-form-field appearance="fill">
+            <mat-label>Selecciona una imagen</mat-label>
+            <mat-select formControlName="himagen" class="custom-select">
+              <mat-option *ngFor="let imagen of imagenes" [value]="imagen">
+                <img [src]="'assets/items/' + imagen" alt="Imagen" class="avatar-option">
+                {{ imagen.split('.')[0] }} <!-- Mostrar el nombre de la imagen -->
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+
         </div>
       </div>
 

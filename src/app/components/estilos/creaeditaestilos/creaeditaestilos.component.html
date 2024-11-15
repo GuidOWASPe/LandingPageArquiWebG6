@@ -57,20 +57,31 @@
       <!-- Fila 3 -->
       <div class="form-row">
         <div class="form-column">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width color-picker-field">
             <mat-label>Color</mat-label>
-            <input matInput formControlName="hcolor" />
+            <div class="color-inputs">
+              <input matInput formControlName="hcolor" placeholder="#000000" />
+              <input
+                type="color"
+                class="color-selector"
+                (input)="updateColor($event)"
+                [value]="form.get('hcolor')?.value || '#000000'"
+              />
+            </div>
             <mat-error *ngIf="form.get('hcolor')?.hasError('required')">
               El color es obligatorio
             </mat-error>
             <mat-error *ngIf="form.get('hcolor')?.hasError('pattern')">
               El color debe estar en formato hexadecimal, por ejemplo: #ff5733
             </mat-error>
+            <mat-error *ngIf="form.get('hcolor')?.hasError('pattern')">
+              Ingrese un código hexadecimal válido
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-column">
           <mat-form-field>
-            <mat-label>Fecha de creación</mat-label>
+            <mat-label>Fecha de creación</mat-l
             <input matInput [matDatepicker]="picker" 
             formControlName="hfechacre" 
             [max]="fechaActual"

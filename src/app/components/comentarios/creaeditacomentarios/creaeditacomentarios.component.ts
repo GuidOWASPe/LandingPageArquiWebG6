@@ -52,6 +52,7 @@ export class CreaeditacomentariosComponent implements OnInit {
   comentario: Comentarios = new Comentarios();
   id: number = 0;
   edicion: boolean = false;
+  fechaActual: Date = new Date();
   listausuarios: Usuarios[] = [];
   listaestilos: Estilo[] = [];
 
@@ -75,7 +76,7 @@ export class CreaeditacomentariosComponent implements OnInit {
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hcontenido: ['', Validators.required],
-      hmegustas: ['', Validators.required],
+      hmegustas: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       hfechapublicada: ['', Validators.required],
       husuario: ['', Validators.required],
       hestilo: ['', Validators.required],

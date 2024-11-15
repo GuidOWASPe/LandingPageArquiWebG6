@@ -45,6 +45,13 @@ export class RegisterComponent implements OnInit {
   usuario: Usuarios = new Usuarios();
   selectedSexo: string = ''; 
   fechaActual: Date = new Date();
+  imagenes: string[] = [
+    'Avatar 1.jpg',
+    'Avatar 2.jpg',
+    'Avatar 3.jpg',
+    'Avatar 4.jpg',
+    'Avatar 5.jpg',
+  ];
 
   listaPaises: { value: String; viewValue: string }[] = [
     { value: 'Argentina', viewValue: 'Argentina' },
@@ -117,6 +124,7 @@ export class RegisterComponent implements OnInit {
       hfechanac: ['', Validators.required],
       hpais: ['', Validators.required],
       hsexo: ['', Validators.required],
+      hfoto: ['', Validators.required],
     });
   }
 
@@ -131,7 +139,7 @@ export class RegisterComponent implements OnInit {
       this.usuario.fechaRegistroUsuario = new Date();
       this.usuario.paisUsuario = this.form.value.hpais;
       this.usuario.sexoUsuario = this.form.value.hsexo;
-      this.usuario.fotoPerfilUsuario = 'string';
+      this.usuario.fotoPerfilUsuario = this.form.value.hfoto;
 
       this.uS.register(this.usuario).subscribe((data) => {
         this.openSnackBar('Registro creado exitosamente');
@@ -144,11 +152,11 @@ export class RegisterComponent implements OnInit {
 
   onCheckChange(value: string): void {
     if (this.selectedSexo === value) {
-      this.selectedSexo = ''; // Desmarcar si ya está seleccionado
-      this.form.get('hsexo')?.setValue(''); // Limpiar el valor de hsexo en el formulario
+      this.selectedSexo = ''; 
+      this.form.get('hsexo')?.setValue(''); 
     } else {
-      this.selectedSexo = value; // Marcar el nuevo género seleccionado
-      this.form.get('hsexo')?.setValue(value); // Actualizar hsexo en el formulario
+      this.selectedSexo = value; 
+      this.form.get('hsexo')?.setValue(value); 
     }
   }
 

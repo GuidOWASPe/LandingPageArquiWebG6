@@ -28,9 +28,12 @@
         <div class="form-column">
           <mat-form-field class="example-full-width">
             <mat-label>Contraseña</mat-label>
-            <input matInput formControlName="hpassword" />
+            <input matInput formControlName="hpassword" type="password" />
             <mat-error *ngIf="form.get('hpassword')?.hasError('required')">
               Ingrese una contraseña
+            </mat-error>
+            <mat-error *ngIf="form.get('hpassword')?.hasError('minlength') && form.get('hpassword')?.touched">
+              La contraseña debe tener al menos 6 caracteres
             </mat-error>
           </mat-form-field>
         </div>
@@ -58,6 +61,9 @@
             <mat-error *ngIf="form.get('hcorreo')?.hasError('required')">
               Ingrese un Correo
             </mat-error>
+            <mat-error *ngIf="form.get('hcorreo')?.hasError('email')">
+              Ingrese un correo válido
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-column">
@@ -67,6 +73,7 @@
               matInput
               [matDatepicker]="picker1"
               formControlName="hfechanac"
+              [max]="fechaActual"
             />
             <mat-datepicker-toggle
               matIconSuffix
@@ -84,24 +91,6 @@
       <div class="form-row">
         <div class="form-column">
           <mat-form-field>
-            <mat-label>Fecha de registro</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker2"
-              formControlName="hfechareg"
-            />
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker2"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-            <mat-error *ngIf="form.get('hfechareg')?.hasError('required')">
-              Ingrese una Fecha
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-column">
-          <mat-form-field>
             <mat-label>País</mat-label>
             <mat-select formControlName="hpais">
               @for (food of listaPaises; track food) {
@@ -113,9 +102,20 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="form-column">
+          <mat-form-field appearance="fill">
+            <mat-label>Selecciona una imagen</mat-label>
+            <mat-select formControlName="hfoto" class="custom-select">
+              <mat-option *ngFor="let imagen of imagenes" [value]="imagen">
+                <img [src]="'assets/fotoPerfil/' + imagen" alt="Imagen" class="avatar-option">
+                {{ imagen.split('.')[0] }} <!-- Mostrar el nombre de la imagen -->
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
 
-      <!-- Fila 5 -->
+      <!-- Fila 4 -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field>
@@ -127,15 +127,6 @@
             </mat-select>
             <mat-error *ngIf="form.get('hsexo')?.hasError('required')">
               Seleccione un Genero
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-column">
-          <mat-form-field class="example-full-width">
-            <mat-label>Foto de perfil</mat-label>
-            <input matInput formControlName="hfoto" />
-            <mat-error *ngIf="form.get('hfoto')?.hasError('required')">
-              Ingrese una Imagen
             </mat-error>
           </mat-form-field>
         </div>

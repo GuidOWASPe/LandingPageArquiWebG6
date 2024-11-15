@@ -68,6 +68,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
     this.form=this.formBuilder.group({
       hcodigo: [''],
       hfecha: ['', Validators.required],
+
       hcalificacion: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       husuario:['', Validators.required],
       hestilo:['', Validators.required],

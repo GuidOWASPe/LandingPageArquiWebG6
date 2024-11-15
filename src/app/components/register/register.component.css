@@ -196,6 +196,23 @@ mat-checkbox {
   transform: translateX(-5px); /* Movimiento a la izquierda en hover */
 }
 
+  /* Estilos para la imagen dentro de cada opción */
+  .avatar-option {
+    width: 30px; /* Tamaño de la imagen */
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+  }
+  
+  /* Estilo para la imagen seleccionada en el mat-select */
+  .custom-select .mat-select-trigger img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+  }
+  
+
 @keyframes slideIn {
   from {
     opacity: 0;

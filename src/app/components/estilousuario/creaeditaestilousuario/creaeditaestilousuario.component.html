@@ -15,11 +15,11 @@
         <div class="form-column">
           <mat-form-field>
             <mat-label>Fecha</mat-label>
+
             <input matInput [matDatepicker]="picker" 
             formControlName="hfecha"
             [max]="fechaActual"
             />
-            
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix

@@ -1,31 +1,18 @@
 <div class="container">
-  <!-- Título -->
-  <div style="text-align: center; margin-bottom: 2rem">
-    <h1>Lista de Comentarios</h1>
-  </div>
+  <h1>Lista de Comentarios</h1>
 
   <!-- Barra de búsqueda -->
-  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
-    <!-- Texto indicativo de la búsqueda -->
-    <div
-      class="search-label"
-      style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
-    >
-      Buscar comentario por contenido
-    </div>
-
-    <!-- Campo de búsqueda -->
-    <mat-form-field appearance="fill" class="search-input" style="width: 80%">
+  <div class="search-bar">
+    <div class="search-label">Buscar comentario por contenido</div>
+    <mat-form-field appearance="fill" class="search-input">
       <input matInput placeholder="Ingresar comentario" [(ngModel)]="filterValue" />
     </mat-form-field>
-
-    <!-- Botón de búsqueda -->
     <button mat-raised-button color="primary" (click)="applyFilter()">
       Buscar
     </button>
   </div>
 
-  <!-- Contenedor para agregar comentario -->
+  <!-- Sección para agregar un nuevo comentario -->
   <div class="add-role-container">
     <p>¿Deseas agregar un nuevo comentario? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -33,64 +20,31 @@
     </button>
   </div>
 
-  <!-- Tabla de comentarios -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef>Código</th>
-      <td mat-cell *matCellDef="let element">{{ element.idComentario }}</td>
-    </ng-container>
+  <!-- Verificar si la tabla está vacía -->
+  <div *ngIf="dataSource.filteredData.length === 0" style="text-align: center; margin-top: 2rem;">
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold;">No hay datos registrados.</p>
+  </div>
 
-    <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef>Contenido</th>
-      <td mat-cell *matCellDef="let element">{{ element.contenido }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c3">
-      <th mat-header-cell *matHeaderCellDef>Me Gustas</th>
-      <td mat-cell *matCellDef="let element">{{ element.likes }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c4">
-      <th mat-header-cell *matHeaderCellDef>Fecha Publicada</th>
-      <td mat-cell *matCellDef="let element">{{ element.fecha_publicada }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c5">
-      <th mat-header-cell *matHeaderCellDef>Usuario</th>
-      <td mat-cell *matCellDef="let element">{{ element.us.username }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c6">
-      <th mat-header-cell *matHeaderCellDef>Estilo</th>
-      <td mat-cell *matCellDef="let element">{{ element.et.nombreEstilo }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="accion01">
-      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-      <td mat-cell *matCellDef="let element" (click)="eliminar(element.idComentario)">
-        <mat-icon>delete</mat-icon>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="accion02">
-      <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button [routerLink]="['ediciones', element.idComentario]">
-          <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon> Actualizar
+  <!-- Grid de Tarjetas de Comentarios -->
+  <div class="cards-grid" *ngIf="dataSource.filteredData.length > 0">
+    <div *ngFor="let element of dataSource.filteredData" class="card">
+      <div class="card-header">
+        <span>Me Gustas: {{ element.likes }}</span>
+      </div>
+      <div class="card-content">
+        <p><strong>Contenido:</strong> {{ element.contenido }}</p>
+        <p><strong>Fecha Publicada:</strong> {{ element.fecha_publicada }}</p>
+        <p><strong>Usuario:</strong> {{ element.us.username }}</p>
+        <p><strong>Estilo:</strong> {{ element.et.nombreEstilo }}</p>
+      </div>
+      <div class="card-footer">
+        <mat-icon class="card-action-button" (click)="eliminar(element.idComentario)">
+          delete
+        </mat-icon>
+        <button mat-raised-button class="update-btn" [routerLink]="['ediciones', element.idComentario]">
+          <mat-icon>edit</mat-icon> Actualizar
         </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <!-- Paginador -->
-  <mat-paginator
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Seleccione página"
-  >
-  </mat-paginator>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import {
+  MAT_DATE_LOCALE,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -20,25 +30,25 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 @Component({
   selector: 'app-creaeditaestilo',
   standalone: true,
-  providers:[
+  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     provideNativeDateAdapter(),
-
   ],
   imports: [
     CommonModule,
-     ReactiveFormsModule, 
-     MatFormFieldModule, 
-     MatSelectModule, 
-     MatInputModule, 
-     MatButtonModule, 
-     RouterModule,
-    MatDatepickerModule],
-     
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    RouterModule,
+    MatDatepickerModule,
+  ],
+
   templateUrl: './creaeditaestilos.component.html',
-  styleUrl: './creaeditaestilos.component.css'
+  styleUrl: './creaeditaestilos.component.css',
 })
-export class CreaeditaestiloComponent implements OnInit{
+export class CreaeditaestiloComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   listaRostro: Rostro[] = [];
   listaItem: Item[] = [];
@@ -46,7 +56,6 @@ export class CreaeditaestiloComponent implements OnInit{
   id: number = 0;
   edicion: boolean = false;
   fechaActual:Date=new Date();
-  
   constructor(
     private formBuilder: FormBuilder,
     private rS: RostroService,
@@ -55,7 +64,7 @@ export class CreaeditaestiloComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
-  ){}
+  ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -83,7 +92,7 @@ export class CreaeditaestiloComponent implements OnInit{
   }
 
   insertar(): void {
-    if(this.form.valid){
+    if (this.form.valid) {
       this.estilo.idEstilo = this.form.value.hcodigo;
       this.estilo.nombreEstilo = this.form.value.hnombre;
       this.estilo.codigoColor = this.form.value.hcolor;
@@ -99,20 +108,24 @@ export class CreaeditaestiloComponent implements OnInit{
           });
         });
       } else {
-        this.eS.insert(this.estilo).subscribe(data=>{
-          this.eS.list().subscribe(data=>{
-            this.eS.setList(data)
+        this.eS.insert(this.estilo).subscribe((data) => {
+          this.eS.list().subscribe((data) => {
+            this.eS.setList(data);
             this.openSnackBar('Registro creado exitosamente');
-          })
-        })
+          });
+        });
       }
       this.router.navigate(['estilos']);
     } else {
-      
-        // Mensaje genérico si hay algún error no especificado
-        this.openSnackBar('Por favor, rellena todos los campos obligatorios');
-      
+
+      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
+
     }
+  }
+
+  updateColor(event: Event): void {
+    const color = (event.target as HTMLInputElement).value;
+    this.form.patchValue({ hcolor: color });
   }
 
   openSnackBar(message: string) {
@@ -136,11 +149,10 @@ export class CreaeditaestiloComponent implements OnInit{
           hitem: new FormControl(data.it.idItem),
           hcolor: new FormControl(data.codigoColor),
           himagen: new FormControl(data.imagenEstilo),
-          hfechacre: new FormControl(data.fechaCreado), 
+          hfechacre: new FormControl(data.fechaCreado),
         });
       });
     }
   }
 
-  
 }

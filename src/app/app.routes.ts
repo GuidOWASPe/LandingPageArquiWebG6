@@ -1,18 +1,9 @@
-import { Routes } from '@angular/router';
 import { CreaeditaformasComponent } from './components/formas/creaeditaformas/creaeditaformas.component';
 import { FormasComponent } from './components/formas/formas.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
-import { ComentariosComponent } from './components/comentarios/comentarios.component';
-import { CreaeditacomentariosComponent } from './components/comentarios/creaeditacomentarios/creaeditacomentarios.component';
-import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
-import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
-import { ItemComponent } from './components/items/item.component';
-import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
 import { RostroComponent } from './components/rostro/rostro.component';
 import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 import { EstilosComponent } from './components/estilos/estilos.component';
@@ -40,6 +31,16 @@ import { ConocenosComponent } from './components/landing/conocenos/conocenos.com
 import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
+import { ItemComponent } from './components/items/item.component';
+import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
+import { ComentariosComponent } from './components/comentarios/comentarios.component';
+import { CreaeditacomentariosComponent } from './components/comentarios/creaeditacomentarios/creaeditacomentarios.component';
+import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
+import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
+import { VincularFormaComponent } from './components/rostro/vincular-forma/vincular-forma.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -140,6 +141,35 @@ export const routes: Routes = [
     canActivate: [seguridadGuard],
   },
   {
+    path: 'usuarios',
+    component: UsuariosComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditausuariosComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditausuariosComponent,
+      },
+    ],
+  },
+  {
+    path: 'items',
+    component: ItemComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaitemsComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaitemsComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
     path: 'tipos',
     component: TiposComponent,
     children: [
@@ -185,6 +215,36 @@ export const routes: Routes = [
     canActivate: [seguridadGuard],
   },
   {
+    path: 'comentarios',
+    component: ComentariosComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditacomentariosComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditacomentariosComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'itemusuario',
+    component: ItemusuarioComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaitemususuarioComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaitemususuarioComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
     path: 'rostros',
     component: RostroComponent,
     children: [
@@ -195,6 +255,40 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditarostroComponent,
+      },
+      {
+        path: 'vincularForma/:id',
+        component: VincularFormaComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'estilousuarios',
+    component: EstilousuarioComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaestilousuarioComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaestilousuarioComponent,
+      },
+    ],
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'estilos',
+    component: EstilosComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaestiloComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaestiloComponent,
       },
     ],
     canActivate: [seguridadGuard],

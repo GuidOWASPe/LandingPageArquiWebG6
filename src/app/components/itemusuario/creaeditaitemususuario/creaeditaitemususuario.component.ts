@@ -44,6 +44,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
   itemusuario: ItemUsuario= new ItemUsuario();
   id: number = 0;
   edicion: boolean = false;
+  fechaActual: Date = new Date();
   listausuarios:Usuarios[]=[];
   listaitems:Item[]=[];
 
@@ -67,7 +68,7 @@ export class CreaeditaitemususuarioComponent implements OnInit{
     this.form=this.formBuilder.group({
       hcodigo: [''],
       hfechaitemfav: ['', Validators.required],
-      hcalificacion: ['', Validators.required],
+      hcalificacion: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       husuario:['', Validators.required],
       hitem:['', Validators.required],
     });

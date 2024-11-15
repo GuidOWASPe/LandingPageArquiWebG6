@@ -50,7 +50,7 @@ export class CreaeditarolesComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hnombre: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],    
     });
   }
 

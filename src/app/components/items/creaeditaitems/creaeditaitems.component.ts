@@ -33,6 +33,35 @@ export class CreaeditaitemsComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   listaTipos: Tipo[] = [];
+  imagenes: string[] = [
+    'item1.png',
+    'item2.png',
+    'item3.png',
+    'item4.png',
+    'item5.png',
+    'item6.png',
+    'item7.png',
+    'item8.png',
+    'item9.png',
+    'item10.png',
+    'item11.png',
+    'item12.png',
+    'item13.png',
+    'item14.png',
+    'item15.png',
+    'item16.png',
+    'item17.png',
+    'item18.png',
+    'item19.png',
+    'item20.png',
+    'item21.png',
+    'item22.png',
+    'item23.png',
+    'item24.png',
+    'item25.png',
+    'item26.png',
+
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,11 +81,11 @@ export class CreaeditaitemsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hnombre: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
       htipo: ['', Validators.required],
-      hdescripcion: ['', Validators.required],
-      hcalificacion: ['', Validators.required],
-      husos: ['', Validators.required],
+      hdescripcion: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
+      hcalificacion: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      husos: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       himagen: ['', Validators.required],
     });
     this.tS.list().subscribe((data) => {

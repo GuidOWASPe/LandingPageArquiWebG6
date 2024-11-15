@@ -38,8 +38,13 @@
     </button>
   </div>
 
-    <!-- Tabla de rostros -->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Verificar si la tabla está vacía -->
+  <div *ngIf="dataSource.data.length === 0" style="text-align: center; margin-top: 2rem;">
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold;">No hay datos registrados.</p>
+  </div>
+
+  <!-- Tabla de Items Favoritos -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.data.length > 0">
       <ng-container matColumnDef="r1">
         <th mat-header-cell *matHeaderCellDef>Código</th>
         <td mat-cell *matCellDef="let element"> {{element.idRostro}} </td>
@@ -78,6 +83,14 @@
           <button mat-raised-button [routerLink]="['ediciones',element.idRostro]">
             <mat-icon style="color:rgb(8, 138, 95)">edit</mat-icon>Actualizar
           </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion03">
+        <th mat-header-cell *matHeaderCellDef> Detectar Forma </th>
+        <td mat-cell *matCellDef="let element" > 
+            <button mat-raised-button [routerLink]="['vincularForma',element.idRostro]">
+              <mat-icon style="color:rgb(14, 70, 255)">account_box</mat-icon> 
+            </button>          
         </td>
       </ng-container>
 

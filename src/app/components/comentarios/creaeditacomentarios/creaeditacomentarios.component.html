@@ -40,6 +40,9 @@
             <mat-error *ngIf="form.get('hmegustas')?.hasError('required')">
               El campo es obligatorio
             </mat-error>
+            <mat-error *ngIf="form.get('hmegustas')?.hasError('pattern')">
+              Solo se permiten números
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-column">
@@ -49,6 +52,7 @@
               matInput
               [matDatepicker]="picker"
               formControlName="hfechapublicada"
+              [max]="fechaActual"
             />
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
