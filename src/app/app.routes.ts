@@ -5,22 +5,6 @@ import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { TiposComponent } from './components/tipos/tipos.component';
 import { CreaeditatiposComponent } from './components/tipos/creaeditatipos/creaeditatipos.component';
-import { ComentariosComponent } from './components/comentarios/comentarios.component';
-import { CreaeditacomentariosComponent } from './components/comentarios/creaeditacomentarios/creaeditacomentarios.component';
-import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
-import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
-import { ItemComponent } from './components/items/item.component';
-import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
-import { ComentariosComponent } from './components/comentarios/comentarios.component';
-import { CreaeditacomentariosComponent } from './components/comentarios/creaeditacomentarios/creaeditacomentarios.component';
-import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
-import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
-import { ItemComponent } from './components/items/item.component';
-import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
 import { RostroComponent } from './components/rostro/rostro.component';
 import { CreaeditarostroComponent } from './components/rostro/creaeditarostro/creaeditarostro.component';
 import { EstilosComponent } from './components/estilos/estilos.component';
@@ -48,6 +32,14 @@ import { ConocenosComponent } from './components/landing/conocenos/conocenos.com
 import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { CreaeditausuariosComponent } from './components/usuarios/creaeditausuarios/creaeditausuarios.component';
+import { ItemComponent } from './components/items/item.component';
+import { CreaeditaitemsComponent } from './components/items/creaeditaitems/creaeditaitems.component';
+import { ComentariosComponent } from './components/comentarios/comentarios.component';
+import { CreaeditacomentariosComponent } from './components/comentarios/creaeditacomentarios/creaeditacomentarios.component';
+import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
+import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
 
 export const routes: Routes = [
   {
@@ -102,7 +94,6 @@ export const routes: Routes = [
       },
     ],
     canActivate: [seguridadGuard],
-    canActivate: [seguridadGuard],
   },
   {
     path: 'roles',
@@ -146,7 +137,6 @@ export const routes: Routes = [
         component: CreaeditaitemsComponent,
       },
     ],
-    canActivate: [seguridadGuard],
     canActivate: [seguridadGuard],
   },
   {
@@ -222,7 +212,6 @@ export const routes: Routes = [
       },
     ],
     canActivate: [seguridadGuard],
-    canActivate: [seguridadGuard],
   },
   {
     path: 'comentarios',
@@ -258,7 +247,6 @@ export const routes: Routes = [
     path: 'rostros',
     component: RostroComponent,
     children: [
-    children: [
       {
         path: 'nuevo',
         component: CreaeditarostroComponent,
@@ -292,12 +280,10 @@ export const routes: Routes = [
       {
         path: 'nuevo',
         component: CreaeditaestiloComponent,
-        path: 'nuevo',
-        component: CreaeditarostroComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditarostroComponent,
+        component: CreaeditaestiloComponent,
       },
     ],
     canActivate: [seguridadGuard],

@@ -13,27 +13,12 @@
     </button>
   </div>
 
-<mat-toolbar color="primary" class="custom-toolbar" *ngIf="verificar()">
-  <span class="app-title" routerLink="/homes" style="cursor: pointer;">StyleCheck</span>
-
-  <div class="nav-item" *ngIf="isAdmin()">
-    <button mat-button class="nav-button" routerLink="/usuarios">
-      <mat-icon>person</mat-icon>Usuarios
-    </button>
-  </div>
-
-  <div class="nav-item" *ngIf="isAdmin()">
-    <button mat-button class="nav-button" routerLink="/roles">
-      <mat-icon>shield</mat-icon>Roles
-    </button>
-  </div>
-
   <div class="nav-item">
-    <button mat-button class="nav-button" routerLink="/formas">
-    <button mat-button class="nav-button" routerLink="/formas">
-      <mat-icon>category</mat-icon>Formas
-    </button>
+      <button mat-button class="nav-button" routerLink="/formas">
+        <mat-icon>category</mat-icon>Formas
+      </button>
   </div>
+  
 
   <div class="nav-item" *ngIf="isAdmin()">
     <button mat-button class="nav-button" routerLink="/tipos">
