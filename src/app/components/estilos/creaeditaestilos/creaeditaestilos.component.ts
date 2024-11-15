@@ -55,6 +55,41 @@ export class CreaeditaestiloComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   fechaActual: Date = new Date();
+  
+  imagenesAleatorias: string[] = [
+    'assets/estilos/estilo1.png',
+    'assets/estilos/estilo2.png',
+    'assets/estilos/estilo3.png',
+    'assets/estilos/estilo4.png',
+    'assets/estilos/estilo5.png',
+    'assets/estilos/estilo6.png',
+    'assets/estilos/estilo7.png',
+    'assets/estilos/estilo8.png',
+    'assets/estilos/estilo9.png',
+    'assets/estilos/estilo10.png',
+    'assets/estilos/estilo11.png',
+    'assets/estilos/estilo12.png',
+    'assets/estilos/estilo13.png',
+    'assets/estilos/estilo14.png',
+    'assets/estilos/estilo15.png',
+    'assets/estilos/estilo16.png',
+    'assets/estilos/estilo17.png',
+    'assets/estilos/estilo18.png',
+    'assets/estilos/estilo19.png',
+    'assets/estilos/estilo20.png',
+    'assets/estilos/estilo21.png',
+    'assets/estilos/estilo22.png',
+    'assets/estilos/estilo23.png',
+    'assets/estilos/estilo24.png',
+    'assets/estilos/estilo25.png',
+    'assets/estilos/estilo26.png',
+    'assets/estilos/estilo27.png',
+    'assets/estilos/estilo28.png',
+    'assets/estilos/estilo29.png',
+    'assets/estilos/estilo30.png',
+  ];
+
+  imagenSeleccionada: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,8 +124,32 @@ export class CreaeditaestiloComponent implements OnInit {
     this.iS.list().subscribe((data) => {
       this.listaItem = data;
     });
-  }
+    this.form.get('hrostro')?.valueChanges.subscribe((value) => {
+      console.log(`Cambio detectado en hrostro: ${value}`);
+      this.actualizarImagenAleatoria();
+    });
 
+    this.form.get('hitem')?.valueChanges.subscribe((value) => {
+      console.log(`Cambio detectado en hitem: ${value}`);
+      this.actualizarImagenAleatoria();
+    });
+  }
+  actualizarImagenAleatoria(): void {
+    const rostroSeleccionado = this.form.get('hrostro')?.value;
+    const itemSeleccionado = this.form.get('hitem')?.value;
+  
+    // Verificar si ambos campos tienen valores
+    if (rostroSeleccionado && itemSeleccionado) {
+      const nuevaImagen =
+        this.imagenesAleatorias[
+          Math.floor(Math.random() * this.imagenesAleatorias.length)
+        ];
+  
+      // Actualizar el campo himagen y la vista previa de la imagen
+      this.form.patchValue({ himagen: nuevaImagen });
+      this.imagenSeleccionada = nuevaImagen;
+    }
+  }
   insertar(): void {
     if (this.form.valid) {
       this.estilo.idEstilo = this.form.value.hcodigo;
@@ -149,6 +208,7 @@ export class CreaeditaestiloComponent implements OnInit {
           himagen: new FormControl(data.imagenEstilo),
           hfechacre: new FormControl(data.fechaCreado),
         });
+        this.imagenSeleccionada = data.imagenEstilo;
       });
     }
   }
