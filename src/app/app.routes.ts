@@ -40,6 +40,7 @@ import { ComentariosComponent } from './components/comentarios/comentarios.compo
 import { CreaeditacomentariosComponent } from './components/comentarios/creaeditacomentarios/creaeditacomentarios.component';
 import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
 import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
+import { VincularFormaComponent } from './components/rostro/vincular-forma/vincular-forma.component';
 
 export const routes: Routes = [
   {
@@ -254,6 +255,10 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditarostroComponent,
+      },
+      {
+        path: 'vincularForma/:id',
+        component: VincularFormaComponent,
       },
     ],
     canActivate: [seguridadGuard],
