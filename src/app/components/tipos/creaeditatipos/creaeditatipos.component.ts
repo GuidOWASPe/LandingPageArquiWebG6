@@ -45,7 +45,7 @@ export class CreaeditatiposComponent implements OnInit{
 
     this.form = this.FormBuilder.group({
       hcodigo: [''],
-      hnombre: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],    
     });
   }
 

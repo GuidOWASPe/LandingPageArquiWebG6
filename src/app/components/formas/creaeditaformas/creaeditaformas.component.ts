@@ -44,8 +44,8 @@ export class CreaeditaformasComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hdescripcion: ['', Validators.required],
-      hnombre: ['', Validators.required],
+      hdescripcion: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
+      hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
     });
   }
 

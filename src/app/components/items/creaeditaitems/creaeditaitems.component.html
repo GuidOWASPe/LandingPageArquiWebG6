@@ -20,6 +20,9 @@
           <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
             El campo de Nombre es obligatorio
           </mat-error>
+          <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+            Solo se permiten letras
+          </mat-error>
         </mat-form-field>
       </div>
       </div>
@@ -47,6 +50,9 @@
           <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
             Ingrese una descripcion
           </mat-error>
+          <mat-error *ngIf="form.get('hdescripcion')?.hasError('pattern')">
+            Solo se permiten letras
+          </mat-error>
         </mat-form-field>
       </div>
       </div>
@@ -61,6 +67,9 @@
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')">
               Ingrese una Calificación
             </mat-error>
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
+              Solo se permiten números
+            </mat-error>
           </mat-form-field>
         </div>
         
@@ -71,6 +80,9 @@
           <input matInput formControlName="husos" />
           <mat-error *ngIf="form.get('husos')?.hasError('required')">
             Ingrese el Número de Usos
+          </mat-error>
+          <mat-error *ngIf="form.get('husos')?.hasError('pattern')">
+            Solo se permiten números
           </mat-error>
         </mat-form-field>
       </div>

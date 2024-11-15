@@ -19,6 +19,9 @@
         <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
           Ingrese el Nombre
         </mat-error>
+        <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+          Solo se permiten letras
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -30,6 +33,9 @@
         />
         <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
           Ingrese la descripcion
+        </mat-error>
+        <mat-error *ngIf="form.get('hdescripcion')?.hasError('pattern')">
+          Solo se permiten letras
         </mat-error>
       </mat-form-field>
 

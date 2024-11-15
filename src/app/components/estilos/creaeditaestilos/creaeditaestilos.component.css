@@ -87,6 +87,27 @@ input.mat-input-element {
     gap: 10px;
 }
 
+/* Contenedor para el campo de color */
+.color-picker-field .color-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Input de texto hexadecimal */
+.color-picker-field input.mat-input-element {
+    flex: 1;
+}
+
+/* Selector de color */
+.color-selector {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* Animación de entrada */
 @keyframes fadeIn {
     from {

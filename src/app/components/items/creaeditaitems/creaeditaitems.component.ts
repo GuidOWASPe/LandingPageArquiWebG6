@@ -52,11 +52,11 @@ export class CreaeditaitemsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hnombre: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
       htipo: ['', Validators.required],
-      hdescripcion: ['', Validators.required],
-      hcalificacion: ['', Validators.required],
-      husos: ['', Validators.required],
+      hdescripcion: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
+      hcalificacion: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      husos: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       himagen: ['', Validators.required],
     });
     this.tS.list().subscribe((data) => {

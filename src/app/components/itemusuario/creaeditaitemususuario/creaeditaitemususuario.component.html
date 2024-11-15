@@ -19,6 +19,7 @@
               matInput
               [matDatepicker]="picker"
               formControlName="hfechaitemfav"
+              [max]="fechaActual"
             />
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -42,6 +43,9 @@
             />
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')">
               Ingrese la calificación
+            </mat-error>
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
+              Solo se permiten números
             </mat-error>
           </mat-form-field>
         </div>

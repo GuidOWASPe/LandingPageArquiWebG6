@@ -62,7 +62,7 @@ export class CreaeditarostroComponent implements OnInit{
       hcodigo: [''],
       hforma: ['', Validators.required],
       husuario: ['', Validators.required],
-      hnombre: ['', [Validators.required, Validators.maxLength(100)]],
+      hnombre: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]],
       himagen: ['', [Validators.required, Validators.maxLength(500)]],
     });
     this.uS.list().subscribe((data) => {

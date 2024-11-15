@@ -51,6 +51,9 @@
               <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
                   El campo Nombre es obligatorio
               </mat-error>
+              <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+                Solo se permiten letras
+              </mat-error>
           </mat-form-field>
         </div>
       </div>

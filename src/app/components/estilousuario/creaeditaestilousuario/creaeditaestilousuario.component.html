@@ -15,7 +15,7 @@
         <div class="form-column">
           <mat-form-field>
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+            <input matInput [matDatepicker]="picker" formControlName="hfecha" [max]="fechaActual"/>
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
@@ -42,6 +42,9 @@
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')"
               >Debe de ingresar la Calificación</mat-error
             >
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
+              Solo se permiten números
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-column">
