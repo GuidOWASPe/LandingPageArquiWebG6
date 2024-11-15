@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,6 +45,7 @@ export class CreaeditaestiloComponent implements OnInit{
   estilo: Estilo = new Estilo();
   id: number = 0;
   edicion: boolean = false;
+  fechaActual:Date=new Date();
   
   constructor(
     private formBuilder: FormBuilder,
@@ -64,12 +65,12 @@ export class CreaeditaestiloComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hnombre: ['', Validators.required],
-      hrostro: ['', Validators.required],
-      hcolor: ['', Validators.required],
-      hitem: ['', Validators.required],
-      himagen: ['', Validators.required],
-      hfechacre: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.maxLength(100)]],
+      hrostro: ['', [Validators.required]],
+      hcolor: ['', [Validators.required, Validators.pattern(/^#([0-9a-fA-F]{6})$/)]],
+      hitem: ['', [Validators.required]],
+      himagen: ['', [Validators.required, Validators.maxLength(500)]],
+      hfechacre: ['', [Validators.required]]
     });
 
     this.rS.list().subscribe((data) => {
@@ -106,8 +107,11 @@ export class CreaeditaestiloComponent implements OnInit{
         })
       }
       this.router.navigate(['estilos']);
-    }else{
-      this.openSnackBar('Por favor, rellena todos los campos obligatorios');
+    } else {
+      
+        // Mensaje genérico si hay algún error no especificado
+        this.openSnackBar('Por favor, rellena todos los campos obligatorios');
+      
     }
   }
 
@@ -137,4 +141,6 @@ export class CreaeditaestiloComponent implements OnInit{
       });
     }
   }
+
+  
 }

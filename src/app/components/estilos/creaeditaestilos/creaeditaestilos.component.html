@@ -45,7 +45,10 @@
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="hnombre" />
             <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
-              Ingrese un Nombre
+              El nombre es obligatorio
+            </mat-error>
+            <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
+              El nombre no puede superar los 100 caracteres
             </mat-error>
           </mat-form-field>
         </div>
@@ -58,14 +61,20 @@
             <mat-label>Color</mat-label>
             <input matInput formControlName="hcolor" />
             <mat-error *ngIf="form.get('hcolor')?.hasError('required')">
-              Ingrese un Color
+              El color es obligatorio
+            </mat-error>
+            <mat-error *ngIf="form.get('hcolor')?.hasError('pattern')">
+              El color debe estar en formato hexadecimal, por ejemplo: #ff5733
             </mat-error>
           </mat-form-field>
         </div>
         <div class="form-column">
           <mat-form-field>
             <mat-label>Fecha de creación</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfechacre" />
+            <input matInput [matDatepicker]="picker" 
+            formControlName="hfechacre" 
+            [max]="fechaActual"
+            />
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>

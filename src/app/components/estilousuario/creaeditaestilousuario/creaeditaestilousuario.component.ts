@@ -46,6 +46,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
   edicion: boolean = false;
   listausuarios:Usuarios[]=[];
   listaestilos:Estilo[]=[];
+  fechaActual:Date=new Date();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,7 +68,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
     this.form=this.formBuilder.group({
       hcodigo: [''],
       hfecha: ['', Validators.required],
-      hcalificacion: ['', Validators.required],
+      hcalificacion: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       husuario:['', Validators.required],
       hestilo:['', Validators.required],
     });
@@ -82,12 +83,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
   insertar(): void {
 
     if (this.form.valid) {
-      const fechaIngresada = new Date(this.form.value.hfecha);
-      const fechaActual = new Date();
-      if (fechaIngresada > fechaActual) {
-        this.openSnackBar('La fecha debe ser menor a la fecha actual');
-        return;
-      }
+      
       this.estilousuario.idEstiloUsuario = this.form.value.hcodigo;
       this.estilousuario.fechaEstiloFav = this.form.value.hfecha;
       this.estilousuario.calificacion = this.form.value.hcalificacion;
