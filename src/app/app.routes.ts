@@ -39,6 +39,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ConocenosComponent } from './components/landing/conocenos/conocenos.component';
 import { EstilosdiComponent } from './components/landing/estilosdi/estilosdi.component';
 import { WebcamComponent } from './components/landing/webcam/webcam.component';
+import { VincularFormaComponent } from './components/rostro/vincular-forma/vincular-forma.component';
 
 export const routes: Routes = [
   {
@@ -192,6 +193,10 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditarostroComponent,
+      },
+      {
+        path: 'vincularForma/:id',
+        component: VincularFormaComponent,
       },
     ],
     canActivate: [seguridadGuard],

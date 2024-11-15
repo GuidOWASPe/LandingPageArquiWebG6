@@ -40,6 +40,7 @@ export class ListarrostroComponent implements OnInit {
     'r5',
     'accion01',
     'accion02',
+    'accion03'
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
