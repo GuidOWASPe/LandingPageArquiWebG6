@@ -7,21 +7,52 @@ import { RouterModule } from '@angular/router';
 import { Estilo } from '../../../models/Estilo';
 import { EstiloService } from '../../../services/estilo.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listarestilo',
   standalone: true,
-  imports: [MatTableModule,MatIconModule,MatButtonModule,RouterModule, MatPaginatorModule, MatToolbarModule],
+  imports: [
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule,
+    MatPaginatorModule,
+    MatToolbarModule,
+    MatSnackBarModule,
+    MatInputModule,
+    FormsModule
+  ],
   templateUrl: './listarestilos.component.html',
-  styleUrl: './listarestilos.component.css'
+  styleUrl: './listarestilos.component.css',
 })
-export class ListarestiloComponent implements OnInit{
+export class ListarestilosComponent implements OnInit {
   dataSource: MatTableDataSource<Estilo> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5', 'accion01', 'accion02'];
+  filterValue: string = '';
 
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  displayedColumns: string[] = [
+    'c1',
+    'c2',
+    'c3',
+    'c4',
+    'c5',
+    'c6',
+    'c7',
+    'accion01',
+    'accion02',
+  ];
 
-  constructor(private eT: EstiloService){}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(
+    private eT: EstiloService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {}
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -38,11 +69,30 @@ export class ListarestiloComponent implements OnInit{
     });
   }
 
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombreEstilo.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+    });
+  }
+
   eliminar(id: number) {
-    this.eT.delete(id).subscribe((data) => {
-      this.eT.list().subscribe((data) => {
-        this.eT.setList(data);
-      });
+    const dialogRef = this.dialog.open(MatDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.eT.delete(id).subscribe((data) => {
+          this.eT.list().subscribe((data) => {
+            this.eT.setList(data);
+            this.openSnackBar('Elemento eliminado correctamente.');
+          });
+        });
+      }
     });
   }
 }

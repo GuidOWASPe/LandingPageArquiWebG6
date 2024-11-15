@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Estilo } from '../models/Estilo';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
+import { ReporteEstilosPorUsuarioDTO } from '../models/ReporteEstilosPorUsuarioDTO';
+import { CantidadEstiloColorFormaDTO } from '../models/CantidadEstiloColorFormaDTO';
 const base_url = environment.base;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +18,7 @@ export class EstiloService {
   list() {
     return this.http.get<Estilo[]>(this.url);
   }
-
+  
   insert(eT: Estilo) {
     return this.http.post(this.url, eT);
   }
@@ -31,6 +34,7 @@ export class EstiloService {
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
+
   listId(id: number) {
     return this.http.get<Estilo>(`${this.url}/${id}`);
   }
@@ -38,4 +42,11 @@ export class EstiloService {
   update(eT: Estilo) {
     return this.http.put(this.url,eT);
   }
+  cantidadEstilosPorUsuario():Observable<ReporteEstilosPorUsuarioDTO[]>{
+    return this.http.get<ReporteEstilosPorUsuarioDTO[]>(`${this.url}/CantidadEstilosPorUsuario`)
+  }
+  popularidadFormasYColoresEstilo():Observable<CantidadEstiloColorFormaDTO[]>{
+    return this.http.get<CantidadEstiloColorFormaDTO[]>(`${this.url}/PopularidadFormasYColoresEstilo`)
+  }
+  
 }

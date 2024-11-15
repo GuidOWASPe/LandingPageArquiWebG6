@@ -80,6 +80,7 @@ export class CreaeditaformasComponent implements OnInit {
   }
 
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['formas']);
   }
 

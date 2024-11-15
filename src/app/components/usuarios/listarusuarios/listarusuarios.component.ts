@@ -10,6 +10,8 @@ import { Usuarios } from '../../../models/Usuarios';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listarusuarios',
@@ -22,12 +24,16 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
     MatToolbarModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './listarusuarios.component.html',
   styleUrl: './listarusuarios.component.css',
 })
 export class ListarusuariosComponent implements OnInit {
   dataSource: MatTableDataSource<Usuarios> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -63,6 +69,13 @@ export class ListarusuariosComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.username.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
 
   openSnackBar(message: string) {

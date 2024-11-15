@@ -1,21 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EstiloUsuario } from '../models/EstiloUsuario';
-import { environment } from '../environments/environment';
-import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Observable, Subject } from 'rxjs';
+import { EstiloUsuarioConPCDTO } from '../models/EstiloUsuarioConPCDTO';
 const base_url = environment.base;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EstiloUsuarioService {
-  private url = `${base_url}/estiloUsuarios`;
-  listaCambio=new Subject<EstiloUsuario[]>()
-  constructor(private http:HttpClient) { }
+  private url = `${base_url}/estiloUsuario`;
+  listaCambio = new Subject<EstiloUsuario[]>();
+  constructor(private http: HttpClient) {}
   list() {
     return this.http.get<EstiloUsuario[]>(this.url);
   }
-  insert(tt: EstiloUsuario) {
-    return this.http.post(this.url, tt);
+  insert(eu: EstiloUsuario) {
+    return this.http.post(this.url, eu);
   }
   getList() {
     return this.listaCambio.asObservable();
@@ -23,15 +24,22 @@ export class EstiloUsuarioService {
   setList(listaNueva: EstiloUsuario[]) {
     this.listaCambio.next(listaNueva);
   }
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  listId(id: number){
+  listId(id: number) {
     return this.http.get<EstiloUsuario>(`${this.url}/${id}`);
   }
 
-  update(f: EstiloUsuario){
-    return this.http.put(this.url, f);
+  update(esu: EstiloUsuario) {
+    return this.http.put(this.url, esu);
+  }
+  obtenerEstiloDeUsuarioConPeorCalifiacion(): Observable<
+    EstiloUsuarioConPCDTO[]
+  > {
+    return this.http.get<EstiloUsuarioConPCDTO[]>(
+      `${this.url}/ListarEstiloDeUsuarioConPeorCalifiacion`
+    );
   }
 }

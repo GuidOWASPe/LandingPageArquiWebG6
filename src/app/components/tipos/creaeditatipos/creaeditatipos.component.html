@@ -1,5 +1,7 @@
-<div class="container" style="text-align: center; margin: 5%">
-  <div><h1>Registro de Tipos</h1></div>
+<div class="container" style="text-align: center">
+  <div style="margin: 5%">
+    <h1>Registro de Tipos</h1>
+  </div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -14,8 +16,8 @@
           placeholder="Ingresar nombre"
           formControlName="hnombre"
         />
-        <mat-error *ngIf="form.get('hnombre')?.hasError('required') && form.get('hnombre')?.touched">
-          El campo descripción es obligatorio.
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+          >El campo Nombre es obligatorio
         </mat-error>
       </mat-form-field>
 

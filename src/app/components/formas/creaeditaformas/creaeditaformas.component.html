@@ -1,5 +1,7 @@
-<div class="container" style="text-align: center; margin: 5%">
-  <div><h1>Registro de Formas</h1></div>
+<div class="container" style="text-align: center">
+  <div style="margin: 5%">
+    <h1>Registro de Formas</h1>
+  </div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -7,41 +9,38 @@
         <input matInput formControlName="hcodigo" />
       </mat-form-field>
 
-<mat-form-field class="example-full-width">
-  <mat-label>Descripción</mat-label>
-  <input
-    matInput
-    placeholder="Ingresar descripcion"
-    formControlName="hdescripcion"
-  />
-  <mat-error *ngIf="form.get('hdescripcion')?.hasError('required') && form.get('hdescripcion')?.touched">
-    El campo descripción es obligatorio.
-  </mat-error>
-</mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Ingresar nombre"
+          formControlName="hnombre"
+        />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+          Ingrese el Nombre
+        </mat-error>
+      </mat-form-field>
 
-<mat-form-field class="example-full-width">
-  <mat-label>Nombre</mat-label>
-  <input
-    matInput
-    placeholder="Ingresar nombre"
-    formControlName="hnombre"
-  />
-  <mat-error *ngIf="form.get('hnombre')?.hasError('required') && form.get('hnombre')?.touched">
-    El campo nombre es obligatorio.
-  </mat-error>
-</mat-form-field>
-
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <input
+          matInput
+          placeholder="Ingresar descripcion"
+          formControlName="hdescripcion"
+        />
+        <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
+          Ingrese la descripcion
+        </mat-error>
+      </mat-form-field>
 
       <div class="buttons">
         <button mat-flat-button class="custom-button" (click)="cancel()">
           Cancelar
         </button>
-        <button mat-flat-button class="custom-button">Registrar</button>
+        <button mat-flat-button class="custom-button" type="submit">
+          Registrar
+        </button>
       </div>
-      <div>
-        <button (click)="ejecutarDeteccion()">Detectar Forma de Rostro</button>
-      </div>
-      
     </form>
   </div>
 </div>

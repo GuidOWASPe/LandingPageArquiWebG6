@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-listarformas',
@@ -20,12 +22,16 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     RouterModule,
     MatButtonModule,
     MatSnackBarModule,
+    FormsModule, 
+    MatInputModule
   ],
   templateUrl: './listarformas.component.html',
   styleUrl: './listarformas.component.css',
 })
 export class ListarformasComponent implements OnInit {
   dataSource: MatTableDataSource<Forma> = new MatTableDataSource();
+  filterValue: string = '';
+
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -51,6 +57,13 @@ export class ListarformasComponent implements OnInit {
     });
   }
 
+  applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      data.nombreForma.trim().toLowerCase().includes(filter);
+
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
@@ -59,7 +72,6 @@ export class ListarformasComponent implements OnInit {
 
   eliminar(id: number): void {
     const dialogRef = this.dialog.open(MatDialogComponent);
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.fS.delete(id).subscribe(() => {
