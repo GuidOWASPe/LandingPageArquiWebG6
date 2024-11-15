@@ -48,6 +48,8 @@ export class CreaeditausuariosComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   listaRoles: Rol[] = [];
+  fechaActual: Date = new Date();
+
   listaPaises: { value: String; viewValue: string }[] = [
     { value: 'Argentina', viewValue: 'Argentina' },
     { value: 'Australia', viewValue: 'Australia' },
@@ -105,6 +107,13 @@ export class CreaeditausuariosComponent implements OnInit {
     { value: 'Masculino', viewValue: 'Masculino' },
     { value: 'Otro', viewValue: 'Otro' },
   ];
+  imagenes: string[] = [
+    'Avatar 1.jpg',
+    'Avatar 2.jpg',
+    'Avatar 3.jpg',
+    'Avatar 4.jpg',
+    'Avatar 5.jpg',
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -125,11 +134,10 @@ export class CreaeditausuariosComponent implements OnInit {
     this.form = this.formBuilder.group({
       hcodigo: [''],
       husername: ['', Validators.required],
-      hpassword: ['', Validators.required],
+      hpassword: ['', [Validators.required, Validators.minLength(6)]],
       hrol: ['', Validators.required],
-      hcorreo: ['', Validators.required],
+      hcorreo: ['', [Validators.required, Validators.email]],
       hfechanac: ['', Validators.required],
-      hfechareg: ['', Validators.required],
       hpais: ['', Validators.required],
       hsexo: ['', Validators.required],
       hfoto: ['', Validators.required],
@@ -147,7 +155,7 @@ export class CreaeditausuariosComponent implements OnInit {
       this.usuario.rol.idRol = this.form.value.hrol;
       this.usuario.correoUsuario = this.form.value.hcorreo;
       this.usuario.fechaNacimientoUsuario = this.form.value.hfechanac;
-      this.usuario.fechaRegistroUsuario = this.form.value.hfechareg;
+      this.usuario.fechaRegistroUsuario = new Date();
       this.usuario.paisUsuario = this.form.value.hpais;
       this.usuario.sexoUsuario = this.form.value.hsexo;
       this.usuario.fotoPerfilUsuario = this.form.value.hfoto;

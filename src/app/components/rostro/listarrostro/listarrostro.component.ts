@@ -11,6 +11,7 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarrostro',
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatPaginatorModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './listarrostro.component.html',
   styleUrl: './listarrostro.component.css',

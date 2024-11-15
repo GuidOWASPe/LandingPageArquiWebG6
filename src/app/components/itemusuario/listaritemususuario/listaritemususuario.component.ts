@@ -12,6 +12,7 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ItemUsuario } from '../../../models/ItemUsuario';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listaritemususuario',
@@ -25,7 +26,8 @@ import { ItemUsuario } from '../../../models/ItemUsuario';
     MatToolbarModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './listaritemususuario.component.html',
   styleUrl: './listaritemususuario.component.css',

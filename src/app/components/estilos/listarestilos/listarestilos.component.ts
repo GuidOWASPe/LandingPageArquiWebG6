@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarestilo',
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './listarestilos.component.html',
   styleUrl: './listarestilos.component.css',

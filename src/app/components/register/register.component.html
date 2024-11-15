@@ -8,7 +8,9 @@
       viewBox="0 0 24 24"
       class="arrow-icon"
     >
-      <path d="M10.707 5.707a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L6.414 11H20a1 1 0 1 0 0-2H6.414l4.293-3.293z" />
+      <path
+        d="M10.707 5.707a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L6.414 11H20a1 1 0 1 0 0-2H6.414l4.293-3.293z"
+      />
     </svg>
     <span>Volver al Inicio</span>
   </div>
@@ -75,12 +77,12 @@
           <input
             matInput
             [matDatepicker]="picker"
-            formControlName="hfechanac" 
+            formControlName="hfechanac"
             [max]="fechaActual"
           />
           <mat-datepicker-toggle
             matIconSuffix
-            [for]="picker" 
+            [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="form.get('hfechanac')?.hasError('required')">
@@ -89,7 +91,25 @@
         </mat-form-field>
       </div>
 
+      <!-- Nuevo campo para seleccionar la imagen de perfil -->
       <div class="form-row">
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Seleccione un avatar</mat-label>
+          <mat-select formControlName="hfoto" class="custom-select">
+            <mat-option *ngFor="let imagen of imagenes" [value]="imagen">
+              <img
+                [src]="'assets/fotoPerfil/' + imagen"
+                alt="Imagen"
+                class="avatar-option"
+              />
+              {{ imagen.split(".")[0] }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('hfoto')?.hasError('required')">
+            Seleccione una imagen
+          </mat-error>
+        </mat-form-field>
+
         <mat-form-field class="example-full-width" id="pais">
           <mat-label>País</mat-label>
           <mat-select formControlName="hpais">
@@ -101,26 +121,26 @@
             Seleccione un país
           </mat-error>
         </mat-form-field>
+      </div>
 
-        <div class="gender-section">
-          <label class="gender-label">Género</label>
-          <div class="gender-checkbox">
-            <mat-checkbox
-              [checked]="selectedSexo === 'Masculino'"
-              (change)="onCheckChange('Masculino')"
-              >Masculino</mat-checkbox
-            >
-            <mat-checkbox
-              [checked]="selectedSexo === 'Femenino'"
-              (change)="onCheckChange('Femenino')"
-              >Femenino</mat-checkbox
-            >
-            <mat-checkbox
-              [checked]="selectedSexo === 'Otro'"
-              (change)="onCheckChange('Otro')"
-              >Otro</mat-checkbox
-            >
-          </div>
+      <div class="gender-section">
+        <label class="gender-label">Género</label>
+        <div class="gender-checkbox">
+          <mat-checkbox
+            [checked]="selectedSexo === 'Masculino'"
+            (change)="onCheckChange('Masculino')"
+            ><label style="color: white;">Masculino</label></mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="selectedSexo === 'Femenino'"
+            (change)="onCheckChange('Femenino')"
+            ><label style="color: white;">Femenino</label></mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="selectedSexo === 'Otro'"
+            (change)="onCheckChange('Otro')"
+            ><label style="color: white;">Otro</label></mat-checkbox
+          >
         </div>
       </div>
 

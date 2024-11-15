@@ -80,6 +80,52 @@ input.mat-input-element {
     background-color: #1ABC9C;
 }
 
+/* Estilos para el mat-select */
+.custom-select .mat-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  
+  .custom-select .mat-select-arrow {
+    margin-left: 8px;
+  }
+  
+  /* Estilos para la imagen dentro de cada opción */
+  .avatar-option {
+    width: 30px; /* Tamaño de la imagen */
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+  }
+  
+  /* Estilo para la imagen seleccionada en el mat-select */
+  .custom-select .mat-select-trigger img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+  }
+  
+  /* Añadir un borde sutil al select para que destaque */
+  .custom-select .mat-select-trigger {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Efecto de hover sobre las opciones */
+  .mat-option:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Estilo de la opción seleccionada */
+  .mat-option.mat-selected {
+    background-color: #e1f5fe;
+    color: #2196f3;
+  }
+
 /* Centrado de botones */
 .buttons {
     display: flex;

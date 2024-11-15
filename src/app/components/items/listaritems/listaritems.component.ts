@@ -11,6 +11,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listaritems',
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './listaritems.component.html',
   styleUrl: './listaritems.component.css',

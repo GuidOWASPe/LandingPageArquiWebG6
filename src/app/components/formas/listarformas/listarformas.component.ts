@@ -11,6 +11,7 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarformas',
@@ -23,7 +24,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatSnackBarModule,
     FormsModule, 
-    MatInputModule
+    MatInputModule,
+    CommonModule
   ],
   templateUrl: './listarformas.component.html',
   styleUrl: './listarformas.component.css',
