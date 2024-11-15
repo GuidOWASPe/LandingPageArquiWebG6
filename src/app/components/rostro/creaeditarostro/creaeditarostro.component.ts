@@ -14,6 +14,10 @@ import { Forma } from '../../../models/Forma';
 import { RostroService } from '../../../services/rostro.service';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatIcon } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MediaService } from '../../../services/media.service';
 
 @Component({
   selector: 'app-creaeditarostro',
@@ -22,7 +26,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     provideNativeDateAdapter()],
   imports: [
-    ReactiveFormsModule,
+    ReactiveFormsModule,  
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
@@ -30,19 +34,32 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatError,
     CommonModule,
     MatSnackBarModule,
+    MatIconModule,
+    MatCardModule
   ],
   templateUrl: './creaeditarostro.component.html',
   styleUrl: './creaeditarostro.component.css'
 })
 export class CreaeditarostroComponent implements OnInit{
   form: FormGroup = new FormGroup({});
+  ocultarBoton: boolean = true
+  progress_bar: boolean = true
+  eliminarImage: boolean = true
+
   listaUsuarios: Usuarios[] = [];
   listaFormas: Forma[] = [];
   rostro: Rostro = new Rostro();
   id: number = 0;
   edicion: boolean = false;
+  previewUrls: (string | ArrayBuffer | null)[] = [null, null, null, null]
+  images: (File | null)[] = [null, null, null, null];
+  urlsImages: (string)[] = [];
+  files: (File | null)[] = [null, null, null, null];
+  uploadedImageUrl: string = ''; 
   constructor(
     private formBuilder: FormBuilder,
+    private mS: MediaService  ,
+    private _snackBar: MatSnackBar,
     private uS: UsuariosService,
     private fS: FormasService,
     private rS: RostroService,
@@ -72,13 +89,74 @@ export class CreaeditarostroComponent implements OnInit{
       this.listaFormas = data;
     });
   }
+  async register(file: File) {
+    this.progress_bar = false;
+  // Considerando que solo se almacena una imagen principal
+      try {
+        const res = await this.upload(file).toPromise();
+        this.uploadedImageUrl = res.url;  // Guarda la URL en la propiedad
+        this.form.patchValue({ himagen: this.uploadedImageUrl }); 
+        this.mostrarMensaje('Imagen subida exitosamente');
+      } catch (error) {
+        this.mostrarMensaje('Error al registrar la imagen');
+      }
+
+  
+  }
+  mostrarMensaje(ms: string) {
+    let mensaje = ms
+    this._snackBar.open(mensaje, 'Cerrar', {
+      duration: 4000,
+    });
+  }
+  upload(file: File) {
+    const formData = new FormData()
+    formData.append('file', file);
+    return this.mS.uploadFile(formData)
+  }
+  onFileSelected(event: Event, num: number) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrls[num] = reader.result;
+        this.files[num] = file;
+        this.register(file); 
+      };
+      reader.readAsDataURL(file);
+      if (num == 0) { (this.ocultarBoton = false) }
+    }
+  }
+
+  ClearImage(i: number) {
+    const filename = this.uploadedImageUrl.split('/').pop(); // Obtiene el nombre del archivo
+    if (filename) {
+      this.mS.deleteFile(filename).subscribe(
+        () => {
+          this.mostrarMensaje('Imagen eliminada del servidor');
+          this.form.patchValue({ himagen: null }); // Limpia el campo himagen
+          this.previewUrls[i] = null; // Limpia la vista previa de la imagen
+          this.files[i] = null;
+          this.uploadedImageUrl = ''; // Limpia la URL de la imagen subida
+          this.ocultarBoton = true; // Opcional: Oculta el botón si es necesario
+          (document.getElementById('imagePrincipal') as HTMLInputElement).value = ''; 
+        },
+        (error) => {
+          console.error(error);
+          this.mostrarMensaje('Error al eliminar la imagen del servidor');
+        }
+      );
+    }
+  }
+
+  
   insertar() {
-    if(this.form.valid && this.form.value.hnombre && this.form.value.himagen){
+    if(this.form.valid ){
       this.rostro.idRostro = this.form.value.hcodigo;
       this.rostro.fo.idForma=this.form.value.hforma;
       this.rostro.usu.idUsuario=this.form.value.husuario;
       this.rostro.nombre=this.form.value.hnombre;
-      this.rostro.imagenRostro=this.form.value.himagen;
+      this.rostro.imagenRostro = this.form.value.himagen;
       if (this.edicion) {
         this.rS.update(this.rostro).subscribe((data) => {
           this.rS.list().subscribe((data) => {
@@ -102,7 +180,7 @@ export class CreaeditarostroComponent implements OnInit{
 
   cancel(): void {
     this.openSnackBar('Operación cancelada');
-    this.router.navigate(['itemusuario']);
+    this.router.navigate(['rostros']);
   }
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
@@ -120,6 +198,10 @@ export class CreaeditarostroComponent implements OnInit{
           hnombre: new FormControl(data.nombre),
           himagen: new FormControl(data.imagenRostro),
         });
+        if (data.imagenRostro) {
+          this.uploadedImageUrl = data.imagenRostro;
+          this.previewUrls[0] = data.imagenRostro; // Asigna la URL a la vista previa
+        }
       });
     }
   }

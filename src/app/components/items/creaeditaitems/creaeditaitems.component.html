@@ -91,13 +91,16 @@
       <!-- Imagen -->
       <div class="form-row">
         <div class="form-column">
-          <mat-form-field class="example-full-width">
-            <mat-label>Imagen</mat-label>
-            <input matInput [disabled]="edicion" formControlName="himagen" />
-            <mat-error *ngIf="form.get('himagen')?.hasError('required')">
-              Ingrese una Imagen
-            </mat-error>
+          <mat-form-field appearance="fill">
+            <mat-label>Selecciona una imagen</mat-label>
+            <mat-select formControlName="himagen" class="custom-select">
+              <mat-option *ngFor="let imagen of imagenes" [value]="imagen">
+                <img [src]="'assets/items/' + imagen" alt="Imagen" class="avatar-option">
+                {{ imagen.split('.')[0] }} <!-- Mostrar el nombre de la imagen -->
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+
         </div>
       </div>
 
