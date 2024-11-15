@@ -81,12 +81,16 @@
         <div class="form-column">
           <mat-form-field class="example-full-width">
             <mat-label>Imagen</mat-label>
-            <input matInput formControlName="himagen" />
+            <input matInput formControlName="himagen" readonly />
             <mat-error *ngIf="form.get('himagen')?.hasError('required')">
               Ingrese una imagen
             </mat-error>
           </mat-form-field>
         </div>
+      </div>
+      
+      <div *ngIf="imagenSeleccionada" style="text-align: center; margin-top: 1rem;">
+        <img [src]="imagenSeleccionada" alt="Imagen seleccionada" style="max-width: 200px; height: auto;">
       </div>
 
       <div class="buttons">
