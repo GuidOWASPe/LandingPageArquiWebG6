@@ -179,7 +179,7 @@ export class CreaeditarostroComponent implements OnInit{
 
   cancel(): void {
     this.openSnackBar('Operación cancelada');
-    this.router.navigate(['itemusuario']);
+    this.router.navigate(['rostros']);
   }
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
