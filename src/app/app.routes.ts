@@ -1,4 +1,3 @@
-import { Routes } from '@angular/router';
 import { CreaeditaformasComponent } from './components/formas/creaeditaformas/creaeditaformas.component';
 import { FormasComponent } from './components/formas/formas.component';
 import { RolesComponent } from './components/roles/roles.component';
@@ -41,6 +40,7 @@ import { CreaeditacomentariosComponent } from './components/comentarios/creaedit
 import { ItemusuarioComponent } from './components/itemusuario/itemusuario.component';
 import { CreaeditaitemususuarioComponent } from './components/itemusuario/creaeditaitemususuario/creaeditaitemususuario.component';
 import { VincularFormaComponent } from './components/rostro/vincular-forma/vincular-forma.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
