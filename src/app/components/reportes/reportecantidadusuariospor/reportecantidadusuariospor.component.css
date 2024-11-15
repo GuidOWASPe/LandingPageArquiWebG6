@@ -1,13 +1,3 @@
-.chart-container {
-  width: 60%; 
-  margin: 0 auto; 
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
 
 @media (max-width: 768px) {
   .chart-container {
@@ -15,16 +5,16 @@
     padding: 15px;
   }
 }
+
 .no-data-message {
   text-align: center;
-  font-size: 18px;
+  font-size: 10px;
   color: #95A5A6;
   margin-top: 20px;
   font-weight: bold;
 }
-
-
 h1 {
+  font-size: 1em; /* Tamaño de letra reducido */
   color: #2C3E50; 
   font-size: 2.4em; 
   text-align: center;
@@ -36,4 +26,13 @@ h1 {
   text-align: center;
   margin-bottom: 30px; 
   margin-top: 20px; 
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5em; /* Tamaño de letra reducido solo en pantallas pequeñas */
+  }
+
+  .no-data-message {
+    font-size: 7px; /* Reducir aún más en pantallas pequeñas */
+  }
 }
