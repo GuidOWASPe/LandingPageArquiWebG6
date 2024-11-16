@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarestilo',
@@ -25,28 +27,17 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    MatCardModule
   ],
   templateUrl: './listarestilos.component.html',
   styleUrl: './listarestilos.component.css',
 })
 export class ListarestilosComponent implements OnInit {
-  dataSource: MatTableDataSource<Estilo> = new MatTableDataSource();
-  filterValue: string = '';
-
-  displayedColumns: string[] = [
-    'c1',
-    'c2',
-    'c3',
-    'c4',
-    'c5',
-    'c6',
-    'c7',
-    'accion01',
-    'accion02',
-  ];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  estilos: Estilo[] = []; 
+  filteredEstilos: Estilo[] = []; 
+  filterValue: string = ''; 
 
   constructor(
     private eT: EstiloService,
@@ -54,26 +45,25 @@ export class ListarestilosComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
-
   ngOnInit(): void {
     this.eT.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.estilos = data; 
+      this.filteredEstilos = data; 
     });
     this.eT.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.estilos = data; 
+      this.filteredEstilos = data; 
     });
   }
 
   applyFilter(): void {
-    this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.NombreEstilo.trim().toLowerCase().includes(filter);
-
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+    if (this.filterValue.trim()) {
+      this.filteredEstilos = this.estilos.filter((estilo) =>
+        estilo.nombreEstilo.toLowerCase().includes(this.filterValue.trim().toLowerCase())
+      );
+    } else {
+      this.filteredEstilos = this.estilos;
+    }
   }
 
   openSnackBar(message: string) {
@@ -86,9 +76,10 @@ export class ListarestilosComponent implements OnInit {
     const dialogRef = this.dialog.open(MatDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.eT.delete(id).subscribe((data) => {
+        this.eT.delete(id).subscribe(() => {
           this.eT.list().subscribe((data) => {
-            this.eT.setList(data);
+            this.estilos = data; 
+            this.filteredEstilos = data; 
             this.openSnackBar('Elemento eliminado correctamente.');
           });
         });

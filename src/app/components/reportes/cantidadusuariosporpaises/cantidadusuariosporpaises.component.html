@@ -1,13 +1,10 @@
 <div>
-  <div class="centered-text">
-    <h1>Frecuencia de Usuarios por País</h1>
-  </div> 
     <div *ngIf="noDataMessage; else chartContent" class="no-data-message">
       {{ noDataMessage }}
     </div>
   
     <ng-template #chartContent>
-      <div class="chart-container" style="text-align: center">
+      
       <canvas
         baseChart
         [datasets]="barChartData"
@@ -16,6 +13,6 @@
         [legend]="barChartLegend"
         [type]="barChartType">
       </canvas>
-      </div>
+  
     </ng-template>
   </div>

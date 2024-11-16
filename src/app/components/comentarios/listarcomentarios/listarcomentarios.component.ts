@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarcomentarios',
@@ -25,7 +27,9 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    CommonModule
   ],
   templateUrl: './listarcomentarios.component.html',
   styleUrl: './listarcomentarios.component.css',

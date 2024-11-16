@@ -40,10 +40,24 @@ export class LoginComponent implements OnInit {
     let request = new JwtRequest();
     request.username = this.username;
     request.password = this.password;
+    
     this.loginService.login(request).subscribe(
       (data: any) => {
+        // Guardar el token en sessionStorage
         sessionStorage.setItem('token', data.jwttoken);
-        this.router.navigate(['homes']);
+
+        // Obtener el rol del usuario desde el token
+        const userRole = this.loginService.showRole();
+
+        // Redirigir según el rol
+        if (userRole === 'ADMIN') {
+          this.router.navigate(['/homes']);
+        } else if (userRole === 'CLIENTE') {
+          this.router.navigate(['/home']);
+        } else {
+          this.mensaje = 'Rol no reconocido.';
+          this.snackBar.open(this.mensaje, 'Aviso', { duration: 2000 });
+        }
       },
       (error) => {
         this.mensaje = 'Credenciales incorrectas!!!';

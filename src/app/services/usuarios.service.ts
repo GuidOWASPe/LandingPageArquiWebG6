@@ -13,6 +13,7 @@ const base_url = environment.base
 })
 export class UsuariosService {
   private url = `${base_url}/usuarios`;
+  
   private listaCambio = new Subject<Usuarios[]>();
 
   constructor(private http: HttpClient) { }
@@ -22,6 +23,10 @@ export class UsuariosService {
     
   insert(usu: Usuarios) {
     return this.http.post(this.url, usu);
+  }
+
+  register(usu: Usuarios) {
+    return this.http.post(`${this.url}/userRegister`, usu);
   }
 
   getList() {

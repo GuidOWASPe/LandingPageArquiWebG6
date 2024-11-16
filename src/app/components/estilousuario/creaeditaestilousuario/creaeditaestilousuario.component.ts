@@ -16,6 +16,7 @@ import { EstiloService } from '../../../services/estilo.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EstiloUsuario } from '../../../models/EstiloUsuario';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-creaeditaestilousuario',
@@ -34,6 +35,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
+    MatCheckboxModule
   ],
   templateUrl: './creaeditaestilousuario.component.html',
   styleUrl: './creaeditaestilousuario.component.css'
@@ -46,6 +48,8 @@ export class CreaeditaestilousuarioComponent implements OnInit{
   edicion: boolean = false;
   listausuarios:Usuarios[]=[];
   listaestilos:Estilo[]=[];
+  fechaActual:Date=new Date();
+  gustar: boolean | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,8 +70,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
 
     this.form=this.formBuilder.group({
       hcodigo: [''],
-      hfecha: ['', Validators.required],
-      hcalificacion: ['', Validators.required],
+      hcalificacion: ['', Validators.pattern("^[0-9]*$")],
       husuario:['', Validators.required],
       hestilo:['', Validators.required],
     });
@@ -79,17 +82,16 @@ export class CreaeditaestilousuarioComponent implements OnInit{
 });
   }
 
-  insertar(): void {
+  actualizarFecha(event: any, isYes: boolean): void {
+    this.gustar = isYes ? true : false;
+    // Actualizar directamente la fecha en el objeto
+    this.estilousuario.fechaEstiloFav = this.gustar ? new Date(Date.now()) : null;
+  }
 
+  insertar(): void {
     if (this.form.valid) {
-      const fechaIngresada = new Date(this.form.value.hfecha);
-      const fechaActual = new Date();
-      if (fechaIngresada > fechaActual) {
-        this.openSnackBar('La fecha debe ser menor a la fecha actual');
-        return;
-      }
+      this.estilousuario.fechaEstiloFav = this.gustar ? new Date(Date.now()) : null;  
       this.estilousuario.idEstiloUsuario = this.form.value.hcodigo;
-      this.estilousuario.fechaEstiloFav = this.form.value.hfecha;
       this.estilousuario.calificacion = this.form.value.hcalificacion;
       this.estilousuario.usuario.idUsuario = this.form.value.husuario;
       this.estilousuario.estilo.idEstilo = this.form.value.hestilo;
@@ -138,6 +140,7 @@ export class CreaeditaestilousuarioComponent implements OnInit{
           hestilo:new FormControl(data.estilo.idEstilo),
         
         });
+        this.gustar = data.fechaEstiloFav ? true : false;
       });
     }
   }
