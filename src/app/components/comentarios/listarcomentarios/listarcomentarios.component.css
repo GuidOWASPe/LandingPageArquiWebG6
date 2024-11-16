@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
 
-/* Contenedor principal */
 .container {
   max-width: 90%;
   margin: 2% auto;
@@ -11,7 +10,6 @@
   animation: fadeIn 0.6s ease-out;
 }
 
-/* Título de la página */
 h1 {
   font-family: "Roboto Condensed", sans-serif;
   color: #2c3e50;
@@ -24,7 +22,6 @@ h1 {
   animation: slideDown 1s ease-out;
 }
 
-/* Barra de búsqueda */
 .search-bar {
   display: flex;
   align-items: center;
@@ -57,7 +54,6 @@ button[mat-raised-button]:hover {
   transform: scale(1.05);
 }
 
-/* Contenedor para agregar comentario */
 .add-role-container {
   display: flex;
   align-items: center;
@@ -125,8 +121,16 @@ button[mat-fab]:hover {
   font-weight: bold;
   font-size: 1.1rem;
   color: #34495e;
+  overflow: hidden;
 }
 
+.card-header span:first-child {
+  flex: 1; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  margin-right: 10px; 
+}
 .card-content {
   font-size: 0.95rem;
   color: #7f8c8d;
@@ -141,7 +145,6 @@ button[mat-fab]:hover {
   padding-top: 0.5rem;
 }
 
-/* Botones de acción */
 .card-action-button {
   color: black;
   cursor: pointer;

@@ -12,25 +12,6 @@
         </div>
         <div class="form-column">
           <mat-form-field>
-            <mat-label>Formas</mat-label>
-            <mat-select formControlName="hforma">
-              @for (food of listaFormas; track food) {
-              <mat-option [value]="food.idForma">{{
-                food.nombreForma
-              }}</mat-option>
-              }
-            </mat-select>
-            <mat-error *ngIf="form.get('hforma')?.hasError('required')">
-              Seleccione una Forma
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <!-- Fila 2: Usuarios y Nombre -->
-      <div class="form-row">
-        <div class="form-column">
-          <mat-form-field>
             <mat-label>Usuarios</mat-label>
             <mat-select formControlName="husuario">
               @for (food of listaUsuarios; track food) {
@@ -44,28 +25,9 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="form-column">
-          <mat-form-field class="example-full-width">
-            <mat-label>Nombre</mat-label>
-            <input
-              matInput
-              placeholder="Nombre del rostro"
-              formControlName="hnombre"
-            />
-            <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
-              Máximo 100 caracteres
-            </mat-error>
-            <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
-              El campo Nombre es obligatorio
-            </mat-error>
-            <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
-              Solo se permiten letras
-            </mat-error>
-          </mat-form-field>
-        </div>
       </div>
 
-      <!-- Fila 3: Imagen -->
+      <!-- Fila 2: Usuarios y Nombre -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width">
@@ -84,7 +46,27 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              placeholder="Nombre del rostro"
+              formControlName="hnombre"
+            />
+            <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
+              Máximo 100 caracteres
+            </mat-error>
+            <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+              El campo Nombre es obligatorio
+            </mat-error>
+            <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+              Solo se permiten letras, números y caracteres especiales.
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
+
 
       <mat-card-content class="upload-container">
         <h5>Subir Rostro</h5>

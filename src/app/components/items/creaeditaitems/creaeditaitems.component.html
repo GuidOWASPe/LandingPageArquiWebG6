@@ -63,12 +63,19 @@
         <div class="form-column">
           <mat-form-field class="example-full-width">
             <mat-label>Calificación</mat-label>
-            <input matInput [disabled]="edicion" formControlName="hcalificacion" />
-            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')">
-              Ingrese una Calificación
-            </mat-error>
+            <input
+              matInput
+              placeholder="Ingresar su calificación"
+              formControlName="hcalificacion"
+            />
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
               Solo se permiten números
+            </mat-error>
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('min')">
+              La calificación debe ser mayor o igual a 0
+            </mat-error>
+            <mat-error *ngIf="form.get('hcalificacion')?.hasError('max')">
+              La calificación debe ser menor o igual a 5
             </mat-error>
           </mat-form-field>
         </div>

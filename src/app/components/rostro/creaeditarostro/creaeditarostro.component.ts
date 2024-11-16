@@ -79,7 +79,11 @@ export class CreaeditarostroComponent implements OnInit{
       hcodigo: [''],
       hforma: [''],
       husuario: ['', Validators.required],
-      hnombre: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]],
+      hnombre: ['', [
+        Validators.required, 
+        Validators.maxLength(100), 
+        Validators.pattern(/^[A-Za-z0-9\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/)
+      ]],
       himagen: ['', [Validators.required, Validators.maxLength(500)]],
     });
     this.uS.list().subscribe((data) => {

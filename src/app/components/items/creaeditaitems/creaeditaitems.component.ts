@@ -83,7 +83,14 @@ export class CreaeditaitemsComponent implements OnInit {
       hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
       htipo: ['', Validators.required],
       hdescripcion: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],   
-      hcalificacion: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      hcalificacion: [
+        '',
+        [
+          Validators.pattern(/^[0-9]+$/),
+          Validators.min(0),             
+          Validators.max(5)              
+        ]
+      ],
       husos: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       himagen: ['', Validators.required],
     });

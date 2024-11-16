@@ -58,6 +58,10 @@ export class AppComponent{
     return this.role === 'ADMIN';
   }
 
+  getHomeRoute(): string {
+    return this.isAdmin() ? '/homes' : '/home';
+  }
+
   isCliente() {
     return this.role === 'CLIENTE';
   }

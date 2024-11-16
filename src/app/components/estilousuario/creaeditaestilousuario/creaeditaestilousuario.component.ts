@@ -70,7 +70,14 @@ export class CreaeditaestilousuarioComponent implements OnInit{
 
     this.form=this.formBuilder.group({
       hcodigo: [''],
-      hcalificacion: ['', Validators.pattern("^[0-9]*$")],
+      hcalificacion: [
+        '',
+        [
+          Validators.pattern(/^[0-9]+$/),
+          Validators.min(0),             
+          Validators.max(5)              
+        ]
+      ],
       husuario:['', Validators.required],
       hestilo:['', Validators.required],
     });

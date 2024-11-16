@@ -28,7 +28,7 @@
   <div class="cards-grid" *ngIf="dataSource.filteredData.length > 0">
     <div *ngFor="let element of dataSource.filteredData" class="card">
       <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-        <span>Contenido: {{ element.contenido }}</span>
+        <span [title]="element.contenido" >Comentario: {{ element.contenido }}</span>
         <span style="display: flex; align-items: center;">
           {{ element.likes }}
           <mat-icon style="color: red; margin-left: 5px;">favorite</mat-icon>

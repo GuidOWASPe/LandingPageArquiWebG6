@@ -80,8 +80,12 @@ export class CreaeditaitemususuarioComponent implements OnInit {
       hcodigo: [''],
       hcalificacion: [
         '',
-        
-         Validators.pattern(/^[0-9]+$/)],
+        [
+          Validators.pattern(/^[0-9]+$/),
+          Validators.min(0),             
+          Validators.max(5)              
+        ]
+      ],
       husuario: ['', Validators.required],
       hitem: ['', Validators.required],
     });
