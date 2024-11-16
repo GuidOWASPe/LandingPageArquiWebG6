@@ -33,20 +33,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './listarestilousuario.component.css',
 })
 export class ListarestilousuarioComponent implements OnInit {
-  dataSource: MatTableDataSource<EstiloUsuario> = new MatTableDataSource();
-  filterValue: string = '';
-
-  displayedColumns: string[] = [
-    'c1',
-    'c2',
-    'c3',
-    'c4',
-    'c5',
-    'accion01',
-    'accion02',
-  ];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  estiloUsuario: EstiloUsuario[] = []; 
+  filteredEstilosFav: EstiloUsuario[] = []; 
+  filterValue: string = ''; 
 
   constructor(
     private euS: EstiloUsuarioService,
@@ -54,26 +43,25 @@ export class ListarestilousuarioComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
-
   ngOnInit(): void {
     this.euS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.estiloUsuario = data; 
+      this.filteredEstilosFav = data; 
     });
     this.euS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.estiloUsuario = data; 
+      this.filteredEstilosFav = data; 
     });
   }
 
   applyFilter(): void {
-    this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.estilo.nombreEstilo.trim().toLowerCase().includes(filter);
-
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+    if (this.filterValue.trim()) {
+      this.filteredEstilosFav = this.estiloUsuario.filter((estilo) =>
+        estilo.estilo.nombreEstilo.toLowerCase().includes(this.filterValue.trim().toLowerCase())
+      );
+    } else {
+      this.filteredEstilosFav = this.estiloUsuario;
+    }
   }
 
   openSnackBar(message: string) {

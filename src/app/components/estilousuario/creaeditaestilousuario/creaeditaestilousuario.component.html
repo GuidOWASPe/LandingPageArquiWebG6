@@ -12,25 +12,6 @@
             <input matInput formControlName="hcodigo" />
           </mat-form-field>
         </div>
-        <div class="form-column">
-          <mat-form-field>
-            <mat-label>Fecha</mat-label>
-
-            <input matInput [matDatepicker]="picker" 
-            formControlName="hfecha"
-            [max]="fechaActual"
-            />
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="form.get('hfecha')?.hasError('required')"
-              >La fecha es obligatoria</mat-error
-            >
-          </mat-form-field>
-        </div>
       </div>
 
       <!-- Fila 2 -->
@@ -43,9 +24,6 @@
               placeholder="Calificación"
               formControlName="hcalificacion"
             />
-            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')"
-              >Debe de ingresar la Calificación</mat-error
-            >
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
               La calificación debe ser un número entero
             </mat-error>
@@ -84,6 +62,23 @@
               >Seleccione un Estilo</mat-error
             >
           </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Nueva sección para la pregunta -->
+      <div class="form-row">
+        <label style="font-weight: bold">¿Marcar como favorito?</label>
+        <div class="form-column">
+          <mat-checkbox
+            (change)="actualizarFecha($event, true)"
+            [checked]="gustar === true"
+            >Sí</mat-checkbox
+          >
+          <mat-checkbox
+            (change)="actualizarFecha($event, false)"
+            [checked]="gustar === false"
+            >No</mat-checkbox
+          >
         </div>
       </div>
 

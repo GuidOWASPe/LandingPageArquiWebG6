@@ -87,20 +87,21 @@
         </mat-form-field>
       </div>
       </div>
-
       <!-- Imagen -->
       <div class="form-row">
         <div class="form-column">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="example-full-width">
             <mat-label>Selecciona una imagen</mat-label>
             <mat-select formControlName="himagen" class="custom-select">
-              <mat-option *ngFor="let imagen of imagenes" [value]="imagen">
-                <img [src]="'assets/items/' + imagen" alt="Imagen" class="avatar-option">
-                {{ imagen.split('.')[0] }} <!-- Mostrar el nombre de la imagen -->
+              <mat-option *ngFor="let imagen of Imagenes" [value]="imagen">
+                <img [src]="'/' + imagen" alt="Imagen" class="avatar-option">
+                {{ getImageName(imagen) }} 
               </mat-option>
-            </mat-select>
+            </mat-select> 
+            <mat-error *ngIf="form.get('himagen')?.hasError('required')">
+              Seleccione una imagen
+            </mat-error>
           </mat-form-field>
-
         </div>
       </div>
 

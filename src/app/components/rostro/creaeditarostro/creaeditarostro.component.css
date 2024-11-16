@@ -85,7 +85,34 @@ input.mat-input-element {
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin: 2%;
 }
+
+.nube {
+    cursor: pointer;
+    color: #1ABC9C;
+}
+
+.nube:hover{
+    transition: 1s;
+    color: #FF4081;
+}
+  
+  .container-img-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+  
+  .container-img-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
 
 /* Animación de entrada */
 @keyframes fadeIn {

@@ -1,12 +1,11 @@
 <div class="container">
   <!-- Título -->
-  <div style="text-align: center; margin-bottom: 2rem;">
+  <div style="text-align: center; margin-bottom: 2rem">
     <h1>Lista de Estilos por Usuario</h1>
   </div>
 
   <!-- Barra de búsqueda -->
-  <div class="search-bar" style="text-align: center; margin-bottom: 2rem;">
-    <!-- Texto indicativo de la búsqueda -->
+  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
     <div
       class="search-label"
       style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
@@ -14,7 +13,6 @@
       Buscar estilo de usuario por nombre
     </div>
 
-    <!-- Campo de búsqueda -->
     <mat-form-field appearance="fill" class="search-input" style="width: 80%">
       <input
         matInput
@@ -23,13 +21,12 @@
       />
     </mat-form-field>
 
-    <!-- Botón de búsqueda -->
     <button mat-raised-button color="primary" (click)="applyFilter()">
       Buscar
     </button>
   </div>
 
-  <!-- Contenedor para agregar usuario -->
+  <!-- Contenedor de agregar usuario -->
   <div class="add-user-container">
     <p>¿Deseas agregar un nuevo estilo de usuario? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -38,62 +35,70 @@
   </div>
 
   <!-- Verificar si la tabla está vacía -->
-  <div *ngIf="dataSource.data.length === 0" style="text-align: center; margin-top: 2rem;">
-    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold;">No hay datos registrados.</p>
+  <div
+    *ngIf="filteredEstilosFav.length === 0"
+    style="text-align: center; margin-top: 2rem"
+  >
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold">
+      No hay datos registrados.
+    </p>
   </div>
 
-  <!-- Tabla de Items Favoritos -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.data.length > 0">
-    <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef>Código</th>
-      <td mat-cell *matCellDef="let element"> {{element.idEstiloUsuario}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef>Fecha</th>
-      <td mat-cell *matCellDef="let element"> {{element.fechaEstiloFav}} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="c3">
-      <th mat-header-cell *matHeaderCellDef>Estilo</th>
-      <td mat-cell *matCellDef="let element"> {{element.estilo.nombreEstilo}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="c4">
-      <th mat-header-cell *matHeaderCellDef>Calificación</th>
-      <td mat-cell *matCellDef="let element"> {{element.calificacion}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="c5">
-      <th mat-header-cell *matHeaderCellDef>Usuario</th>
-      <td mat-cell *matCellDef="let element"> {{element.usuario.username}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="accion01">
-      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-      <td mat-cell *matCellDef="let element" (click)="eliminar(element.idEstiloUsuario)">
-        <mat-icon>delete</mat-icon>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="accion02">
-      <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button [routerLink]="['ediciones',element.idEstiloUsuario]">
-          <mat-icon style="color:rgb(8, 138, 95)">edit</mat-icon>Actualizar
+  <div class="cards-grid" *ngIf="filteredEstilosFav.length > 0">
+    <div *ngFor="let element of filteredEstilosFav" class="card">
+      <div class="card-header">
+        <p>{{ element.estilo.nombreEstilo }}</p>
+      </div>
+      <div class="card-content">
+        <img
+          [src]="element.estilo.imagenEstilo"
+          alt="Imagen del estilo"
+          class="card-image"
+        />
+        <p><strong>Rostro:</strong> {{ element.estilo.ro.nombre }}</p>
+        <p><strong>Item:</strong> {{ element.estilo.it.nombreItem }}</p>
+        <p>
+          <strong>Fecha Favorito: </strong>
+          <span
+            [ngStyle]="{
+              color: element.fechaEstiloFav ? 'magenta' : 'gray'
+            }"
+            style="display: inline-flex; align-items: center"
+          >
+            {{
+              element.fechaEstiloFav ? element.fechaEstiloFav : 'No favorito'
+            }}
+            <mat-icon
+              *ngIf="element.fechaEstiloFav"
+              style="color: yellow; margin-left: 5px"
+            >
+              star
+            </mat-icon>
+          </span>
+        </p>
+      </div>
+      <div class="card-footer">
+        <div
+          *ngIf="element.estilo.codigoColor"
+          [ngStyle]="{ 'background-color': element.estilo.codigoColor }"
+          class="color-box"
+        ></div>
+        <mat-icon
+          class="card-action-button"
+          (click)="eliminar(element.idEstiloUsuario)"
+        >
+          delete
+        </mat-icon>
+        <button
+          mat-raised-button
+          class="update-btn"
+          [routerLink]="['ediciones', element.idEstiloUsuario]"
+        >
+          <mat-icon>edit</mat-icon> Actualizar
         </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <!-- Paginador -->
-  <mat-paginator
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Seleccione página"
-  ></mat-paginator>
+      </div>
+    </div>
+  </div>
+  
 </div>

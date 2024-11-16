@@ -23,6 +23,17 @@ h1 {
   animation: slideDown 1s ease-out;
 }
 
+th{
+  text-align: center;
+  font-weight: bold;
+  color: #34495e;
+  font-size: 1.1rem;
+}
+td{
+  text-align: center;
+  font-weight: bold;
+}
+
 /* Animaciones */
 @keyframes fadeIn {
   from {

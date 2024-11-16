@@ -56,6 +56,7 @@ export class CreaeditaestiloComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   fechaActual: Date = new Date();
+  imagenSeleccionada: string = '';
   
   imagenesAleatorias: string[] = [
     'assets/estilos/estilo1.png',
@@ -90,9 +91,6 @@ export class CreaeditaestiloComponent implements OnInit {
     'assets/estilos/estilo30.png',
   ];
 
-  imagenSeleccionada: string = '';
-
-  fechaActual:Date=new Date();
   constructor(
     private formBuilder: FormBuilder,
     private rS: RostroService,
@@ -116,7 +114,6 @@ export class CreaeditaestiloComponent implements OnInit {
       hcolor: ['', [Validators.required, Validators.pattern(/^#([0-9a-fA-F]{6})$/)]],
       hitem: ['', [Validators.required]],
       himagen: ['', [Validators.required, Validators.maxLength(500)]],
-      hfechacre: ['', [Validators.required]]
     });
 
     this.rS.list().subscribe((data) => {
@@ -143,13 +140,18 @@ export class CreaeditaestiloComponent implements OnInit {
     // Verificar si ambos campos tienen valores
     if (rostroSeleccionado && itemSeleccionado) {
       const nuevaImagen =
-        this.imagenesAleatorias[
+        this.imagenesAleatorias[ 
           Math.floor(Math.random() * this.imagenesAleatorias.length)
         ];
   
       // Actualizar el campo himagen y la vista previa de la imagen
       this.form.patchValue({ himagen: nuevaImagen });
       this.imagenSeleccionada = nuevaImagen;
+
+      // Asegurarse de que la imagen se muestre con la animación
+      setTimeout(() => {
+        this.imagenSeleccionada = nuevaImagen;  // Forzar actualización del DOM
+      }, 100); // La animación de fade-in debe aplicarse después de actualizar la imagen
     }
   }
   insertar(): void {
@@ -159,7 +161,7 @@ export class CreaeditaestiloComponent implements OnInit {
       this.estilo.codigoColor = this.form.value.hcolor;
       this.estilo.ro.idRostro = this.form.value.hrostro;
       this.estilo.it.idItem = this.form.value.hitem;
-      this.estilo.fechaCreado = this.form.value.hfechacre;
+      this.estilo.fechaCreado = new Date();
       this.estilo.imagenEstilo = this.form.value.himagen;
       if (this.edicion) {
         this.eS.update(this.estilo).subscribe((data) => {

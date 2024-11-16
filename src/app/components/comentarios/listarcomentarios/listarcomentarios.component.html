@@ -25,17 +25,19 @@
     <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold;">No hay datos registrados.</p>
   </div>
 
-  <!-- Grid de Tarjetas de Comentarios -->
   <div class="cards-grid" *ngIf="dataSource.filteredData.length > 0">
     <div *ngFor="let element of dataSource.filteredData" class="card">
-      <div class="card-header">
-        <span>Me Gustas: {{ element.likes }}</span>
+      <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <span>Contenido: {{ element.contenido }}</span>
+        <span style="display: flex; align-items: center;">
+          {{ element.likes }}
+          <mat-icon style="color: red; margin-left: 5px;">favorite</mat-icon>
+        </span>
       </div>
       <div class="card-content">
-        <p><strong>Contenido:</strong> {{ element.contenido }}</p>
-        <p><strong>Fecha Publicada:</strong> {{ element.fecha_publicada }}</p>
-        <p><strong>Usuario:</strong> {{ element.us.username }}</p>
         <p><strong>Estilo:</strong> {{ element.et.nombreEstilo }}</p>
+        <p><strong>Usuario:</strong> {{ element.us.username }}</p>
+        <p><strong>Fecha Publicada:</strong> {{ element.fecha_publicada }}</p>
       </div>
       <div class="card-footer">
         <mat-icon class="card-action-button" (click)="eliminar(element.idComentario)">
@@ -47,4 +49,5 @@
       </div>
     </div>
   </div>
+  
 </div>

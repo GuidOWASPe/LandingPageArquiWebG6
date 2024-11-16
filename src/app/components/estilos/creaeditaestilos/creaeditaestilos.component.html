@@ -72,32 +72,10 @@
               El color es obligatorio
             </mat-error>
             <mat-error *ngIf="form.get('hcolor')?.hasError('pattern')">
-              El color debe estar en formato hexadecimal, por ejemplo: #ff5733
-            </mat-error>
-            <mat-error *ngIf="form.get('hcolor')?.hasError('pattern')">
               Ingrese un código hexadecimal válido
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="form-column">
-          <mat-form-field>
-            <mat-label>Fecha de creación</mat-l
-            <input matInput [matDatepicker]="picker" 
-            formControlName="hfechacre" 
-            [max]="fechaActual"
-            />
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="form.get('hfechacre')?.hasError('required')">
-              Ingrese una fecha
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <!-- Fila 4 -->
-      <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width">
             <mat-label>Imagen</mat-label>
@@ -108,10 +86,10 @@
           </mat-form-field>
         </div>
       </div>
-      
-      <div *ngIf="imagenSeleccionada" style="text-align: center; margin-top: 1rem;">
-        <img [src]="imagenSeleccionada" alt="Imagen seleccionada" style="max-width: 200px; height: auto;">
-      </div>
+
+      <div *ngIf="imagenSeleccionada" class="imagen-container imagen-visible">
+        <img [src]="imagenSeleccionada" alt="Imagen seleccionada" />
+    </div>
 
       <div class="buttons">
         <button mat-flat-button class="custom-button" (click)="cancel()">

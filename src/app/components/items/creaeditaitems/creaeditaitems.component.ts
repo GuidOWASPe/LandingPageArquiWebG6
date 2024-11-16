@@ -33,34 +33,33 @@ export class CreaeditaitemsComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   listaTipos: Tipo[] = [];
-  imagenes: string[] = [
-    'item1.png',
-    'item2.png',
-    'item3.png',
-    'item4.png',
-    'item5.png',
-    'item6.png',
-    'item7.png',
-    'item8.png',
-    'item9.png',
-    'item10.png',
-    'item11.png',
-    'item12.png',
-    'item13.png',
-    'item14.png',
-    'item15.png',
-    'item16.png',
-    'item17.png',
-    'item18.png',
-    'item19.png',
-    'item20.png',
-    'item21.png',
-    'item22.png',
-    'item23.png',
-    'item24.png',
-    'item25.png',
-    'item26.png',
-
+  Imagenes: string[] = [
+    'assets/items/item1.png',
+    'assets/items/item2.png',
+    'assets/items/item3.png',
+    'assets/items/item4.png',
+    'assets/items/item5.png',
+    'assets/items/item6.png',
+    'assets/items/item7.png',
+    'assets/items/item8.png',
+    'assets/items/item9.png',
+    'assets/items/item10.png',
+    'assets/items/item11.png',
+    'assets/items/item12.png',
+    'assets/items/item13.png',
+    'assets/items/item14.png',
+    'assets/items/item15.png',
+    'assets/items/item16.png',
+    'assets/items/item17.png',
+    'assets/items/item18.png',
+    'assets/items/item19.png',
+    'assets/items/item20.png',
+    'assets/items/item21.png',
+    'assets/items/item22.png',
+    'assets/items/item23.png',
+    'assets/items/item24.png',
+    'assets/items/item25.png',
+    'assets/items/item26.png',
   ];
 
   constructor(
@@ -94,7 +93,7 @@ export class CreaeditaitemsComponent implements OnInit {
   }
 
   insertar(){
-    if (this.form.valid  && this.form.value.hnombre && this.form.value.htipo && this.form.value.hdescripcion && this.form.value.hcalificacion && this.form.value.husos && this.form.value.himagen) {
+    if (this.form.valid) {
       this.items.idItem = this.form.value.hcodigo;
       this.items.nombreItem = this.form.value.hnombre;
       this.items.ti.idTipo = this.form.value.htipo;
@@ -129,6 +128,11 @@ export class CreaeditaitemsComponent implements OnInit {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
     });
+  }
+
+  getImageName(imagen: string): string {
+    const nameWithExtension = imagen.split('/').pop() || '';
+    return nameWithExtension.split('.')[0] || ''; 
   }
 
   cancel(): void {

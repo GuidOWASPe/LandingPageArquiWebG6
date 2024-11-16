@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarusuarios',
@@ -25,13 +27,16 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatButtonModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    CommonModule
   ],
   templateUrl: './listarusuarios.component.html',
   styleUrl: './listarusuarios.component.css',
 })
 export class ListarusuariosComponent implements OnInit {
-  dataSource: MatTableDataSource<Usuarios> = new MatTableDataSource();
+  usuarios: Usuarios[] = [];
+  filteredUsuarios: Usuarios[] = [];
   filterValue: string = '';
 
   displayedColumns: string[] = [
@@ -48,7 +53,6 @@ export class ListarusuariosComponent implements OnInit {
     'accion02',
   ];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private uS: UsuariosService,
@@ -56,28 +60,27 @@ export class ListarusuariosComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
 
   ngOnInit(): void {
     this.uS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.usuarios = data; 
+      this.filteredUsuarios = data; 
     });
     this.uS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.usuarios = data; 
+      this.filteredUsuarios = data; 
     });
   }
 
   applyFilter(): void {
-    this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.username.trim().toLowerCase().includes(filter);
-
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+    if (this.filterValue.trim()) {
+      this.filteredUsuarios = this.usuarios.filter((estilo) =>
+        estilo.username.toLowerCase().includes(this.filterValue.trim().toLowerCase())
+      );
+    } else {
+      this.filteredUsuarios = this.usuarios;
+    }
   }
-
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,

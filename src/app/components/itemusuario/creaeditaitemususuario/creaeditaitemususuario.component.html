@@ -14,18 +14,14 @@
         </div>
         <div class="form-column">
           <mat-form-field>
-            <mat-label>Fecha </mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              formControlName="hfechaitemfav"
-              [max]="fechaActual"
-            />
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="form.get('hfechaitemfav')?.hasError('required')">
-              La fecha es obligatoria
+            <mat-label>Items</mat-label>
+            <mat-select formControlName="hitem">
+              <mat-option *ngFor="let food of listaitems" [value]="food.idItem">
+                {{ food.nombreItem }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('hitem')?.hasError('required')">
+              Seleccione un Item
             </mat-error>
           </mat-form-field>
         </div>
@@ -41,9 +37,6 @@
               placeholder="Ingresar su calificación"
               formControlName="hcalificacion"
             />
-            <mat-error *ngIf="form.get('hcalificacion')?.hasError('required')">
-              Ingrese la calificación
-            </mat-error>
             <mat-error *ngIf="form.get('hcalificacion')?.hasError('pattern')">
               Solo se permiten números
             </mat-error>
@@ -53,7 +46,10 @@
           <mat-form-field>
             <mat-label>Usuarios</mat-label>
             <mat-select formControlName="husuario">
-              <mat-option *ngFor="let food of listausuarios" [value]="food.idUsuario">
+              <mat-option
+                *ngFor="let food of listausuarios"
+                [value]="food.idUsuario"
+              >
                 {{ food.username }}
               </mat-option>
             </mat-select>
@@ -64,20 +60,20 @@
         </div>
       </div>
 
-      <!-- Fila 3 (Item) -->
+      <!-- Nueva sección para la pregunta -->
       <div class="form-row">
+        <label style="font-weight: bold">¿Marcar como favorito?</label>
         <div class="form-column">
-          <mat-form-field>
-            <mat-label>Items</mat-label>
-            <mat-select formControlName="hitem">
-              <mat-option *ngFor="let food of listaitems" [value]="food.idItem">
-                {{ food.nombreItem }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="form.get('hitem')?.hasError('required')">
-              Seleccione un Item
-            </mat-error>
-          </mat-form-field>
+          <mat-checkbox
+            (change)="actualizarFecha($event, true)"
+            [checked]="gustar === true"
+            >Sí</mat-checkbox
+          >
+          <mat-checkbox
+            (change)="actualizarFecha($event, false)"
+            [checked]="gustar === false"
+            >No</mat-checkbox
+          >
         </div>
       </div>
 
