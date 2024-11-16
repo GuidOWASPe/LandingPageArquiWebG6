@@ -55,7 +55,6 @@ export class CreaeditarolesComponent implements OnInit {
   }
 
   insertar(): void {
-
     if (this.form.valid && this.form.value.hnombre) {
       this.rol.idRol = this.form.value.hcodigo;
       this.rol.nombre = this.form.value.hnombre;
@@ -72,15 +71,15 @@ export class CreaeditarolesComponent implements OnInit {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
             this.openSnackBar('Registro creado exitosamente');
-          });
+          }); 
         });
       }
       this.router.navigate(['roles']);
     }else {
       this.openSnackBar('Por favor, rellena todos los campos obligatorios.');
-    }
-    
+    } 
   }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000, 

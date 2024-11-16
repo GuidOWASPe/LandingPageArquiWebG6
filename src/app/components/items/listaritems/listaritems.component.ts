@@ -12,6 +12,7 @@ import { MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listaritems',
@@ -25,26 +26,16 @@ import { CommonModule } from '@angular/common';
     MatSnackBarModule,
     MatInputModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   templateUrl: './listaritems.component.html',
   styleUrl: './listaritems.component.css',
 })
 export class ListaritemsComponent implements OnInit {
-  dataSource: MatTableDataSource<Item> = new MatTableDataSource();
-  filterValue: string = '';
-  
-  displayedColumns: string[] = [
-    'c1',
-    'c2',
-    'c3',
-    'c4',
-    'c5',
-    'accion01',
-    'accion02',
-  ];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  items: Item[] = []; 
+  filteredItems: Item[] = []; 
+  filterValue: string = ''; 
 
   constructor(
     private iS: ItemService,
@@ -52,26 +43,24 @@ export class ListaritemsComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
-
   ngOnInit(): void {
     this.iS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.items = data
+      this.filteredItems = data
     });
     this.iS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.items = data
+      this.filteredItems = data
     });
   }
-
   applyFilter(): void {
-    this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.nombreItem.trim().toLowerCase().includes(filter);
-
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+    if (this.filterValue.trim()) {
+      this.filteredItems = this.items.filter((item) =>
+        item.nombreItem.toLowerCase().includes(this.filterValue.trim().toLowerCase())
+      );
+    } else {
+      this.filteredItems = this.items;
+    }
   }
 
   openSnackBar(message: string) {

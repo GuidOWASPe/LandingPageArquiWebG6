@@ -1,78 +1,94 @@
 <div class="container">
-  <div style="text-align: center; margin-bottom: 2rem;">
-    <h1>Lista de Items Favoritos de cada Usuario</h1>
+  <!-- Título -->
+  <div style="text-align: center; margin-bottom: 2rem">
+    <h1>Lista de Items de Usuario</h1>
   </div>
 
   <!-- Barra de búsqueda -->
-  <div class="search-bar" style="text-align:  center; margin-bottom: 2rem;">
-    <div class="search-label" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">
+  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
+    <div
+      class="search-label"
+      style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
+    >
       Buscar item por nombre
     </div>
-    <mat-form-field appearance="fill" class="search-input" style="width: 80%;">
-      <input matInput placeholder="Ingresar nombre del item" [(ngModel)]="filterValue" />
+
+    <mat-form-field appearance="fill" class="search-input" style="width: 80%">
+      <input matInput placeholder="Ingresar item" [(ngModel)]="filterValue" />
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="applyFilter()">Buscar</button>
+
+    <button mat-raised-button color="primary" (click)="applyFilter()">
+      Buscar
+    </button>
   </div>
 
-  <div class="add-item-container">
-    <p>¿Deseas agregar un nuevo item favorito? Haz click aquí:</p>
+  <!-- Contenedor para agregar item -->
+  <div class="add-style-container">
+    <p>¿Deseas agregar un nuevo item? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
       <mat-icon>add_circle</mat-icon> Agregar Item
     </button>
   </div>
 
-  <!-- Verificar si la tabla está vacía -->
-  <div *ngIf="dataSource.data.length === 0" style="text-align: center; margin-top: 2rem;">
-    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold;">No hay datos registrados.</p>
+  <!-- Verificar si no hay datos -->
+  <div
+    *ngIf="filteredItemUsuario.length === 0"
+    style="text-align: center; margin-top: 2rem"
+  >
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold">
+      No hay datos registrados.
+    </p>
   </div>
 
-  <!-- Tabla de Items Favoritos -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.data.length > 0">
-    <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef>Código</th>
-      <td mat-cell *matCellDef="let element">{{ element.idItemUsuario }}</td>
-    </ng-container>
+  <div class="cards-grid" *ngIf="filteredItemUsuario.length > 0">
+    <div *ngFor="let element of filteredItemUsuario" class="card">
+      <div class="card-header">
+        <p>{{ element.it.nombreItem }}</p>
+        <div class="card-content">
+          <img
+            [src]="element.it.imagen"
+            alt="Imagen del item"
+            class="card-image"
+          />
+          <p><strong>Usuario:</strong> {{ element.us.username }}</p>
+          <p><strong>Calificación: </strong> {{ element.calificacion }}</p>
+          <p>
+            <strong>Fecha de favorito: </strong>
+            <span
+            [ngStyle]="{
+              color: element.fechaItemFavorito ? 'magenta' : 'gray'
+            }"
+            style="display: inline-flex; align-items: center"
+          >
+            {{
+              element.fechaItemFavorito ? element.fechaItemFavorito : 'No favorito'
+            }}
+            <mat-icon
+              *ngIf="element.fechaItemFavorito"
+              style="color: yellow; margin-left: 5px"
+            >
+              star
+            </mat-icon>
+          </span>
+          </p>
+        </div>
 
-    <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef>Fecha</th>
-      <td mat-cell *matCellDef="let element">{{ element.fechaItemFavorito }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c3">
-      <th mat-header-cell *matHeaderCellDef>Calificación</th>
-      <td mat-cell *matCellDef="let element">{{ element.calificacion || 'No calificación' }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c4">
-      <th mat-header-cell *matHeaderCellDef>Usuario</th>
-      <td mat-cell *matCellDef="let element">{{ element.us.username }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="c5">
-      <th mat-header-cell *matHeaderCellDef>Item</th>
-      <td mat-cell *matCellDef="let element">{{ element.it.nombreItem }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="accion01">
-      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-      <td mat-cell *matCellDef="let element" (click)="eliminar(element.idItemUsuario)">
-        <mat-icon style="color: rgb(8, 138, 95)">delete</mat-icon>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="accion02">
-      <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button [routerLink]="['ediciones',element.idItemUsuario]">
-          <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon> Actualizar
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <!-- Paginador -->
-  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar página"></mat-paginator>
+        <div class="card-footer">
+          <mat-icon
+            class="card-action-button"
+            (click)="eliminar(element.idItemUsuario)"
+          >
+            delete
+          </mat-icon>
+          <button
+            mat-raised-button
+            class="update-btn"
+            [routerLink]="['ediciones', element.idItemUsuario]"
+          >
+            <mat-icon>edit</mat-icon> Actualizar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

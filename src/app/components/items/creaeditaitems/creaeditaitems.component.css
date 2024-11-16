@@ -87,6 +87,36 @@ input.mat-input-element {
     gap: 10px;
 }
 
+/* Estilo para las imágenes dentro del select */
+.custom-select .mat-option {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* Estilo para la imagen dentro del mat-option */
+.avatar-option {
+    width: 30px; /* Ajusta el tamaño de la imagen */
+    height: 30px;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    object-fit: cover; /* Asegura que la imagen no se deforme */
+    border-radius: 50%; /* Si quieres que la imagen sea redonda */
+}
+
+/* Estilo para el nombre de la imagen */
+.custom-select .mat-option-text {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
+}
+
+/* Estilo para el mat-select */
+.custom-select {
+    width: 100%;
+    border-radius: 6px;
+    padding: 0;
+}
+
 /* Animación de entrada */
 @keyframes fadeIn {
     from {

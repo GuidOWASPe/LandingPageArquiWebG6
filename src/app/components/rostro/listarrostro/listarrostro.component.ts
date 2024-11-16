@@ -12,6 +12,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarrostro',
@@ -25,14 +26,16 @@ import { CommonModule } from '@angular/common';
     MatPaginatorModule,
     MatInputModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   templateUrl: './listarrostro.component.html',
   styleUrl: './listarrostro.component.css',
 })
 export class ListarrostroComponent implements OnInit {
-  dataSource: MatTableDataSource<Rostro> = new MatTableDataSource();
-  filterValue: string = '';
+  rostros: Rostro[] = []; 
+  filteredRostro: Rostro[] = []; 
+  filterValue: string = ''; 
 
   displayedColumns: string[] = [
     'r1',
@@ -45,7 +48,6 @@ export class ListarrostroComponent implements OnInit {
     'accion03'
   ];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private rS: RostroService,
@@ -54,20 +56,23 @@ export class ListarrostroComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.rostros = data; 
+      this.filteredRostro = data; 
     });
     this.rS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
+      this.rostros = data; 
+      this.filteredRostro = data; 
     });
   }
 
   applyFilter(): void {
-    this.dataSource.filterPredicate = (data: any, filter: string) =>
-      data.nombre.trim().toLowerCase().includes(filter);
-
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+    if (this.filterValue.trim()) {
+      this.filteredRostro = this.rostros.filter((estilo) =>
+        estilo.nombre.toLowerCase().includes(this.filterValue.trim().toLowerCase())
+      );
+    } else {
+      this.filteredRostro = this.rostros;
+    }
   }
 
   openSnackBar(message: string) {

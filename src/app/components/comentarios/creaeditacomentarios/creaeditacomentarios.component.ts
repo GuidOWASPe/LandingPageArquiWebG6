@@ -77,7 +77,6 @@ export class CreaeditacomentariosComponent implements OnInit {
       hcodigo: [''],
       hcontenido: ['', Validators.required],
       hmegustas: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      hfechapublicada: ['', Validators.required],
       husuario: ['', Validators.required],
       hestilo: ['', Validators.required],
     });
@@ -100,7 +99,7 @@ export class CreaeditacomentariosComponent implements OnInit {
       this.comentario.idComentario = this.form.value.hcodigo;
       this.comentario.contenido = this.form.value.hcontenido;
       this.comentario.likes = this.form.value.hmegustas;
-      this.comentario.fecha_publicada = this.form.value.hfechapublicada;
+      this.comentario.fecha_publicada = new Date();
       this.comentario.us.idUsuario = this.form.value.husuario;
       this.comentario.et.idEstilo = this.form.value.hestilo;
       if (this.edicion) {
