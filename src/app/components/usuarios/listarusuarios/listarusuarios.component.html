@@ -1,0 +1,64 @@
+<div class="container">
+  <!-- Título -->
+  <div style="text-align: center; margin-bottom: 2rem">
+    <h1>Lista de Usuarios</h1>
+  </div>
+
+  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
+    <div class="search-label" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem">
+      Buscar usuario por nombre
+    </div>
+
+    <mat-form-field appearance="fill" class="search-input" style="width: 80%">
+      <input matInput placeholder="Ingresar usuario" [(ngModel)]="filterValue" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="applyFilter()">
+      Buscar
+    </button>
+  </div>
+
+  <div class="add-user-container">
+    <p>¿Deseas agregar un nuevo usuario? Haz click aquí:</p>
+    <button mat-fab extended color="primary" [routerLink]="['nuevo']">
+      <mat-icon>add_circle</mat-icon> Agregar Usuario
+    </button>
+  </div>
+
+  <div class="cards-grid" *ngIf="filteredUsuarios.length > 0">
+    <div *ngFor="let user of filteredUsuarios" class="card">
+      <div class="card-header">
+        <p [ngStyle]="{'color': user.rol.nombre === 'ADMIN' ? 'magenta' : 'inherit'}">
+          {{ user.username }}
+        </p>
+      </div>
+      <div class="card-content">
+        <img
+          [src]="'assets/fotoPerfil/' + user.fotoPerfilUsuario"
+          alt="Foto de usuario"
+          class="card-image"
+        />
+        <p><strong>Rol:</strong> {{ user.rol.nombre }}</p>
+        <p><strong>Correo:</strong> {{ user.correoUsuario }}</p>
+        <p><strong>Fecha Nacimiento:</strong> {{ user.fechaNacimientoUsuario }}</p>
+        <p><strong>País:</strong> {{ user.paisUsuario }}</p>
+        <p><strong>Sexo:</strong> {{ user.sexoUsuario }}</p>
+        <p><strong>Fecha Registro:</strong> {{ user.fechaRegistroUsuario }}</p>
+      </div>
+      <div class="card-footer">
+        <mat-icon class="card-action-button" (click)="eliminar(user.idUsuario)">
+          delete
+        </mat-icon>
+        <button mat-raised-button [routerLink]="['ediciones', user.idUsuario]">
+          <mat-icon>edit</mat-icon> Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="filteredUsuarios.length === 0" style="text-align: center; margin-top: 2rem">
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold">
+      No hay usuarios registrados.
+    </p>
+  </div>
+</div>

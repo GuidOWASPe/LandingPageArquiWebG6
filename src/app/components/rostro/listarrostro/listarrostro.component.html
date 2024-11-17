@@ -1,0 +1,90 @@
+<div class="container">
+  <!-- Título -->
+  <div style="text-align: center; margin-bottom: 2rem">
+    <h1>Lista de Rostros</h1>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
+    <div
+      class="search-label"
+      style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
+    >
+      Buscar rostro por nombre
+    </div>
+
+    <mat-form-field appearance="fill" class="search-input" style="width: 80%">
+      <input
+        matInput
+        placeholder="Ingresar nombre de rostro"
+        [(ngModel)]="filterValue"
+      />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="applyFilter()">
+      Buscar
+    </button>
+  </div>
+
+  <!-- Contenedor para agregar nuevo rostro -->
+  <div
+    class="add-rostro-container"
+    style="text-align: center; margin-bottom: 2rem"
+  >
+    <p>¿Deseas agregar un nuevo rostro? Haz click aquí:</p>
+    <button mat-fab extended color="primary" [routerLink]="['nuevo']">
+      <mat-icon>add_circle</mat-icon> Agregar Rostro
+    </button>
+  </div>
+
+  <!-- Verificar si no hay datos -->
+  <div
+    *ngIf="filteredRostro.length === 0"
+    style="text-align: center; margin-top: 2rem"
+  >
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold">
+      No hay datos registrados.
+    </p>
+  </div>
+
+  <!-- Grid de Tarjetas de Rostros -->
+  <div class="cards-grid" *ngIf="filteredRostro.length > 0">
+    <div
+      *ngFor="let element of filteredRostro"
+      class="card"
+      style="margin-bottom: 1rem"
+    >
+      <div class="card-header">
+        <p>{{ element.nombre }}</p>
+        <p>{{ element.usu.username }}</p>
+      </div>
+      <div class="card-content">
+        <p><strong>Forma:</strong> {{ element.fo.nombreForma }}</p>
+        <p><strong>Imagen:</strong></p>
+        <img [src]="element.imagenRostro" alt="Imagen de rostro" class="card-image" />
+      </div>
+      <div class="card-footer">
+        <mat-icon
+          class="card-action-button"
+          (click)="eliminar(element.idRostro)"
+        >
+          delete
+        </mat-icon>
+        <button
+          mat-raised-button
+          class="update-btn"
+          [routerLink]="['ediciones', element.idRostro]"
+        >
+          <mat-icon>edit</mat-icon> Actualizar
+        </button>
+        <button
+          mat-raised-button
+          class="vincular-btn"
+          [routerLink]="['vincularForma', element.idRostro]"
+        >
+          <mat-icon>account_box</mat-icon> Detectar Forma
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

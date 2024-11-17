@@ -1,0 +1,104 @@
+<div class="container" style="text-align: center">
+  <div style="margin: 5%"><h1>Registro de Rostros</h1></div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- Fila 1: Código y Formas -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="hcodigo" />
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field>
+            <mat-label>Usuarios</mat-label>
+            <mat-select formControlName="husuario">
+              @for (food of listaUsuarios; track food) {
+              <mat-option [value]="food.idUsuario">{{
+                food.username
+              }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('husuario')?.hasError('required')">
+              Seleccione un Usuario
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Fila 2: Usuarios y Nombre -->
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>URL de la Imagen</mat-label>
+            <input
+            matInput
+            formControlName="himagen"
+            placeholder="URL de la imagen subida"
+            readonly
+          />
+            <mat-error *ngIf="form.get('himagen')?.hasError('maxlength')">
+              Máximo 500 caracteres
+            </mat-error>
+            <mat-error *ngIf="form.get('himagen')?.hasError('required')">
+              La URL de la imagen es obligatoria
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-column">
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              placeholder="Nombre del rostro"
+              formControlName="hnombre"
+            />
+            <mat-error *ngIf="form.get('hnombre')?.hasError('maxlength')">
+              Máximo 100 caracteres
+            </mat-error>
+            <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+              El campo Nombre es obligatorio
+            </mat-error>
+            <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+              Solo se permiten letras, números y caracteres especiales.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <mat-card-content class="upload-container">
+        <h5>Subir Rostro</h5>
+        <label for="imagePrincipal" id="icon-image" class="btn btn-primary">
+          <mat-icon class="nube">cloud_upload</mat-icon>
+        </label>
+        <label
+          *ngIf="previewUrls[0]"
+          class="btn btn-danger"
+          (click)="ClearImage(0)"
+        >
+          <mat-icon>close</mat-icon>
+        </label>
+        <input
+          id="imagePrincipal"
+          type="file"
+          [hidden]="true"
+          accept="image/*"
+          (change)="onFileSelected($event, 0)"
+          formControlName="imagePrincipal"
+        />
+        <div *ngIf="previewUrls[0]" class="container-img-preview">
+          <img [src]="previewUrls[0]" alt="Image preview" />
+        </div>
+      </mat-card-content>
+
+      <div class="buttons">
+        <button mat-flat-button class="custom-button" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

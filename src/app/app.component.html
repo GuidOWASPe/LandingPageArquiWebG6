@@ -1,32 +1,88 @@
-<mat-toolbar color="primary" class="custom-toolbar">
-  <span class="app-title">My Application</span>
-  <div class="nav-item">
-    <button mat-button class="nav-button">
-      <mat-icon>category</mat-icon>Formas
+<mat-toolbar color="primary" class="custom-toolbar" *ngIf="verificar()">
+  <span class="app-title" [routerLink]="getHomeRoute()" style="cursor: pointer">
+    StyleCheck
+  </span>
+
+  <div class="nav-item" *ngIf="isAdmin()">
+    <button mat-button class="nav-button" routerLink="/usuarios">
+      <mat-icon>person</mat-icon>Usuarios
     </button>
-    <div class="submenu">
-      <a routerLink="/formas" class="submenu-item">Listar Formas</a>
-      <a routerLink="/formas/nuevo" class="submenu-item">Registrar Formas</a>
-    </div>
   </div>
-  <div class="nav-item">
-    <button mat-button class="nav-button">
+
+  <div class="nav-item" *ngIf="isAdmin()">
+    <button mat-button class="nav-button" routerLink="/roles">
       <mat-icon>shield</mat-icon>Roles
     </button>
-    <div class="submenu">
-      <a routerLink="/roles" class="submenu-item">Listar Roles</a>
-      <a routerLink="/roles/nuevo" class="submenu-item">Registrar Roles</a>
-    </div>
   </div>
+
   <div class="nav-item">
-    <button mat-button class="nav-button">
+    <button mat-button class="nav-button" routerLink="/formas">
+      <mat-icon>category</mat-icon>Formas
+    </button>
+  </div>
+
+  <div class="nav-item" *ngIf="isAdmin()">
+    <button mat-button class="nav-button" routerLink="/tipos">
       <mat-icon>title</mat-icon>Tipos
     </button>
-    <div class="submenu">
-      <a routerLink="/tipos" class="submenu-item">Listar Tipos</a>
-      <a routerLink="/tipos/nuevo" class="submenu-item">Registrar Tipos</a>
-    </div>
   </div>
-</mat-toolbar>
 
+  <div class="nav-item">
+    <button mat-button class="nav-button" routerLink="/comentarios">
+      <mat-icon>chat</mat-icon>Comentarios
+    </button>
+  </div>
+
+  <div class="nav-item">
+    <button mat-button class="nav-button" routerLink="/itemusuario">
+      <mat-icon>category</mat-icon>Item por Usuario
+    </button>
+  </div>
+
+  <div class="nav-item" *ngIf="isAdmin()">
+    <button mat-button class="nav-button" routerLink="/items">
+      <mat-icon>psychology_alt</mat-icon>Items
+    </button>
+  </div>
+
+  <div class="nav-item">
+    <button mat-button class="nav-button" routerLink="/rostros">
+      <mat-icon>face</mat-icon>Rostros
+    </button>
+  </div>
+
+  <div class="nav-item">
+    <button mat-button class="nav-button" routerLink="/estilousuarios">
+      <mat-icon>settings_accessibility</mat-icon>EstiloUsuarios
+    </button>
+  </div>
+
+  <div class="nav-item">
+    <button mat-button class="nav-button" routerLink="/estilos">
+      <mat-icon>wb_sunny</mat-icon>Estilos
+    </button>
+  </div>
+
+  <div class="right-menu">
+    <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
+      <mat-icon>person</mat-icon><span>{{ username }}</span>
+    </button>
+  </div>
+
+  <mat-menu #menuSalir="matMenu">
+    <button
+      mat-menu-item
+      routerLink="/login"
+      (click)="cerrar()"
+      class="custom-menu-item"
+    >
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+    <button mat-menu-item class="custom-menu-item">
+      Rol:
+      <span>{{ role }}</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
 <router-outlet></router-outlet>

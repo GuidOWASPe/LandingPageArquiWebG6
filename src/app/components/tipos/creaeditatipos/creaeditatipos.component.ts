@@ -45,7 +45,7 @@ export class CreaeditatiposComponent implements OnInit{
 
     this.form = this.FormBuilder.group({
       hcodigo: [''],
-      hnombre: ['', Validators.required],
+      hnombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],    
     });
   }
 
@@ -58,12 +58,14 @@ export class CreaeditatiposComponent implements OnInit{
         this.tS.update(this.tipo).subscribe(data => {
           this.tS.list().subscribe(data => {
             this.tS.setList(data);
+            this.openSnackBar('Registro actualizado exitosamente');
           });
         });
       } else{
         this.tS.insert(this.tipo).subscribe((data) => {
           this.tS.list().subscribe((data) => {
             this.tS.setList(data);
+            this.openSnackBar('Registro creado exitosamente');
           });
         });
       }
@@ -80,6 +82,7 @@ export class CreaeditatiposComponent implements OnInit{
   }
 
   cancel(): void {
+    this.openSnackBar('Operación cancelada');
     this.router.navigate(['tipos']);
   }
 

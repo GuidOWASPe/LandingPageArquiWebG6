@@ -1,0 +1,86 @@
+<div class="container">
+  <!-- Título -->
+  <div style="text-align: center; margin-bottom: 2rem">
+    <h1>Lista de Estilos</h1>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
+    <div
+      class="search-label"
+      style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
+    >
+      Buscar estilo por nombre
+    </div>
+
+    <mat-form-field appearance="fill" class="search-input" style="width: 80%">
+      <input matInput placeholder="Ingresar estilo" [(ngModel)]="filterValue" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="applyFilter()">
+      Buscar
+    </button>
+  </div>
+
+  <!-- Contenedor para agregar estilo -->
+  <div class="add-style-container">
+    <p>¿Deseas agregar un nuevo estilo? Haz click aquí:</p>
+    <button mat-fab extended color="primary" [routerLink]="['nuevo']">
+      <mat-icon>add_circle</mat-icon> Agregar Estilo
+    </button>
+  </div>
+
+  <!-- Verificar si la tabla está vacía -->
+  <div
+    *ngIf="filteredEstilos.length === 0"
+    style="text-align: center; margin-top: 2rem"
+  >
+    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold">
+      No hay datos registrados.
+    </p>
+  </div>
+
+  <!-- Grid de Tarjetas de Estilos -->
+  <div class="cards-grid" *ngIf="filteredEstilos.length > 0">
+    <div *ngFor="let element of filteredEstilos" class="card">
+      <div class="card-header">
+        <p>{{ element.nombreEstilo }}</p>
+      </div>
+      <div class="card-content">
+        <img
+          [src]="element.imagenEstilo"
+          alt="Imagen del estilo"
+          class="card-image"
+        />
+        <p><strong>Rostro:</strong> {{ element.ro.nombre }}</p>
+        <p><strong>Item:</strong> {{ element.it.nombreItem }}</p>
+        <p><strong>Fecha Creado:</strong> {{ element.fechaCreado }}</p>
+      </div>
+      <div class="card-footer">
+        <div
+          *ngIf="element.codigoColor"
+          [ngStyle]="{ 'background-color': element.codigoColor }"
+          style="
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+          "
+        ></div>
+        <mat-icon
+          class="card-action-button"
+          (click)="eliminar(element.idEstilo)"
+        >
+          delete
+        </mat-icon>
+        <button
+          mat-raised-button
+          class="update-btn"
+          [routerLink]="['ediciones', element.idEstilo]"
+        >
+          <mat-icon>edit</mat-icon> Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

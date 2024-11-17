@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+/* Fuente general */
+* {
+  font-family: 'Roboto Condensed', serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estructura general */
+body {
+  background-color: #ECF0F1;
+  height: 100%;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* Banner de bienvenida */
+.welcome-banner {
+  background-color: #2C3E50;
+  color: #FFFFFF;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-banner h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: 700;
+  color: #ECF0F1;
+}
+
+.welcome-banner p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #BDC3C7;
+}
+
+/* Contenedores de reportes */
+.reporte-container1, .reporte-container2, .reporte-container4, .reporte-container5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 1.8rem;
+  padding: 2.5rem 3rem;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 2600px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  max-height: calc(100vh - 220px);
+}
+
+.reporte-container5 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Estilo para cada tarjeta de reporte */
+.reporte-item {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reporte-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Títulos de cada reporte */
+.reporte-item h1 {
+  font-size: 1.8rem;
+  color: #2C3E50;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Canvas del gráfico */
+.reporte-item canvas {
+  width: 100% !important;
+  height: auto;
+  margin-top: 1.5rem;
+}
+
+/* Estilos para contenedores de reportes con diferentes tamaños */
+.reporte-container1, .reporte-container2, .reporte-container4, .reporte-container5 {
+  border-radius: 10px;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  .reporte-container1, .reporte-container2, .reporte-container4, .reporte-container5 {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .welcome-banner h1 {
+    font-size: 2.2rem;
+  }
+
+  .reporte-item {
+    padding: 1.5rem;
+  }
+
+  .reporte-item h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Ajustes a la fuente de los títulos en reportes */
+  .welcome-banner p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,22 @@
+
+
+@media (max-width: 768px) {
+  .chart-container {
+    width: 80%;
+    padding: 15px;
+    margin: 0 auto; 
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+}
+
+.no-data-message {
+  text-align: center;
+  font-size: 18px;
+  color: #95A5A6;
+  margin-top: 20px;
+  font-weight: bold;
+}
