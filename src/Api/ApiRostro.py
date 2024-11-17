@@ -16,7 +16,8 @@ def calcular_aspecto_rostro(landmarks):
     x2 = landmarks[15][0]
     ancho_rostro = abs(x2 - x1)
     y1 = landmarks[8][1]
-    y2 = landmarks[27][1]
+    y2 = l
+    andmarks[27][1]
     alto_rostro = abs(y2 - y1)
     return ancho_rostro / alto_rostro
 

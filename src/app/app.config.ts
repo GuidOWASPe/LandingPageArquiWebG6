@@ -29,8 +29,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8080'],
-          disallowedRoutes: ['http://localhost:8080/login/forget'],
+          allowedDomains: ['trabajo-g06.onrender.com'],
+          disallowedRoutes: ['https://trabajo-g06.onrender.com/login/forget'],
         },
       })
     ),

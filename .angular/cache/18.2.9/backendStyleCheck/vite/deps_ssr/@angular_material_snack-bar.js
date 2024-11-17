@@ -1,5 +1,9 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
+  MatButton,
+  MatButtonModule
+} from "./chunk-BY375ZPS.js";
+import {
   BasePortalOutlet,
   CdkPortalOutlet,
   ComponentPortal,
@@ -17,10 +21,6 @@ import {
   transition,
   trigger
 } from "./chunk-LHBHO5TB.js";
-import {
-  MatButton,
-  MatButtonModule
-} from "./chunk-BY375ZPS.js";
 import {
   BreakpointObserver,
   Breakpoints,

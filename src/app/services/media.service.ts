@@ -12,11 +12,11 @@ export class MediaService {
   ) { }
 
   uploadFile(formData:FormData): Observable<any>{
-    return this.http.post('http://localhost:8080/media/upload', formData);
+    return this.http.post('https://trabajo-g06.onrender.com/media/upload', formData);
   }
 
   deleteFile(filename: string): Observable<any> {
-    return this.http.delete(`http://localhost:8080/media/delete/${filename}`, { responseType: 'text' });
+    return this.http.delete(`https://trabajo-g06.onrender.com/media/delete/${filename}`, { responseType: 'text' });
   }
 }
 
