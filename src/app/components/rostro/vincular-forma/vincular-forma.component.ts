@@ -130,14 +130,13 @@ export class VincularFormaComponent implements OnInit{
       });
     });
 
-    const imagenPath = this.form.value.himagen;  //'C:/Users/lapul/Pictures/Camera Roll/7289bcaa-1beb-45bb-862c-0cdd1b9b7802.jpg';
+    const imagenPath = this.form.value.himagen;  
 
     this.http.post<any>(`http://127.0.0.1:5000/api/detectar-forma`, { imagen_path: imagenPath })
       .subscribe(response => {
         console.log('Forma de rostro:', response.nombreForma);
         console.log('Descripción:', response.descripcionForma);
 
-        // Llenar los campos del formulario con los datos de la respuesta
         this.form.controls['hforma'].setValue(response.nombreForma);
       if(this.form.value.hforma == 'Cara alargada'){
         this.rostro.fo.idForma=1;

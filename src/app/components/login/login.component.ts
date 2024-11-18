@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
     
     this.loginService.login(request).subscribe(
       (data: any) => {
-        // Guardar el token en sessionStorage
+        
         sessionStorage.setItem('token', data.jwttoken);
 
-        // Obtener el rol del usuario desde el token
+        
         const userRole = this.loginService.showRole();
 
-        // Redirigir según el rol
+        
         if (userRole === 'ADMIN') {
           this.router.navigate(['/homes']);
         } else if (userRole === 'CLIENTE') {

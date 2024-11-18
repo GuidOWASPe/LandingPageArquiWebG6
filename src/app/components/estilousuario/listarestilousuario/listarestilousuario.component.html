@@ -1,10 +1,8 @@
 <div class="container">
-  <!-- Título -->
   <div style="text-align: center; margin-bottom: 2rem">
     <h1>Lista de Estilos por Usuario</h1>
   </div>
 
-  <!-- Barra de búsqueda -->
   <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
     <div
       class="search-label"
@@ -26,7 +24,6 @@
     </button>
   </div>
 
-  <!-- Contenedor de agregar usuario -->
   <div class="add-user-container">
     <p>¿Deseas agregar un nuevo estilo de usuario? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -34,7 +31,6 @@
     </button>
   </div>
 
-  <!-- Verificar si la tabla está vacía -->
   <div
     *ngIf="filteredEstilosFav.length === 0"
     style="text-align: center; margin-top: 2rem"

@@ -1,10 +1,8 @@
 <div class="container">
-  <!-- Título -->
   <div style="text-align: center; margin-bottom: 2rem">
     <h1>Lista de Rostros</h1>
   </div>
 
-  <!-- Barra de búsqueda -->
   <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
     <div
       class="search-label"
@@ -26,7 +24,6 @@
     </button>
   </div>
 
-  <!-- Contenedor para agregar nuevo rostro -->
   <div
     class="add-rostro-container"
     style="text-align: center; margin-bottom: 2rem"
@@ -37,7 +34,6 @@
     </button>
   </div>
 
-  <!-- Verificar si no hay datos -->
   <div
     *ngIf="filteredRostro.length === 0"
     style="text-align: center; margin-top: 2rem"
@@ -47,7 +43,6 @@
     </p>
   </div>
 
-  <!-- Grid de Tarjetas de Rostros -->
   <div class="cards-grid" *ngIf="filteredRostro.length > 0">
     <div
       *ngFor="let element of filteredRostro"

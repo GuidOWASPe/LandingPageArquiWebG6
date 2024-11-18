@@ -1,4 +1,3 @@
-/* Contenedor principal con un tamaño máximo y centrado */
 .container {
     max-width: 800px;
     margin: 2% auto;
@@ -10,7 +9,6 @@
     border: 1px solid #e0e0e0;
 }
 
-/* Encabezado con gradiente */
 .container h1 {
     font-weight: bold;
     font-size: 4rem;
@@ -21,7 +19,6 @@
     margin-bottom: 20px;
 }
 
-/* Distribución en dos columnas */
 .form-row {
     display: flex;
     justify-content: space-between;
@@ -33,7 +30,7 @@
     width: 48%;
 }
 
-/* Estilo de campos con sombra sutil y borde redondeado */
+
 mat-form-field {
     width: 100%;
     border-radius: 6px;
@@ -43,21 +40,19 @@ mat-form-field {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Efecto de sombra y borde en campos */
+
 mat-form-field:hover,
 mat-form-field:focus-within {
     box-shadow: 0 0 8px rgba(26, 188, 156, 0.3);
     border-color: #1ABC9C;
 }
 
-/* Fondo de entradas con borde redondeado */
 input.mat-input-element {
     background-color: #F4F4F4;
     border-radius: 5px;
     padding: 8px;
 }
 
-/* Botones con efecto de brillo */
 .custom-button {
     color: #FFFFFF;
     font-weight: bold;
@@ -72,7 +67,6 @@ input.mat-input-element {
     box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
 }
 
-/* Color específico para cada botón */
 .custom-button:first-child {
     background-color: #FF4081;
 }
@@ -81,26 +75,26 @@ input.mat-input-element {
     background-color: #1ABC9C;
 }
 
-/* Centrado de botones */
+
 .buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-/* Contenedor para el campo de color */
+
 .color-picker-field .color-inputs {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-/* Input de texto hexadecimal */
+
 .color-picker-field input.mat-input-element {
     flex: 1;
 }
 
-/* Selector de color */
+
 .color-selector {
     width: 40px;
     height: 20px;
@@ -109,14 +103,13 @@ input.mat-input-element {
     cursor: pointer;
 }
 
-/* Contenedor para la imagen seleccionada */
 .imagen-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
     transition: opacity 0.5s ease-in-out;
-    opacity: 0; /* Ocultamos la imagen inicialmente */
+    opacity: 0; 
 }
 
 .imagen-container img {
@@ -129,15 +122,13 @@ input.mat-input-element {
 }
 
 .imagen-container img:hover {
-    transform: scale(1.05); /* Efecto al pasar el ratón */
+    transform: scale(1.05); 
 }
 
-/* Mostrar la imagen con una animación cuando se seleccione */
 .imagen-visible {
     opacity: 1;
 }
 
-/* Animación suave para la imagen */
 @keyframes fadeInImage {
     0% {
         opacity: 0;
@@ -149,7 +140,6 @@ input.mat-input-element {
     }
 }
 
-/* Animación de entrada */
 @keyframes fadeIn {
     from {
         opacity: 0;

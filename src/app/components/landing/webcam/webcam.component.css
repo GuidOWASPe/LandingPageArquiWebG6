@@ -20,12 +20,12 @@ h1{
 
 .encabezado h1 {
   margin-top: 70px;
-  font-size: 45px; /* Aumentado */
+  font-size: 45px;
   text-align: center;
 }
 
 .encabezado h3 {
-  font-size: 24px; /* Aumentado */
+  font-size: 24px;
   color: gray;
   text-align: center;
   margin-bottom: 40px;
@@ -35,7 +35,7 @@ h1{
 .section_c_2 {
   display: flex;
   align-items: center;
-  margin-bottom: 30px; /* Más espacio */
+  margin-bottom: 30px;
 }
 .imagen-izquierda{
   margin-left: 20px;
@@ -48,7 +48,7 @@ h1{
   width: 600px;
   height: auto;
   border-radius: 20px;
-  height: 350px; /* Aumentado */
+  height: 350px;
 }
 .imagen-derecha{
   margin-right: 20px;
@@ -61,25 +61,25 @@ h1{
   width: 600px;
   height: auto;
   border-radius: 20px;
-  height: 350px; /* Aumentado */
+  height: 350px;
 }
 
 .texto-derecha,
 .texto-izquierda {
   display: block;
   width: 100%;
-  padding: 30px; /* Más espacio */
+  padding: 30px;
 }
 
 .encabezado h2 {
-  font-size: 42px; /* Aumentado */
+  font-size: 42px;
   color: #1abc9c;
   text-align: center;
   margin-bottom: 15px;
 }
 
 .parrafo p {
-  font-size: 24px; /* Aumentado */
+  font-size: 24px;
   color: black;
   text-align: justify;
   margin-bottom: 10px;
@@ -92,12 +92,12 @@ ul {
 }
 
 li {
-  font-size: 22px; /* Aumentado */
+  font-size: 22px;
   color: #1abc9c;
 }
 
 li img {
-  width: 24px; /* Aumentado */
+  width: 24px;
   margin-right: 8px;
 }
 

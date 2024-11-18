@@ -93,7 +93,7 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Cambio de color en hover */
+ 
   .cancel-button:hover {
     background-color: #90a4ae;
   }

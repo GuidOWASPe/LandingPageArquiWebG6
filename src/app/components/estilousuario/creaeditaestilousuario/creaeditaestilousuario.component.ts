@@ -91,7 +91,6 @@ export class CreaeditaestilousuarioComponent implements OnInit{
 
   actualizarFecha(event: any, isYes: boolean): void {
     this.gustar = isYes ? true : false;
-    // Actualizar directamente la fecha en el objeto
     this.estilousuario.fechaEstiloFav = this.gustar ? new Date(Date.now()) : null;
   }
 

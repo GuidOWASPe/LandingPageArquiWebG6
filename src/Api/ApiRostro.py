@@ -11,7 +11,6 @@ mp_face_mesh = mp.solutions.face_mesh
 mp_drawing = mp.solutions.drawing_utils
 
 def calcular_aspecto_rostro(landmarks):
-    # Código para calcular el aspecto del rostro
     x1 = landmarks[1][0] 
     x2 = landmarks[15][0]
     ancho_rostro = abs(x2 - x1)

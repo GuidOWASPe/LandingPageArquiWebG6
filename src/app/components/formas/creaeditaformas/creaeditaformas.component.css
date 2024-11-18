@@ -10,7 +10,6 @@
     border: 1px solid #e0e0e0;
 }
 
-/* Encabezado con gradiente */
 .container h1 {
     font-weight: bold;
     font-size: 4rem;
@@ -18,10 +17,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
-    margin-bottom: 30px; /* Espacio entre el título y el formulario */
+    margin-bottom: 30px; 
 }
 
-/* Estilo de campos con sombra sutil y borde redondeado */
 mat-form-field {
     width: 100%;
     border-radius: 6px;

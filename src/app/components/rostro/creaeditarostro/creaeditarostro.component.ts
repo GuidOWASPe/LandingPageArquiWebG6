@@ -95,10 +95,10 @@ export class CreaeditarostroComponent implements OnInit{
   }
   async register(file: File) {
     this.progress_bar = false;
-  // Considerando que solo se almacena una imagen principal
+  
       try {
         const res = await this.upload(file).toPromise();
-        this.uploadedImageUrl = res.url;  // Guarda la URL en la propiedad
+        this.uploadedImageUrl = res.url;  
         this.form.patchValue({ himagen: this.uploadedImageUrl }); 
         this.mostrarMensaje('Imagen subida exitosamente');
       } catch (error) {
@@ -133,16 +133,16 @@ export class CreaeditarostroComponent implements OnInit{
   }
 
   ClearImage(i: number) {
-    const filename = this.uploadedImageUrl.split('/').pop(); // Obtiene el nombre del archivo
+    const filename = this.uploadedImageUrl.split('/').pop(); 
     if (filename) {
       this.mS.deleteFile(filename).subscribe(
         () => {
           this.mostrarMensaje('Imagen eliminada del servidor');
-          this.form.patchValue({ himagen: null }); // Limpia el campo himagen
-          this.previewUrls[i] = null; // Limpia la vista previa de la imagen
+          this.form.patchValue({ himagen: null }); 
+          this.previewUrls[i] = null; 
           this.files[i] = null;
-          this.uploadedImageUrl = ''; // Limpia la URL de la imagen subida
-          this.ocultarBoton = true; // Opcional: Oculta el botón si es necesario
+          this.uploadedImageUrl = ''; 
+          this.ocultarBoton = true; 
           (document.getElementById('imagePrincipal') as HTMLInputElement).value = ''; 
         },
         (error) => {
@@ -240,7 +240,7 @@ export class CreaeditarostroComponent implements OnInit{
         });
         if (data.imagenRostro) {
           this.uploadedImageUrl = data.imagenRostro;
-          this.previewUrls[0] = data.imagenRostro; // Asigna la URL a la vista previa
+          this.previewUrls[0] = data.imagenRostro; 
         }
       });
     }

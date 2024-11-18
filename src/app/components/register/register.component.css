@@ -1,4 +1,4 @@
-/* Estilos generales */
+
 html,
 body {
   height: 100%;
@@ -27,7 +27,7 @@ body {
   filter: grayscale(100%) brightness(50%) contrast(120%) blur(4px);
 }
 
-/* Contenedor del formulario */
+
 .form-container {
   position: relative;
   background-color: rgba(44, 62, 80, 0.9); 
@@ -50,7 +50,7 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Animación de aparición */
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -62,7 +62,7 @@ body {
   }
 }
 
-/* Título */
+
 h2 {
   color: #fff;
   font-family: "Roboto condensed", serif;
@@ -84,7 +84,7 @@ h2 {
   }
 }
 
-/* Estilos para los campos del formulario */
+
 mat-form-field {
   background-color: rgba(255, 255, 255, 0.471);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.301);
@@ -114,7 +114,7 @@ input:focus, mat-select:focus {
   border-color: #1abc9c;
 }
 
-/* Estilo de los checkbox para género */
+
 .gender-checkbox {
   display: flex;
   justify-content: center;
@@ -125,7 +125,7 @@ mat-checkbox {
   color: #fff;
 }
 
-/* Estilos adicionales para "Género" */
+
 .gender-section {
     margin-top: 20px;
   }
@@ -139,7 +139,7 @@ mat-checkbox {
     text-align: center;
   }
 
-/* Botón personalizado */
+
 .custom-button {
   background-color: #1abc9c;
   color: white;
@@ -161,7 +161,7 @@ mat-checkbox {
   filter: brightness(1.2);
 }
 
-/* Estilo del enlace "Volver al Inicio" en la esquina superior izquierda */
+
 .landing-link {
   position: fixed;
   top: 20px;
@@ -169,7 +169,7 @@ mat-checkbox {
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  background-color: rgba(26, 188, 156, 0.9); /* Color de fondo turquesa */
+  background-color: rgba(26, 188, 156, 0.9);
   color: #fff;
   font-weight: bold;
   font-size: 1rem;
@@ -179,12 +179,12 @@ mat-checkbox {
   text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
   animation: slideIn 1s ease forwards;
-  z-index: 1000; /* Asegura que esté en la parte superior */
+  z-index: 1000;
 }
 
 .landing-link:hover {
-  background-color: #16a085; /* Color más oscuro en hover */
-  transform: scale(1.05); /* Escala al pasar el cursor */
+  background-color: #16a085;
+  transform: scale(1.05);
 }
 
 .landing-link .arrow-icon {
@@ -193,23 +193,23 @@ mat-checkbox {
 }
 
 .landing-link:hover .arrow-icon {
-  transform: translateX(-5px); /* Movimiento a la izquierda en hover */
+  transform: translateX(-5px);
 }
 
-  /* Estilos para la imagen dentro de cada opción */
+ 
   .avatar-option {
-    width: 30px; /* Tamaño de la imagen */
+    width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    margin-right: 10px;
   }
   
-  /* Estilo para la imagen seleccionada en el mat-select */
+ 
   .custom-select .mat-select-trigger img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    margin-right: 10px;
   }
   
 
@@ -224,7 +224,7 @@ mat-checkbox {
   }
 }
 
-/* Estilo para el enlace de registro */
+
 .register-container {
   margin-top: 20px;
   text-align: center;
@@ -251,7 +251,7 @@ mat-checkbox {
 }
 
 
-/* Estilos de las filas en el formulario para dos columnas */
+
 .form-row {
   display: flex;
   justify-content: space-between;
@@ -263,12 +263,12 @@ mat-checkbox {
   flex: 1;
 }
 
-/* Reducir el ancho del campo País */
+
 #pais-select {
-  max-width: 250px; /* Ancho reducido para el campo País */
+  max-width: 250px;
 }
 
-/* Responsividad */
+
 @media (max-width: 768px) {
   .form-container {
     padding: 25px;
@@ -287,7 +287,7 @@ mat-checkbox {
   }
 }
 
-/* Animación del SVG */
+
 @keyframes jello {
     0%,
     to {
@@ -310,11 +310,11 @@ mat-checkbox {
     }
   }
   
-  /* Estilo del SVG */
+ 
   .jello-icon {
     animation: jello 1s both infinite cubic-bezier(0.69, 0.34, 0.09, 0.6);
     transform-origin: center;
-    width: 50px; /* Aumenta el tamaño del SVG */
-    height: 50px; /* Aumenta el tamaño del SVG */
-    margin-top: 10px; /* Ajusta la posición vertical del SVG */
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
   }

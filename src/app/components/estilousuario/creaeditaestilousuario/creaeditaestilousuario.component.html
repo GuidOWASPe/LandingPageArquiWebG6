@@ -4,7 +4,6 @@
   </div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
-      <!-- Fila 1 -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -14,7 +13,6 @@
         </div>
       </div>
 
-      <!-- Fila 2 -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width">
@@ -52,7 +50,6 @@
         </div>
       </div>
 
-      <!-- Fila 3 -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field>
@@ -71,7 +68,6 @@
         </div>
       </div>
 
-      <!-- Nueva sección para la pregunta -->
       <div class="form-row">
         <label style="font-weight: bold">¿Marcar como favorito?</label>
         <div class="form-column">
@@ -88,7 +84,6 @@
         </div>
       </div>
 
-      <!-- Botones -->
       <div class="buttons">
         <button mat-flat-button class="custom-button" (click)="cancel()">
           Cancelar

@@ -4,7 +4,6 @@
   </div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
-      <!-- Código -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -12,7 +11,6 @@
             <input matInput formControlName="hcodigo" />
           </mat-form-field>
         </div>
-              <!-- Nombre del Item -->
       <div class="form-column">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre del Item</mat-label>
@@ -27,7 +25,6 @@
       </div>
       </div>
 
-      <!-- Tipos -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width">
@@ -42,7 +39,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-              <!-- Descripción -->
       <div class="form-column">
         <mat-form-field>
           <mat-label>Descripción</mat-label>
@@ -57,8 +53,6 @@
       </div>
       </div>
 
-
-      <!-- Calificación -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field class="example-full-width">
@@ -80,7 +74,6 @@
           </mat-form-field>
         </div>
         
-      <!-- Nro° de usos -->
       <div class="form-column">
         <mat-form-field>
           <mat-label>Nro° de usos</mat-label>
@@ -94,7 +87,6 @@
         </mat-form-field>
       </div>
       </div>
-      <!-- Imagen -->
       <div class="form-row">
         <div class="form-column">
           <mat-form-field appearance="fill" class="example-full-width">
@@ -112,7 +104,6 @@
         </div>
       </div>
 
-      <!-- Botones -->
       <div class="buttons">
         <button mat-flat-button class="custom-button" (click)="cancel()">
           Cancelar

@@ -1,7 +1,6 @@
 <div class="container">
   <h1>Lista de Comentarios</h1>
 
-  <!-- Barra de búsqueda -->
   <div class="search-bar">
     <div class="search-label">Buscar comentario por contenido</div>
     <mat-form-field appearance="fill" class="search-input">
@@ -12,7 +11,6 @@
     </button>
   </div>
 
-  <!-- Sección para agregar un nuevo comentario -->
   <div class="add-role-container">
     <p>¿Deseas agregar un nuevo comentario? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -20,7 +18,7 @@
     </button>
   </div>
 
-  <!-- Verificar si la tabla está vacía -->
+ 
   <div *ngIf="dataSource.filteredData.length === 0" style="text-align: center; margin-top: 2rem;">
     <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold;">No hay datos registrados.</p>
   </div>

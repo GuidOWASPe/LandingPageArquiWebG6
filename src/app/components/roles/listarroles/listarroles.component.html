@@ -1,12 +1,9 @@
 <div class="container">
-  <!-- Título -->
   <div style="text-align: center; margin-bottom: 2rem">
     <h1>Lista de Roles</h1>
   </div>
 
-  <!-- Barra de búsqueda -->
   <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
-    <!-- Texto indicativo de la búsqueda -->
     <div
       class="search-label"
       style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem"
@@ -14,18 +11,15 @@
       Buscar rol por nombre
     </div>
 
-    <!-- Campo de búsqueda -->
     <mat-form-field appearance="fill" class="search-input" style="width: 80%">
       <input matInput placeholder="Ingresar rol" [(ngModel)]="filterValue" />
     </mat-form-field>
 
-    <!-- Botón de búsqueda -->
     <button mat-raised-button color="primary" (click)="applyFilter()">
       Buscar
     </button>
   </div>
 
-  <!-- Contenedor para agregar rol -->
   <div class="add-role-container">
     <p>¿Deseas agregar un nuevo rol? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -33,7 +27,6 @@
     </button>
   </div>
 
-  <!-- Tabla de roles -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="c1">
       <th mat-header-cell *matHeaderCellDef>Código</th>
@@ -65,7 +58,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <!-- Paginador -->
   <mat-paginator
     [length]="100"
     [pageSize]="10"

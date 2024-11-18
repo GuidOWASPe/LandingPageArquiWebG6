@@ -1,10 +1,10 @@
 <div class="container">
-  <!-- Título -->
+
   <div style="text-align: center; margin-bottom: 2rem">
     <h1>Lista de Estilos</h1>
   </div>
 
-  <!-- Barra de búsqueda -->
+
   <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
     <div
       class="search-label"
@@ -22,7 +22,7 @@
     </button>
   </div>
 
-  <!-- Contenedor para agregar estilo -->
+
   <div class="add-style-container">
     <p>¿Deseas agregar un nuevo estilo? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -30,7 +30,6 @@
     </button>
   </div>
 
-  <!-- Verificar si la tabla está vacía -->
   <div
     *ngIf="filteredEstilos.length === 0"
     style="text-align: center; margin-top: 2rem"
@@ -40,7 +39,6 @@
     </p>
   </div>
 
-  <!-- Grid de Tarjetas de Estilos -->
   <div class="cards-grid" *ngIf="filteredEstilos.length > 0">
     <div *ngFor="let element of filteredEstilos" class="card">
       <div class="card-header">

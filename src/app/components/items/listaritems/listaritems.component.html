@@ -1,10 +1,8 @@
 <div class="container">
-  <!-- Título -->
   <div style="text-align: center; margin-bottom: 2rem">
     <h1>Lista de Items</h1>
   </div>
 
-  <!-- Barra de búsqueda -->
   <div class="search-bar" style="text-align: center; margin-bottom: 2rem">
     <div class="search-label" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem">
       Buscar item por nombre
@@ -19,7 +17,6 @@
     </button>
   </div>
 
-  <!-- Contenedor para agregar item -->
   <div class="add-style-container">
     <p>¿Deseas agregar un nuevo item? Haz click aquí:</p>
     <button mat-fab extended color="primary" [routerLink]="['nuevo']">
@@ -27,14 +24,12 @@
     </button>
   </div>
 
-  <!-- Verificar si la tabla está vacía -->
   <div *ngIf="filteredItems.length === 0" style="text-align: center; margin-top: 2rem">
     <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold">
       No hay datos registrados.
     </p>
   </div>
 
-  <!-- Tarjetas de Items -->
   <div class="cards-grid" *ngIf="filteredItems.length > 0">
     <div *ngFor="let element of filteredItems" class="card">
       <div class="card-header">

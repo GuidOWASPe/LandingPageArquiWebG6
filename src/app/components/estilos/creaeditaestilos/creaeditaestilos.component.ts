@@ -137,21 +137,19 @@ export class CreaeditaestiloComponent implements OnInit {
     const rostroSeleccionado = this.form.get('hrostro')?.value;
     const itemSeleccionado = this.form.get('hitem')?.value;
   
-    // Verificar si ambos campos tienen valores
     if (rostroSeleccionado && itemSeleccionado) {
       const nuevaImagen =
         this.imagenesAleatorias[ 
           Math.floor(Math.random() * this.imagenesAleatorias.length)
         ];
   
-      // Actualizar el campo himagen y la vista previa de la imagen
       this.form.patchValue({ himagen: nuevaImagen });
       this.imagenSeleccionada = nuevaImagen;
 
-      // Asegurarse de que la imagen se muestre con la animación
+     
       setTimeout(() => {
-        this.imagenSeleccionada = nuevaImagen;  // Forzar actualización del DOM
-      }, 100); // La animación de fade-in debe aplicarse después de actualizar la imagen
+        this.imagenSeleccionada = nuevaImagen;  
+      }, 100); 
     }
   }
   insertar(): void {

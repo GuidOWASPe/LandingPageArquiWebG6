@@ -49,14 +49,14 @@ export class ReporteitemspornrousosComponent implements OnInit {
   barChartData: ChartDataset[] = [];
   noDataMessage: string | null = null;
   colorsPalette: string[] = [
-    '#2C3E50', // Azul Oscuro
-    '#1ABC9C', // Turquesa Claro
-    '#FF4081', // Magenta
-    '#95A5A6', // Gris Medio
-    '#3E95CD', // Azul Claro
-    '#2ECC71', // Verde Claro
-    '#F39C12', // Naranja Claro
-    '#E74C3C', // Rojo Claro
+    '#2C3E50', 
+    '#1ABC9C', 
+    '#FF4081', 
+    '#95A5A6', 
+    '#3E95CD', 
+    '#2ECC71', 
+    '#F39C12', 
+    '#E74C3C', 
   ];
 
   constructor(private euS: ItemusuarioService) {}
